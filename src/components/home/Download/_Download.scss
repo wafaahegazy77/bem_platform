@@ -1,0 +1,50 @@
+.download {
+    position: relative;
+    
+    .download-box {
+        position: relative;
+        background-image: url("/images/why-bg.png");
+        background-size: cover;
+        background-position: top;
+
+        .app-item {
+            position: relative;
+            width: 150px;
+            // background: #fff;
+            border: 1px solid #c5dff0;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+
+            .ico {
+                height: 95px;
+            }
+
+            .label {
+                padding: 10px 6px 15px 6px;
+                color: #fff;
+            }
+
+            &:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 24px #375BC11a;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .download {
+
+        .download-box {
+            flex-direction: column;
+            text-align: center;
+            gap: 30px;
+
+            .apps {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}

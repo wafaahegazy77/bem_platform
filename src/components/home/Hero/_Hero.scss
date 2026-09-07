@@ -1,8 +1,47 @@
 .hero_section {
     position: relative;
-    padding-top: 100px;
+    padding-top: 200px;
+    background-image: linear-gradient(to bottom , #375BC1 , #375cc100);
+    min-height: 100vh;
 
 
+    .txt_box {
+        .description * {
+            color: #fff;
+            font-size: 18px;
+        }
+    }
+
+
+    .hero-slider {
+        position: relative;
+        padding: 0 ;
+        min-height: 560px;
+        overflow: visible;
+        .img {
+            position: relative;
+            height: 400px;
+            border-radius: 40px;
+            overflow: hidden;
+            background-color: #fff;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .swiper-slide {
+            margin-top: 0;
+            transition: all 1s ease;
+        }
+
+        .swiper-slide-active {
+            margin-top: 160px;
+        }
+
+        .swiper-slide-next,
+        .swiper-slide-prev {
+            margin-top: 100px;
+        }
+    }
 }
 
 @media screen and (max-width: 991px) {

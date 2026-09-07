@@ -1,0 +1,147 @@
+.team-link {
+    position: relative;
+    z-index: 10;
+    padding: 70px 0;
+
+    &::before {
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 90%;
+        transform: translate(-50%, -50%);
+        width: 40vw;
+        height: 40vw;
+        background: linear-gradient(
+            119.09deg,
+            rgba(57, 40, 255, 0.8) 14.54%,
+            rgba(250, 40, 137, 0.8) 41.09%,
+            rgba(35, 141, 250, 0.8) 55.83%,
+            rgba(62, 95, 249, 0.8) 80.08%
+        ),
+        linear-gradient(
+            119.09deg,
+            rgba(255, 198, 40, 0.8) 14.54%,
+            rgba(250, 40, 137, 0.8) 41.09%,
+            rgba(35, 141, 250, 0.8) 55.83%,
+            rgba(62, 95, 249, 0.8) 80.08%
+        );
+        opacity: 0.4;
+        filter: blur(250px);
+        pointer-events: none;
+    }
+
+    .lines-shap {
+        position: relative;
+        width: 100%;
+    }
+
+    .team-animation {
+        position: relative;
+        width: 100%;
+        height: 600px;
+    }
+
+    .team-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: visible;
+    }
+
+    .team-nodes {
+        position: relative;
+        width: 100%;
+        height: 600px;
+    }
+
+    .team-center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #9993;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 20px rgba(100, 110, 200, 0.1);
+        z-index: 5;
+    }
+
+    .team-center-logo {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+    }
+
+    .sn {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 18px;
+        background: #fff;
+        border: 1.5px solid rgba(91, 130, 200, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 4;
+        cursor: pointer;
+        transform-origin: center center;
+
+        img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .team-link {
+        .team-animation,
+        .team-nodes {
+            height: 500px;
+        }
+
+        .team-center {
+            width: 120px;
+            height: 120px;
+        }
+
+        .team-center-logo {
+            width: 50px;
+            height: 50px;
+
+            img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        .sn {
+            width: 65px;
+            height: 65px;
+            border-radius: 15px;
+
+            img {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+}

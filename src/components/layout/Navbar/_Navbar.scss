@@ -1,34 +1,203 @@
 .navbar {
-    padding: 1.5rem 1rem ;
+    padding: 1.35rem 1rem;
     z-index: 99;
-    
+    transition: all 0.3s ease;
+
+
+    .navbar-brand {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+
+        .logo {
+            width: 106px;
+            height: 35px;
+            object-fit: contain;
+        }
+    }
+
+    .navbar-collapse {
+        align-items: center;
+    }
+
+    .navbar-nav {
+        gap: 8px;
+
+        .nav-link {
+            margin: 0 8px;
+            padding: 5px 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+    }
+
+    .nav-side {
+        gap: 18px;
+        white-space: nowrap;
+
+        .login-link {
+            font-size: 16px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        .language_switcher {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            font-size: 15px;
+            cursor: pointer;
+
+            i {
+                position: relative;
+                top: 3px;
+            }
+        }
+
+
+    }
+
+    // =========================
+    // HOME NAVBAR
+    // =========================
+
     &.homeNav {
         position: absolute;
         top: 0;
-        right: 0;
         left: 0;
+        right: 0;
 
-    }
-    .logo {
-        height: 35px;
-        object-fit: contain;
-    }
+        .nav-link,
+        .login-link,
+        .language_switcher {
+            color: #fff;
+        }
 
-    .nav-link {
-        color: #161B26;
-        margin: 0 15px ;
-        font-weight: 500;
-        &:hover {
-            color: var(--blue);
+        .nav-link:hover,
+        .login-link:hover  {
+            color: #fff !important;
+        }
+
+        .contact-btn {
+            background: var(--primary);
+            border: 1px solid var(--primary);
+            color: #fff;
+
         }
     }
 
-    .language_switcher {
-        background-color: transparent;
-        border: none;
-        i {
-            margin-inline-end: 5px;
+    // =========================
+    // INNER PAGES NAVBAR
+    // =========================
+
+    &.innerNav {
+        position: relative;
+        background: #fff5df;
+
+        .nav-link,
+        .login-link,
+        .language_switcher {
+            color: #161b26;
+        }
+
+        .nav-link:hover,
+        .login-link:hover {
+            color: var(--primary);
+        }
+
+        .contact-btn {
+            background: transparent;
+            border: 1px solid #d7d7d7;
+            color: #161b26;
+
+            &:hover {
+                background: var(--primary);
+                border-color: var(--primary);
+                color: #fff;
+            }
         }
     }
 
+    // =========================
+    // MOBILE
+    // =========================
+
+    .navbar-toggler {
+        border: 0;
+        padding: 5px;
+        box-shadow: none;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    &.homeNav {
+        .navbar-toggler-icon {
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    &.innerNav {
+        .navbar-toggler-icon {
+            filter: none;
+        }
+    }
+}
+
+
+// =================================
+// RESPONSIVE
+// =================================
+
+@media (max-width: 991px) {
+
+    .navbar {
+        padding: 1rem;
+
+        .navbar-collapse {
+            margin-top: 15px;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        &.homeNav {
+            .navbar-collapse {
+                background: rgba(0, 0, 0, 0.15);
+                backdrop-filter: blur(15px);
+            }
+        }
+
+        &.innerNav {
+            .navbar-collapse {
+                background: #fff;
+            }
+        }
+
+        .navbar-nav {
+            gap: 0;
+
+            .nav-link {
+                margin: 5px 0;
+                padding: 8px 0;
+            }
+        }
+
+        .nav-side {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
 }

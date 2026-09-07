@@ -5,7 +5,23 @@
         "pricing": "Plans & Pricing",
         "download": "Download",
         "contact": "Contact Us",
-        "login" : "Login" 
+        "login" : "Login" ,
+        "help_center": "Help Center"    
+    },
+    "hero": {
+        "pricing": "View Packages",
+        "features": "Key Features"
+    },
+    "features": {
+        "title_first": "Your All-in-One Platform …",
+        "title_second": "For Everything Your Team Needs!",
+        "button": "Start With Us For Free"
+    },
+    "download": {
+        "apple": "Apple Store",
+        "google": "Google Play",
+        "windows": "Windows",
+        "mac": "Mac"
     }
 
 }

@@ -21,9 +21,14 @@ export const api = {
     getServices: (locale: string) =>
         apiClient
             .get("/api/services", {
-                headers: {
-                    lang: locale,
-                },
+                headers: { lang: locale },
+            })
+            .then((res) => res.data),
+
+    getService: (code: string, locale: string) =>
+        apiClient
+            .get(`/api/services/${code}`, {
+                headers: { lang: locale },
             })
             .then((res) => res.data),
 

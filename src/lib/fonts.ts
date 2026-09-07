@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 
-export const didot = localFont({
+export const diodrum  = localFont({
     src: [
         {
             path: "../../public/fonts/diodrum/light.ttf",

@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
-
 /* --------------- variable --------------- */
 :root{
-    --primary : #000;
-    --secondary: #333;
+    --primary : #375BC1;
+    --secondary: #161B26;
     --filterPrimary : invert(0%) sepia(100%) saturate(19%) hue-rotate(19deg) brightness(101%) contrast(106%);
     --filterSecondary : invert(0%) sepia(100%) saturate(19%) hue-rotate(19deg) brightness(101%) contrast(106%);
     --filterWhite : invert(99%) sepia(0%) saturate(4787%) hue-rotate(41deg) brightness(127%) contrast(96%);
@@ -13,7 +11,6 @@
     margin: 0px;
     box-sizing: border-box;
     text-decoration:none;
-    font-family: 'Tajawal', sans-serif;
     scroll-behavior: smooth;
     &::selection{
         background-color: var(--primary);
@@ -32,7 +29,7 @@
 }
 
 body {
-    font-family: 'Tajawal', sans-serif;
+    font-family: var(--font-diodrum), sans-serif;
     overflow-x: hidden;
     color: #161B26;
 }
@@ -257,7 +254,7 @@ img {
 }
 
 .section-padding {
-    padding: 120px 0;
+    padding: 80px 0;
 }
 
 /* // lenis scroll smooth */

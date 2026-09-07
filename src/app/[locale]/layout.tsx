@@ -5,7 +5,7 @@ import "@/app/styles/scss/style.scss";
 import BootstrapClient from "@/components/BootstrapClient";
 import LenisProvider from "@/components/LenisProvider";
 import Providers from "@/components/Providers";
-import {  didot } from "@/lib/fonts";
+import {  diodrum  } from "@/lib/fonts";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -17,8 +17,8 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-    title: "Website Name",
-    description: "Website Name",
+    title: "Beem Platform",
+    description: "Beem Platform",
 };
 
 export default async function RootLayout({
@@ -39,7 +39,7 @@ export default async function RootLayout({
     const dir = locale === "ar" ? "rtl" : "ltr";
 
     return (
-        <html lang={locale} dir={dir} className={`${didot.variable}`}>
+        <html lang={locale} dir={dir} className={`${diodrum.variable}`}>
             <body suppressHydrationWarning>
                 <NextIntlClientProvider messages={messages}>
                     <Providers>

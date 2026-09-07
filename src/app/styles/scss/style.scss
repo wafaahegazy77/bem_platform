@@ -13,16 +13,17 @@
 /* --------------- butn --------------- */
 .butn {
     position: relative;
-    padding: 0.7rem 1.7rem;
+    padding: 0.5rem 1.7rem;
     width: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
     border: 1px solid transparent;
-    border-radius: 10px ;
+    border-radius: 25px ;
     overflow: hidden;
+    font-weight: 600;
 
     &.sm_butn {
         padding: 0;
