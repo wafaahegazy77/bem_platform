@@ -17,8 +17,8 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-    title: "Beem",
-    description: "Beem",
+    title: "Website Name",
+    description: "Website Name",
 };
 
 export default async function RootLayout({

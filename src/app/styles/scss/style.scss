@@ -4,13 +4,133 @@
 @import "./helper.scss";
 @import "./globals.scss";
 
-.section_head {
-    .stars {
-        margin-inline-end: 7px;
-    }
-
+.section{ 
+    position: relative;
+    padding: 70px 0;
+    overflow: hidden;
 }
 
+/* --------------- butn --------------- */
+.butn {
+    position: relative;
+    padding: 0.7rem 1.7rem;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid transparent;
+    border-radius: 10px ;
+    overflow: hidden;
+
+    &.sm_butn {
+        padding: 0;
+        width: 50px;
+        height: 50px;
+    }
+
+    &.primary_butn {
+        background-color: var(--primary);
+        color: #fff;
+    }
+
+    &.primary_border_butn {
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        background-color: transparent;
+    }
+
+    &.secondary_butn {
+        background-color: var(--secondary);
+        color: #fff;
+    }
+
+    &.secondary_border_butn {
+        border: 1px solid var(--secondary);
+        color: var(--secondary);
+        background-color: transparent;
+    }
+
+    &.white_butn {
+        background-color: #fff;
+        color: #333;
+    }
+
+    &.white_border_butn {
+        background-color: #fff;
+        border: 1px solid #D6D3D3;
+    }
+
+    &:hover {
+        background-color: #070f34;
+        border-color: #070f34;
+        color: #fff !important;
+    }
+
+    // Text transition hover
+    &.hvr-txt-trans {
+        .txt {
+            position: relative;
+            display: inline-block;
+            transition: all 0.4s ease;
+
+            span {
+                display: inline-block;
+                transition: all 0.4s ease;
+                padding-bottom: 5px;
+                font-weight: bold;
+            }
+
+            &::after {
+                content: attr(data-text);
+                display: inline-block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                opacity: 0;
+                white-space: nowrap;
+                padding-bottom: 5px;
+                font-weight: bold;
+                transform: translate(-50%, 100%);
+
+                transition:
+                    opacity 0.3s,
+                    transform 0.3s;
+
+                transition-timing-function:
+                    cubic-bezier(.455, .03, .515, .955);
+            }
+        }
+
+        &:hover {
+            .txt {
+                span {
+                    transform: translateY(-150%);
+                    opacity: 0;
+                }
+
+                &::after {
+                    transform: translate(-50%, -50%);
+                    opacity: 1;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    // Optional scale effect
+    &.hvr-scale {
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}
+
+
+/* --------------- page_loader --------------- */
 .page_loader {
     min-height: 100vh;
     display: flex;
@@ -79,42 +199,6 @@
     }
 }
 
-@keyframes loaderRotate {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes loaderRotateReverse {
-    to {
-        transform: rotate(-360deg);
-    }
-}
-
-@keyframes loaderPulse {
-    50% {
-        opacity: .5;
-    }
-}
-
-.bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    inset: 0;
-}
-
-
-
-@keyframes floatingX {
-    0%{
-        transform: translateY(10%);
-    }
-    100% {
-        transform: translateY(-10%);
-    }
-}
 
 @media screen and (max-width: 991px) {
  
@@ -122,4 +206,19 @@
         order: -1;
     }
 
+}
+
+
+html[dir="rtl"]{
+
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+
+    // * {
+    //     font-family: "Cairo", sans-serif;
+    // }
+    // .fa-classic, .fa-light, .fa-regular, .fa-solid, .fa-thin, .fal, .far, .fas, .fat {
+    //     font-family: "Font Awesome 6 Pro" !important;
+    // }
+
+    
 }
