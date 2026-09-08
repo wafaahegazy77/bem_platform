@@ -24,8 +24,10 @@
             border-radius: 40px;
             overflow: hidden;
             background-color: #fff;
-            object-fit: cover;
-            object-position: top;
+            img {
+                object-fit: cover;
+                object-position: top;
+            }
         }
 
         .swiper-slide {
