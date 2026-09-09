@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import "./_ServiceFeature.scss";
 
 type ServiceFeatureProps = {
@@ -9,35 +10,52 @@ type ServiceFeatureProps = {
         format: "image_first" | "image_last" | "image_below";
         placement: number;
     };
+    themeColor: string;
+    isLast: boolean;
 };
 
-const ServiceFeature = ({ feature }: ServiceFeatureProps) => {
+const ServiceFeature = ({
+    feature,
+    themeColor,
+    isLast,
+}: ServiceFeatureProps) => {
     return (
-        <section className={`service-feature ${feature.format}`}>
+        <section>
             <div className="container">
-                <div className="feature-content">
+                <div
+                    className={`service-feature ${feature.format} ${
+                        isLast ? "last-feature" : ""
+                    }`}
+                    style={
+                        {
+                            "--theme-color": themeColor,
+                        } as CSSProperties
+                    }
+                >
+                    <div className="feature-content">
 
-                    <div className="feature-text">
-                        <h2 className="fsz-35">
-                            {feature.title}
-                        </h2>
+                        <div className="feature-text">
+                            <h2 className="fsz-35">
+                                {feature.title}
+                            </h2>
 
-                        {feature.description && (
-                            <div className="description">
-                                {feature.description}
+                            {feature.description && (
+                                <div className="description col-lg-11">
+                                    {feature.description}
+                                </div>
+                            )}
+                        </div>
+
+                        {feature.image && (
+                            <div className="feature-image">
+                                <img
+                                    src={feature.image}
+                                    alt={feature.title}
+                                />
                             </div>
                         )}
+
                     </div>
-
-                    {feature.image && (
-                        <div className="feature-image">
-                            <img
-                                src={feature.image}
-                                alt={feature.title}
-                            />
-                        </div>
-                    )}
-
                 </div>
             </div>
         </section>

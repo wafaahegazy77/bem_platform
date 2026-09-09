@@ -1,6 +1,19 @@
 .service-feature {
     padding: 100px 0;
 
+
+
+    &.last-feature {
+        padding: 3vw;
+        border-radius: 45px;
+        background: linear-gradient(
+            50deg,
+            #F7F8FC, #F7F8FC,
+            color-mix(in srgb, var(--theme-color) 40%, transparent)
+            
+        );
+    }
+
     .feature-content {
         display: flex;
         align-items: center;
@@ -13,7 +26,7 @@
 
         h2 {
             margin-bottom: 20px;
-            font-weight: 700;
+            font-weight: 500;
         }
 
         .description {
@@ -116,5 +129,10 @@
                 order: 2;
             }
         }
+    }
+
+    .service-feature.last-feature {
+        border-radius: 25px;
+        padding: 25px;
     }
 }

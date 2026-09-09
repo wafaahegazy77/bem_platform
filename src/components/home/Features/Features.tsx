@@ -68,6 +68,7 @@ const Features = async () => {
                                     }`}
                                     id={`feature-${service.code}`}
                                     role="tabpanel"
+                                    aria-labelledby={`feature-${service.code}-tab`}
                                 >
                                     <div className="feature-box">
 
