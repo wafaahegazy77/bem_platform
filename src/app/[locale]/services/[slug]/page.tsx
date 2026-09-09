@@ -30,12 +30,15 @@ const ServicePage = async ({ params }: Props) => {
         <main>
             <ServiceHero service={serviceData} />
 
-            {serviceData.features?.map((feature: any) => (
-                <ServiceFeature
-                    key={feature.id}
-                    feature={feature}
-                />
-            ))}
+            {/* {serviceData.features
+                ?.slice()
+                .sort((a: any, b: any) => a.placement - b.placement)
+                .map((feature: any) => (
+                    <ServiceFeature
+                        key={feature.id}
+                        feature={feature}
+                    />
+                ))} */}
         </main>
     );
 };

@@ -119,8 +119,8 @@
 
         .contact-btn {
             background: transparent;
-            border: 1px solid #d7d7d7;
-            color: #161b26;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
 
             &:hover {
                 background: var(--primary);

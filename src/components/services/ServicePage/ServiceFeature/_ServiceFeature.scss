@@ -13,10 +13,11 @@
 
         h2 {
             margin-bottom: 20px;
+            font-weight: 700;
         }
 
         .description {
-            font-size: 18px;
+            font-size: 17px;
             line-height: 1.8;
             opacity: 0.7;
         }
@@ -56,10 +57,11 @@
         .feature-content {
             flex-direction: column;
             text-align: center;
-            gap: 50px;
+            gap: 45px;
         }
 
         .feature-text {
+            width: 100%;
             max-width: 750px;
         }
 
@@ -87,19 +89,12 @@
         .feature-content {
             flex-direction: column;
             text-align: center;
+            gap: 30px;
         }
 
         .feature-text,
         .feature-image {
             width: 100%;
-        }
-
-        &.image_first,
-        &.image_last {
-            .feature-text,
-            .feature-image {
-                order: initial;
-            }
         }
 
         &.image_first {

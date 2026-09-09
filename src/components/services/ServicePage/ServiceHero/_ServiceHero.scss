@@ -64,7 +64,7 @@
         height: 180px;
         position: absolute;
         top: 20%;
-        left: 10%;
+        inset-inline-end: 10%;
         transform: rotate(-15deg);
         img {
             width: 100%;
@@ -128,4 +128,12 @@
             top: 60px;
         }
     }
+}
+
+html[dir="ltr"]{
+    
+    .service-hero .service-hero-floating-icon {
+        transform: rotate(15deg);
+    }
+
 }
