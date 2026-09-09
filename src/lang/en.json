@@ -22,6 +22,9 @@
         "google": "Google Play",
         "windows": "Windows",
         "mac": "Mac"
+    },
+    "ServiceHero": {
+        "startFree": "Start with us for free"
     }
 
 }

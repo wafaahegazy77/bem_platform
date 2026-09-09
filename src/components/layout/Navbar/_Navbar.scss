@@ -100,8 +100,11 @@
     // =========================
 
     &.innerNav {
-        position: relative;
-        background: #fff5df;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        background: transparent;
 
         .nav-link,
         .login-link,

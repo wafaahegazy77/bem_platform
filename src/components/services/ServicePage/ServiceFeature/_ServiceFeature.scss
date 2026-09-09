@@ -1,0 +1,125 @@
+.service-feature {
+    padding: 100px 0;
+
+    .feature-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 80px;
+    }
+
+    .feature-text {
+        flex: 1;
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.7;
+        }
+    }
+
+    .feature-image {
+        flex: 1;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    &.image_first {
+        .feature-image {
+            order: 1;
+        }
+
+        .feature-text {
+            order: 2;
+        }
+    }
+
+    &.image_last {
+        .feature-text {
+            order: 1;
+        }
+
+        .feature-image {
+            order: 2;
+        }
+    }
+
+    &.image_below {
+        .feature-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 50px;
+        }
+
+        .feature-text {
+            max-width: 750px;
+        }
+
+        .feature-image {
+            width: 100%;
+            max-width: 900px;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .service-feature {
+        padding: 70px 0;
+
+        .feature-content {
+            gap: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .service-feature {
+        padding: 50px 0;
+
+        .feature-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .feature-text,
+        .feature-image {
+            width: 100%;
+        }
+
+        &.image_first,
+        &.image_last {
+            .feature-text,
+            .feature-image {
+                order: initial;
+            }
+        }
+
+        &.image_first {
+            .feature-image {
+                order: 1;
+            }
+
+            .feature-text {
+                order: 2;
+            }
+        }
+
+        &.image_last {
+            .feature-text {
+                order: 1;
+            }
+
+            .feature-image {
+                order: 2;
+            }
+        }
+    }
+}
