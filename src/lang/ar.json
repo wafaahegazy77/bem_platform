@@ -25,6 +25,30 @@
     },
     "ServiceHero": {
         "startFree": "ابدأ معنا الآن مجانًا"
+    },
+    "pricing": {
+        "label": "الباقات والأسعار",
+        "title": "اختر ما يعزز إنتاجيتك",
+        "included": "جميع الباقات تتضمن"
+    },
+    "pricing": {
+        "label": "الباقات والأسعار",
+        "title": "اختر ما يعزز إنتاجيتك",
+        "included": "جميع الباقات تتضمن",
+        "monthly": "شهري",
+        "yearly": "سنوي",
+        "yearlyDiscount": "خصم",
+        "free": "مجاني",
+        "currency": "ر.س",
+        "perUserMonthly": "لكل مستخدم / شهريًا",
+        "noCreditCard": "لا تحتاج بطاقة ائتمانية",
+        "startNow": "ابدأ الآن",
+        "subscribeNow": "اشترك الآن",
+        "contactTeam": "تواصل معنا",
+        "contactUs": "تواصل معنا"
+    },
+    "faq": {
+        "title": "الأسئلة الشائعة"
     }
 
     

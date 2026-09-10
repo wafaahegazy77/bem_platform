@@ -1,0 +1,185 @@
+/* --------------- faq --------------- */
+
+.faq {
+    position: relative;
+    padding: 70px 0;
+    overflow: unset;
+    .faq-title {
+        position: sticky;
+        top: 30px;  
+
+        h2 {
+            line-height: 1.3;
+        }
+    }
+
+    .accordion {
+        --bs-accordion-border-width: 0;
+        --bs-accordion-btn-focus-box-shadow: none;
+        --bs-accordion-active-bg: transparent;
+        --bs-accordion-btn-bg: transparent;
+        --bs-accordion-bg: transparent;
+    }
+
+    .accordion-item {
+        position: relative;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid #e5e7eb;
+        overflow: visible;
+        border-radius: 0 !important;
+        transition: all 0.3s ease;
+
+        &:has(.accordion-button:not(.collapsed)) {
+            background: #fff;
+            border-bottom-color: transparent;
+            box-shadow: 0 15px 40px #375bc122;
+            z-index: 2;
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: 0;
+                right: 0;
+                width: 3px;
+                height: 100%;
+                background: var(--primary);
+            }
+        }
+    }
+
+    .accordion-button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 72px;
+        padding: 18px 20px;
+        background: transparent;
+        box-shadow: none;
+        color: #161b26;
+        border-radius: 0;
+        text-align: start;
+        transition: all 0.3s ease;
+        
+        &::after {
+            display: none;
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        .ico {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: #375bc114;
+            color: var(--primary);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+
+            i {
+                font-size: 13px;
+            }
+
+            .minus-icon {
+                display: none;
+            }
+        }
+
+        .question {
+            font-weight: 600;
+            flex: 1;
+        }
+
+        &:not(.collapsed) {
+            background: transparent;
+            box-shadow: none;
+            color: var(--primary);
+
+            .ico {
+                background: var(--primary);
+                color: #fff;
+
+                .plus-icon {
+                    display: none;
+                }
+
+                .minus-icon {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    .accordion-body {
+        padding: 0 52px 25px 20px;
+        line-height: 1.8;
+        color: #666;
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+/* --------------- responsive --------------- */
+
+@media screen and (max-width: 991px) {
+
+    .faq {
+        .faq-title {
+            position: relative;
+            top: auto;
+            margin-bottom: 35px;
+        }
+
+        .accordion-body {
+            padding-inline-end: 52px;
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 767px) {
+
+    .faq {
+        .faq-title {
+            margin-bottom: 25px;
+
+            h2 {
+                font-size: 32px;
+            }
+        }
+
+        .accordion-button {
+            min-height: 65px;
+            padding: 15px 12px;
+            font-size: 14px;
+
+            .ico {
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+                margin-inline-end: 10px;
+
+                i {
+                    font-size: 11px;
+                }
+            }
+        }
+
+        .accordion-body {
+            padding: 0 48px 20px 12px;
+            font-size: 14px;
+        }
+    }
+
+}

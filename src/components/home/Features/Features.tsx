@@ -169,6 +169,7 @@ const Features = async () => {
                                         role="tab"
                                         aria-controls={`feature-${service.code}`}
                                         aria-selected={index === 0}
+                                        tabIndex={index === 0 ? 0 : -1}
                                     >
 
                                         <span className="txt fsz-14 fw-700">
