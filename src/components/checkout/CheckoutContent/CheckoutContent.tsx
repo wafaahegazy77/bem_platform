@@ -73,7 +73,7 @@ const CheckoutContent = ({
                         />
                     </div>
 
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 order_md_1">
                         <OrderSummary
                             packageData={packageData}
                             billingCycle={billingCycle}

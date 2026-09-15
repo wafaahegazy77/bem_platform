@@ -23,6 +23,22 @@
         "windows": "Windows",
         "mac": "Mac"
     },
+    "footer": {
+        "choosePlan": "Choose Your Plan",
+        "contact": "Contact Us",
+        "services": "Beem Services",
+        "about": "About Beem",
+        "helpCenter": "Help Center",
+        "terms": "Terms of Use",
+        "privacy": "Privacy Policy",
+        "download": "Download Beem",
+        "apps": {
+            "apple": "Apple Store",
+            "google": "Google Play",
+            "windows": "Windows",
+            "mac": "Mac"
+        }
+    },
     "ServiceHero": {
         "startFree": "Start with us for free"
     },
@@ -167,7 +183,47 @@
         "yearlySubscription": "Yearly Subscription",
         "monthlySubscription": "Monthly Subscription",
         "discountMessage": "You save {amount} SAR compared to the monthly billing based on your current users"
+    },
+    "success": {
+        "basic": {
+            "title": "Your organization has been created successfully!",
+            "description": "You are now on the free plan with limited features to explore Beem. Get started and collaborate with your team right away!",
+            "package": "Basic Plan"
+        },
+        "professional": {
+            "title": "Subscription completed successfully",
+            "description": "Your Beem Professional plan has been activated successfully, and your organization's workspace is ready to get started."
+        },
+        "orderSummary": "Order Summary",
+        "package": "Package",
+        "amount": "Amount",
+        "goToBeem": "Go to Beem",
+        "downloadPrompt": "Haven't installed Beem yet?",
+        "downloadApp": "Download the app"
+    },
+    "terms": {
+        "badge": "Terms & Conditions",
+        "description": "Please read the terms and conditions carefully before using the Beem platform."
+    },
+    "privacy": {
+        "badge": "Privacy Policy",
+        "index": "Policy Index",
+        "contactSidebr": "Contact",
+        "description": "At Beem, we are committed to your privacy and the protection of your personal data. We design and operate our services to ensure the confidentiality of your information and achieve the highest standards of security and compliance.",
+        "contact": {
+            "title": "Contact",
+            "technicalTitle": "Technical Support",
+            "generalTitle": "General Inquiries",
+            "legalTitle": "Legal Inquiries",
+            "contact": "Contact"
+        }
+    },
+    "contactPopup": {
+        "title": "Need Help?",
+        "description": "Beem team is ready to help you",
+        "sales": "Sales",
+        "support": "Technical Support",
+        "footer": "We usually respond during official working hours."
     }
-
 
 }

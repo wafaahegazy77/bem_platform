@@ -1,0 +1,130 @@
+.terms-accordion {
+    .terms-item {
+        margin-bottom: 12px;
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 5px 20px rgba(42, 76, 145, 0.08);
+        overflow: hidden;
+    }
+
+    .terms-item-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 75px;
+        padding: 0 16px;
+        border: 0;
+        background: #fff;
+        color: var(--secondary);
+        cursor: pointer;
+        text-align: start;
+    }
+
+    .terms-item-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 55px;
+        height: 55px;
+        margin-inline-start: 0;
+        margin-inline-end: 12px;
+        border-radius: 15px;
+        background: #edf3ff;
+        color: var(--primary);
+        font-size: 18px;
+        flex: 0 0 auto;
+    }
+
+    .terms-item-title {
+        flex: 1;
+        color: var(--secondary);
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .terms-item-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        font-size: 15px;
+        transition: transform 0.3s ease;
+        flex: 0 0 auto;
+    }
+
+    .terms-item.active {
+        .terms-item-arrow {
+            transform: rotate(180deg);
+        }
+    }
+
+    .terms-item-content-wrapper {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.35s ease;
+    }
+
+    .terms-item.active {
+        .terms-item-content-wrapper {
+            grid-template-rows: 1fr;
+        }
+    }
+
+    .terms-item-content {
+        min-height: 0;
+        overflow: hidden;
+        padding: 0 25px;
+
+        .terms-content-inner {
+            padding: 5px 0 22px;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        ul {
+            margin: 0 0 10px;
+            padding-inline-start: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .terms-accordion {
+        .terms-item-header {
+            min-height: 52px;
+            padding: 0 12px;
+        }
+
+        .terms-item-title {
+            font-size: 13px;
+        }
+
+        .terms-item-icon {
+            width: 27px;
+            height: 27px;
+            margin-inline-end: 9px;
+            font-size: 11px;
+        }
+
+        .terms-item-content {
+            padding: 0 15px;
+
+            .terms-content-inner,
+            p {
+                font-size: 13px;
+            }
+        }
+    }
+}

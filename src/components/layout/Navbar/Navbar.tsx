@@ -3,12 +3,17 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import "./_Navbar.scss";
+import ContactNavbar from "@/components/common/ContactPopup/ContactNavbar";
 
 type NavbarProps = {
     auth?: boolean;
+    onContactClick?: () => void;
 };
 
-export default function Navbar({ auth = false }: NavbarProps) {
+export default function Navbar({
+    auth = false,
+    onContactClick,
+}: NavbarProps) {
     const locale = useLocale();
     const router = useRouter();
     const pathname = usePathname();
@@ -62,13 +67,19 @@ export default function Navbar({ auth = false }: NavbarProps) {
                     {!auth && (
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link" href="/products">
+                                <Link
+                                    className="nav-link"
+                                    href="/products"
+                                >
                                     {t("products")}
                                 </Link>
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link" href="/pricing">
+                                <Link
+                                    className="nav-link"
+                                    href="/pricing"
+                                >
                                     {t("pricing")}
                                 </Link>
                             </li>
@@ -106,19 +117,7 @@ export default function Navbar({ auth = false }: NavbarProps) {
                             </span>
                         </button>
 
-                        {!auth && (
-                            <Link
-                                className="contact-btn butn hvr-txt-trans px-4"
-                                href="/contact"
-                            >
-                                <div
-                                    className="txt px-2"
-                                    data-text={t("contact")}
-                                >
-                                    <span>{t("contact")}</span>
-                                </div>
-                            </Link>
-                        )}
+                        {!auth && <ContactNavbar />}
                     </div>
                 </div>
             </div>
