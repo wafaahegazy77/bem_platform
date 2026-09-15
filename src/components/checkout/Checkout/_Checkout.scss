@@ -1,0 +1,21 @@
+.checkout {
+    min-height: 100vh;
+    padding-bottom: 70px;
+    background: linear-gradient(
+        120deg,
+        #f7f9ff 0%,
+        #edf4ff 45%,
+        #c9ddff 100%
+    );
+    overflow-x: hidden;
+
+    .authNav {
+        background: transparent !important;
+        box-shadow: none;
+    }
+
+    .checkout-error {
+        padding: 100px 0;
+        color: #666;
+    }
+}

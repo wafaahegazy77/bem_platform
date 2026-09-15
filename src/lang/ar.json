@@ -128,8 +128,45 @@
             "description": "راسل فريق الدعم عبر البريد الإلكتروني وسنرد عليك في أسرع وقت ممكن.",
             "email": "support@beem.sa"
         }
+    },
+    "checkout": {
+        "upgradeTo": "الترقية إلى",
+        "packageNotFound": "الباقة غير موجودة",
+        "orderSummary": "ملخص الطلب",
+        "subscriptionInfo": "معلومات الاشتراك",
+        "billingCycle": "نوع الاشتراك",
+        "monthly": "شهري",
+        "yearly": "سنوي",
+        "yearlyDiscount": "خصم",
+        "perUserMonthly": "لكل مستخدم / شهريًا",
+        "usersCount": "عدد المستخدمين",
+        "decreaseUsers": "تقليل عدد المستخدمين",
+        "increaseUsers": "زيادة عدد المستخدمين",
+        "paymentMethod": "طريقة الدفع",
+        "payByCard": "الدفع على البطاقة",
+        "cardName": "الاسم على البطاقة",
+        "cardNamePlaceholder": "الاسم على البطاقة",
+        "cardNumber": "رقم البطاقة",
+        "cardNumberPlaceholder": "رقم البطاقة",
+        "expiry": "تاريخ الانتهاء",
+        "expiryPlaceholder": "MM/YY",
+        "cvv": "رمز الأمان",
+        "cvvPlaceholder": "CVV",
+        "vat": "ضريبة القيمة المضافة",
+        "total": "الإجمالي",
+        "agree": "أوافق على ",
+        "terms": "شروط الاستخدام",
+        "and": " و",
+        "privacy": "سياسة الخصوصية",
+        "contact": "تواصل معنا",
+        "getPackage": "الحصول على {packageName}",
+        "save": "وفر",
+        "currency": "ر.س",
+        "user": "مستخدم",
+        "yearlySubscription": "اشتراك سنوي",
+        "monthlySubscription": "اشتراك شهري",
+        "discountMessage": "لقد وفرت {amount} ر.س مقارنة بالفاتورة الشهرية وفقًا لعدد المستخدمين الحالي"
     }
-
 
     
 }

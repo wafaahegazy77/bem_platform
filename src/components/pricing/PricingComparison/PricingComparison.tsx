@@ -70,22 +70,17 @@ const PricingComparison = async () => {
         <section className="pricing-comparison section-padding">
             <div className="container">
                 <div className="comparison-content">
-
                     <h2 className="fsz-40 fw-600 text-center comparison-title mb-5 pb-3">
                         {t("comparisonTitle")}
                     </h2>
 
                     <div className="comparison-table">
-
                         <div className="comparison-head">
                             <div className="row align-items-center">
-
-                                <div className="col-lg-5">
-                                </div>
+                                <div className="col-lg-5"></div>
 
                                 <div className="col-lg-7">
                                     <div className="row">
-
                                         {visiblePackages.map((plan) => {
                                             const isFree =
                                                 plan.is_free === true ||
@@ -102,7 +97,6 @@ const PricingComparison = async () => {
                                                     key={plan.code}
                                                 >
                                                     <div className="comparison-plan">
-
                                                         <h3 className="fsz-18 fw-700 mb-15 mb-4">
                                                             {plan.title}
                                                         </h3>
@@ -111,7 +105,9 @@ const PricingComparison = async () => {
                                                             href={
                                                                 isContactPlan
                                                                     ? "/contact"
-                                                                    : "/register"
+                                                                    : isFree
+                                                                      ? "/register"
+                                                                      : `/checkout?package=${plan.code}`
                                                             }
                                                             className="butn primary_border_butn rounded-pill hvr-txt-trans fw-bold mx-auto"
                                                         >
@@ -119,30 +115,39 @@ const PricingComparison = async () => {
                                                                 className="txt px-3"
                                                                 data-text={
                                                                     isContactPlan
-                                                                        ? t("contactTeam")
+                                                                        ? t(
+                                                                              "contactTeam"
+                                                                          )
                                                                         : isFree
-                                                                          ? t("startNow")
-                                                                          : t("subscribeNow")
+                                                                          ? t(
+                                                                                "startNow"
+                                                                            )
+                                                                          : t(
+                                                                                "subscribeNow"
+                                                                            )
                                                                 }
                                                             >
                                                                 <span>
                                                                     {isContactPlan
-                                                                        ? t("contactTeam")
+                                                                        ? t(
+                                                                              "contactTeam"
+                                                                          )
                                                                         : isFree
-                                                                          ? t("startNow")
-                                                                          : t("subscribeNow")}
+                                                                          ? t(
+                                                                                "startNow"
+                                                                            )
+                                                                          : t(
+                                                                                "subscribeNow"
+                                                                            )}
                                                                 </span>
                                                             </div>
                                                         </Link>
-
                                                     </div>
                                                 </div>
                                             );
                                         })}
-
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
@@ -150,7 +155,6 @@ const PricingComparison = async () => {
                             categories={categories}
                             packages={visiblePackages}
                         />
-
                     </div>
                 </div>
             </div>

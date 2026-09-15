@@ -31,7 +31,6 @@ const PricingPlans = async () => {
     return (
         <section className="pricing-cards section-padding">
             <div className="container">
-
                 <ul
                     className="nav nav-pills pricing-tabs p-1 mx-auto mb-50 flex-nowrap"
                     id="pricingTabs"
@@ -75,7 +74,6 @@ const PricingPlans = async () => {
                 </ul>
 
                 <div className="tab-content">
-
                     <div
                         className="tab-pane fade show active"
                         id="monthly-pane"
@@ -83,7 +81,6 @@ const PricingPlans = async () => {
                         aria-labelledby="monthly-tab"
                     >
                         <div className="row">
-
                             {visiblePackages.map((plan) => {
                                 const isFree =
                                     plan.is_free === true ||
@@ -117,7 +114,6 @@ const PricingPlans = async () => {
                                                     : ""
                                             }`}
                                         >
-
                                             <h4 className="fsz-22 fw-800 cr-blue mb-15 color_primary">
                                                 {plan.title}
                                             </h4>
@@ -133,7 +129,6 @@ const PricingPlans = async () => {
                                             )}
 
                                             <div className="price mb-10">
-
                                                 {isFree ? (
                                                     <span className="free-price fsz-50 fw-300">
                                                         {t("free")}
@@ -142,7 +137,6 @@ const PricingPlans = async () => {
                                                   plan.has_price &&
                                                   plan.final_cost !== null ? (
                                                     <div className="d-flex align-items-end justify-content-center gap-3">
-
                                                         <span className="fsz-60 fw-500 color_primary">
                                                             {plan.final_cost}
 
@@ -166,21 +160,21 @@ const PricingPlans = async () => {
                                                                 />
                                                             </del>
                                                         )}
-
                                                     </div>
                                                 ) : (
                                                     <span className="contact-price fsz-50 fw-300">
                                                         {t("contactUs")}
                                                     </span>
                                                 )}
-
                                             </div>
 
                                             {!isFree &&
                                                 plan.has_price &&
                                                 plan.final_cost !== null && (
                                                     <div className="fsz-15 fw-500 mb-30">
-                                                        {t("perUserMonthly")}
+                                                        {t(
+                                                            "perUserMonthly"
+                                                        )}
                                                     </div>
                                                 )}
 
@@ -195,7 +189,7 @@ const PricingPlans = async () => {
                                                     isFree
                                                         ? "/register"
                                                         : plan.has_price
-                                                          ? "/register"
+                                                          ? `/checkout?package=${plan.code}&billing=monthly`
                                                           : "/contact"
                                                 }
                                                 className={`butn ${
@@ -208,18 +202,30 @@ const PricingPlans = async () => {
                                                     className="txt"
                                                     data-text={
                                                         isFree
-                                                            ? t("startNow")
+                                                            ? t(
+                                                                  "startNow"
+                                                              )
                                                             : plan.has_price
-                                                              ? t("subscribeNow")
-                                                              : t("contactTeam")
+                                                              ? t(
+                                                                    "subscribeNow"
+                                                                )
+                                                              : t(
+                                                                    "contactTeam"
+                                                                )
                                                     }
                                                 >
                                                     <span>
                                                         {isFree
-                                                            ? t("startNow")
+                                                            ? t(
+                                                                  "startNow"
+                                                              )
                                                             : plan.has_price
-                                                              ? t("subscribeNow")
-                                                              : t("contactTeam")}
+                                                              ? t(
+                                                                    "subscribeNow"
+                                                                )
+                                                              : t(
+                                                                    "contactTeam"
+                                                                )}
                                                     </span>
                                                 </div>
                                             </Link>
@@ -233,12 +239,10 @@ const PricingPlans = async () => {
                                                     }}
                                                 />
                                             )}
-
                                         </div>
                                     </div>
                                 );
                             })}
-
                         </div>
                     </div>
 
@@ -249,7 +253,6 @@ const PricingPlans = async () => {
                         aria-labelledby="yearly-tab"
                     >
                         <div className="row">
-
                             {visiblePackages.map((plan) => {
                                 const isFree =
                                     plan.is_free === true ||
@@ -294,7 +297,6 @@ const PricingPlans = async () => {
                                                     : ""
                                             }`}
                                         >
-
                                             <h4 className="fsz-22 fw-800 cr-blue mb-15 color_primary">
                                                 {plan.title}
                                             </h4>
@@ -310,7 +312,6 @@ const PricingPlans = async () => {
                                             )}
 
                                             <div className="price mb-10">
-
                                                 {isFree ? (
                                                     <span className="free-price fsz-50 fw-300">
                                                         {t("free")}
@@ -334,14 +335,15 @@ const PricingPlans = async () => {
                                                         {t("contactUs")}
                                                     </span>
                                                 )}
-
                                             </div>
 
                                             {!isFree &&
                                                 plan.has_price &&
                                                 yearlyPrice !== null && (
                                                     <div className="fsz-15 fw-700 mb-30">
-                                                        {t("perUserYearly")}
+                                                        {t(
+                                                            "perUserYearly"
+                                                        )}
                                                     </div>
                                                 )}
 
@@ -356,7 +358,7 @@ const PricingPlans = async () => {
                                                     isFree
                                                         ? "/register"
                                                         : plan.has_price
-                                                          ? "/register"
+                                                          ? `/checkout?package=${plan.code}&billing=yearly`
                                                           : "/contact"
                                                 }
                                                 className={`butn ${
@@ -369,18 +371,30 @@ const PricingPlans = async () => {
                                                     className="txt"
                                                     data-text={
                                                         isFree
-                                                            ? t("startNow")
+                                                            ? t(
+                                                                  "startNow"
+                                                              )
                                                             : plan.has_price
-                                                              ? t("subscribeNow")
-                                                              : t("contactTeam")
+                                                              ? t(
+                                                                    "subscribeNow"
+                                                                )
+                                                              : t(
+                                                                    "contactTeam"
+                                                                )
                                                     }
                                                 >
                                                     <span>
                                                         {isFree
-                                                            ? t("startNow")
+                                                            ? t(
+                                                                  "startNow"
+                                                              )
                                                             : plan.has_price
-                                                              ? t("subscribeNow")
-                                                              : t("contactTeam")}
+                                                              ? t(
+                                                                    "subscribeNow"
+                                                                )
+                                                              : t(
+                                                                    "contactTeam"
+                                                                )}
                                                     </span>
                                                 </div>
                                             </Link>
@@ -394,15 +408,12 @@ const PricingPlans = async () => {
                                                     }}
                                                 />
                                             )}
-
                                         </div>
                                     </div>
                                 );
                             })}
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
