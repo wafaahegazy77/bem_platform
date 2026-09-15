@@ -1,0 +1,146 @@
+.auth-layout {
+    min-height: 100vh;
+    background: linear-gradient(
+        120deg,
+        #f7f9ff 0%,
+        #edf4ff 45%,
+        #c9ddff 100%
+    );
+    overflow-x: hidden;
+}
+
+.auth-header {
+    padding: 25px 0;
+
+    .auth-header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .auth-header-links {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 11px;
+
+        a {
+            color: #222;
+        }
+
+        button {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #222;
+            font-size: 11px;
+            cursor: pointer;
+        }
+    }
+
+    .auth-logo {
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+.auth-content {
+    padding: 70px 0;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    padding: 35px 30px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 15px 45px rgba(42, 76, 145, 0.08);
+
+    .register-form {
+        .section-title {
+            font-size: 20px !important;
+            color: var(--secondary);
+        }
+        .section-icon {
+            margin-inline-end: 10px;
+        }
+    }
+
+
+    .form-control {
+        width: 100%;
+        padding: 0 12px;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        background: #fff;
+        font-size: 15px;
+        outline: none;
+        transition: 0.2s ease;
+        font-weight: 500;
+        &:focus {
+            border-color: #3f64c9;
+        }
+        &::placeholder {
+            opacity: .5;
+            font-size: 14px;
+        }
+    }
+
+    select , input {
+        height: 60px !important;
+    }
+
+    .form-select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%233f64c9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: left 15px center;
+        background-size: 12px 12px;
+    }
+    label {
+        display: block;
+        margin-bottom: 15px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #161b26ce;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+.auth-page-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 15px;
+
+    span {
+        color: #666;
+    }
+
+    a {
+        color: #3f64c9;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 991px) {
+    .auth-card {
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .auth-header {
+        padding: 20px 0;
+    }
+
+    .auth-content {
+        padding: 10px 15px 30px;
+    }
+
+    .auth-card {
+        padding: 25px 20px;
+    }
+}

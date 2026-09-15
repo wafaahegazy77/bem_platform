@@ -40,11 +40,96 @@
         "startNow": "ابدأ الآن",
         "subscribeNow": "اشترك الآن",
         "contactTeam": "تواصل معنا",
-        "contactUs": "تواصل معنا"
+        "contactUs": "تواصل معنا",
+        "comparisonTitle": "مقارنة الباقات",
+        "perUserYearly": "لكل مستخدم / سنويًا"
     },
     "faq": {
         "title": "الأسئلة الشائعة"
+    },
+    "auth": {
+        "login": "تسجيل الدخول",
+        "arabic": "العربية",
+        "english": "الإنجليزية"
+    },
+    "register": {
+        "title": "أنشئ حسابك في ",
+        "Beem": "Beem",
+        "description": "ابدأ الآن واستمتع بتجربة بيم المتكاملة",
+        "organization_details": "تفاصيل المنظمة",
+        "organization_name": "اسم المنظمة",
+        "organization_name_placeholder": "اسم المنظمة",
+        "organization_type": "نوع المنظمة",
+        "organization_size": "حجم المنظمة",
+        "select": "اختر",
+        "company": "شركة",
+        "government": "حكومي",
+        "non_profit": "غير ربحي",
+        "small": "صغير",
+        "medium": "متوسط",
+        "large": "كبير",
+        "country": "الدولة",
+        "saudi_arabia": "السعودية",
+        "egypt": "مصر",
+        "city": "المدينة",
+        "riyadh": "الرياض",
+        "jeddah": "جدة",
+        "address": "العنوان",
+        "address_placeholder": "العنوان",
+        "admin_details": "تفاصيل المسؤول",
+        "admin_name": "اسم المسؤول",
+        "admin_name_placeholder": "اسم المسؤول",
+        "phone": "رقم الجوال",
+        "phone_placeholder": "05XXXXXXXX",
+        "email": "البريد الإلكتروني",
+        "email_placeholder": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "password_placeholder": "كلمة المرور",
+        "submit": "إنشاء الحساب",
+        "already_have_account": "لديك حساب بالفعل؟",
+        "login": "تسجيل الدخول",
+        "agree": "أوافق على ",
+        "terms": "شروط الاستخدام",
+        "and": " و",
+        "privacy": "سياسة الخصوصية",
+        "jobTitle": "المسمى الوظيفي للمسئول"
+    },
+    "login": {
+        "title": "تسجيل الدخول إلى ",
+        "Beem": "Beem",
+        "description": "اختر طريقة تسجيل الدخول المناسبة لك.",
+        "phone_tab": "رقم الجوال",
+        "email_tab": "البريد الإلكتروني",
+        "qr_tab": "رمز QR",
+        "phone": "رقم الجوال",
+        "phone_placeholder": "05 XXX XXXX",
+        "email": "البريد الإلكتروني",
+        "email_placeholder": "you@company.com",
+        "next": "التالي",
+        "qr_description": "افتح تطبيق Beem ثم امسح رمز الاستجابة السريعة",
+        "or": "أو",
+        "sso": "التسجيل عبر الدخول الموحد (SSO)",
+        "terms_description": "بالضغط على التالي، فإنك تؤكد أنك قرأت ووافقت على",
+        "terms": "شروط الاستخدام",
+        "and": "و",
+        "privacy": "سياسة الخصوصية",
+        "password": "كلمة المرور",
+        "password_placeholder": "************",
+        "login": "تسجيل الدخول",
+        "no_account": "ليس لديك حساب بالفعل؟",
+        "create_account": "إنشاء حساب"
+    },
+    "helpCenter": {
+        "badge": "مركز مساعدة BEEM",
+        "step": "الخطوة",
+        "articles": "6 مقالة",
+        "contact": {
+            "title": "لم تجد ما تبحث عنه؟",
+            "description": "راسل فريق الدعم عبر البريد الإلكتروني وسنرد عليك في أسرع وقت ممكن.",
+            "email": "support@beem.sa"
+        }
     }
+
 
     
 }

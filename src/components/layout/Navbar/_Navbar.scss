@@ -157,7 +157,14 @@
     }
 }
 
+.navbar.authNav {
+    position: relative;
+    background: transparent;
 
+    .nav-side {
+        margin-inline-start: auto;
+    }
+}
 // =================================
 // RESPONSIVE
 // =================================

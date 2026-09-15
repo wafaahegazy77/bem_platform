@@ -4,11 +4,16 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import "./_Navbar.scss";
 
-export default function Navbar() {
+type NavbarProps = {
+    auth?: boolean;
+};
+
+export default function Navbar({ auth = false }: NavbarProps) {
     const locale = useLocale();
     const router = useRouter();
     const pathname = usePathname();
     const t = useTranslations("navbar");
+    const authT = useTranslations("auth");
 
     const isHome = pathname === "/";
 
@@ -18,13 +23,19 @@ export default function Navbar() {
     };
 
     return (
-        <nav className={`navbar navbar-expand-lg ff-heading ${isHome ? "homeNav" : "innerNav"}`}>
+        <nav
+            className={`navbar navbar-expand-lg ff-heading ${
+                isHome && !auth ? "homeNav" : "innerNav"
+            } ${auth ? "authNav" : ""}`}
+        >
             <div className="container">
-
-                {/* Logo */}
                 <Link className="navbar-brand" href="/">
                     <img
-                        src={isHome ? "/images/logo-white.svg" : "/images/logo.svg"}
+                        src={
+                            isHome && !auth
+                                ? "/images/logo-white.svg"
+                                : "/images/logo.svg"
+                        }
                         alt="Beem"
                         className="logo object-fit-contain"
                         width={100}
@@ -32,7 +43,6 @@ export default function Navbar() {
                     />
                 </Link>
 
-                {/* Mobile Toggle */}
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -49,32 +59,32 @@ export default function Navbar() {
                     className="collapse navbar-collapse"
                     id="navbarSupportedContent"
                 >
-                    {/* Main Links */}
-                    <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                    {!auth && (
+                        <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link className="nav-link" href="/products">
+                                    {t("products")}
+                                </Link>
+                            </li>
 
-                        <li className="nav-item">
-                            <Link className="nav-link" href="/products">
-                                {t("products")}
-                            </Link>
-                        </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" href="/pricing">
+                                    {t("pricing")}
+                                </Link>
+                            </li>
 
-                        <li className="nav-item">
-                            <Link className="nav-link" href="/pricing">
-                                {t("pricing")}
-                            </Link>
-                        </li>
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link"
+                                    href="/help-center"
+                                >
+                                    {t("help_center")}
+                                </Link>
+                            </li>
+                        </ul>
+                    )}
 
-                        <li className="nav-item">
-                            <Link className="nav-link" href="/help-center">
-                                {t("help_center")}
-                            </Link>
-                        </li>
-
-                    </ul>
-
-                    {/* Right Side */}
                     <div className="nav-side d-flex align-items-center">
-
                         <Link
                             className="login-link fw-medium"
                             href="/login"
@@ -90,19 +100,25 @@ export default function Navbar() {
                             <i className="fa-regular fa-globe"></i>
 
                             <span>
-                                {locale === "ar" ? "English" : "عربي"}
+                                {locale === "ar"
+                                    ? authT("english")
+                                    : authT("arabic")}
                             </span>
                         </button>
 
-                        <Link
-                            className="contact-btn butn hvr-txt-trans px-4"
-                            href="/contact"
-                        >
-                            <div className="txt px-2" data-text={t("contact")} >
-                                <span>{t("contact")}</span>
-                            </div>
-                        </Link>
-
+                        {!auth && (
+                            <Link
+                                className="contact-btn butn hvr-txt-trans px-4"
+                                href="/contact"
+                            >
+                                <div
+                                    className="txt px-2"
+                                    data-text={t("contact")}
+                                >
+                                    <span>{t("contact")}</span>
+                                </div>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

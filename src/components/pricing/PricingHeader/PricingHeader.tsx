@@ -2,6 +2,14 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { api } from "@/lib/api";
 import "./_PricingHeader.scss";
 
+type Service = {
+    code: string;
+    name: string;
+    icon: string | null;
+    sort: number;
+    slug: string;
+};
+
 const PricingHeader = async () => {
     const locale = await getLocale();
     const t = await getTranslations("pricing");
@@ -11,12 +19,12 @@ const PricingHeader = async () => {
         api.getServices(locale),
     ]);
 
-    const page = pageResponse.data;
-    const services = servicesResponse.data || [];
+    const page = pageResponse?.data;
+    const services: Service[] = servicesResponse?.data || [];
 
     const selectedServices = services
-        .filter((service: any) => service.slug)
-        .sort((a: any, b: any) => a.sort - b.sort);
+        .filter((service) => service.slug)
+        .sort((a, b) => a.sort - b.sort);
 
     return (
         <section className="pricing-header section-padding">
@@ -40,8 +48,8 @@ const PricingHeader = async () => {
                     </p>
 
                     <div className="services-list-box">
-                        <div className="services-list col-lg-10 mx-auto   ">
-                            {selectedServices.map((service: any) => (
+                        <div className="services-list col-lg-10 mx-auto">
+                            {selectedServices.map((service) => (
                                 <div
                                     className="service-item"
                                     key={service.code}
@@ -55,13 +63,14 @@ const PricingHeader = async () => {
                                         </div>
                                     )}
 
-                                    <span className="fw-500">{service.name}</span>
+                                    <span className="fw-500">
+                                        {service.name}
+                                    </span>
                                 </div>
                             ))}
                         </div>
-
-
                     </div>
+
                 </div>
 
             </div>

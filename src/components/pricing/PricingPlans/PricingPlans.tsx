@@ -1,19 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import { api } from "@/lib/api";
 import { Link } from "@/i18n/routing";
+import { api } from "@/lib/api";
 import "./_PricingPlans.scss";
-
-type PackageFeature = {
-    key: string;
-    title: string;
-    field_type: string;
-    is_boolean: boolean;
-    is_text: boolean;
-    is_enabled: boolean | null;
-    value: string | number | null;
-    is_visible: boolean;
-    placement: string | number;
-};
 
 type Package = {
     code: string;
@@ -29,7 +17,6 @@ type Package = {
     discount: number | null;
     discount_type: string | null;
     final_cost: number | null;
-    features: PackageFeature[];
 };
 
 const PricingPlans = async () => {
@@ -37,8 +24,8 @@ const PricingPlans = async () => {
     const t = await getTranslations("pricing");
 
     const response = await api.getPackages(locale);
-    const packages: Package[] = response.data || [];
 
+    const packages: Package[] = response?.data || [];
     const visiblePackages = packages.slice(0, 3);
 
     return (
@@ -60,6 +47,7 @@ const PricingPlans = async () => {
                             role="tab"
                             aria-controls="monthly-pane"
                             aria-selected="true"
+                            tabIndex={0}
                         >
                             {t("monthly")}
                         </button>
@@ -75,11 +63,12 @@ const PricingPlans = async () => {
                             role="tab"
                             aria-controls="yearly-pane"
                             aria-selected="false"
+                            tabIndex={-1}
                         >
                             {t("yearly")}
 
-                            <span className="cr-teal">
-                                {t("yearlyDiscount")}
+                            <span className="color_primary fsz-12 fw-500 mx-1">
+                                ( {t("yearlyDiscount")} 10% )
                             </span>
                         </button>
                     </li>
@@ -96,7 +85,6 @@ const PricingPlans = async () => {
                         <div className="row">
 
                             {visiblePackages.map((plan) => {
-
                                 const isFree =
                                     plan.is_free === true ||
                                     plan.is_free === 1;
@@ -108,19 +96,6 @@ const PricingPlans = async () => {
 
                                 const isFeatured =
                                     !isFree && !isContactPlan;
-
-                                const visibleFeatures = (
-                                    plan.features || []
-                                )
-                                    .filter(
-                                        (feature) =>
-                                            feature.is_visible !== false
-                                    )
-                                    .sort(
-                                        (a, b) =>
-                                            Number(a.placement) -
-                                            Number(b.placement)
-                                    );
 
                                 return (
                                     <div
@@ -157,30 +132,48 @@ const PricingPlans = async () => {
                                                 />
                                             )}
 
-                                            <div
-                                                className={`price ${
-                                                    isFree
-                                                        ? "fsz-50 fw-300"
-                                                        : "fsz-60 fw-500 color_primary"
-                                                } mb-10`}
-                                            >
+                                            <div className="price mb-10">
+
                                                 {isFree ? (
-                                                    <span className="free-price">
+                                                    <span className="free-price fsz-50 fw-300">
                                                         {t("free")}
                                                     </span>
-                                                ) : plan.has_price &&
+                                                ) : isFeatured &&
+                                                  plan.has_price &&
                                                   plan.final_cost !== null ? (
-                                                    <>
-                                                        {plan.final_cost}
-                                                        <span className="fsz-16 ms-1 fw-400">
-                                                            <img src="/images/sar.png" className="sar icon-20 mx-1 filter_primary" alt="" />
+                                                    <div className="d-flex align-items-end justify-content-center gap-3">
+
+                                                        <span className="fsz-60 fw-500 color_primary">
+                                                            {plan.final_cost}
+
+                                                            <span className="fsz-16 ms-1 fw-400">
+                                                                <img
+                                                                    src="/images/sar.png"
+                                                                    className="sar icon-20 mx-1 filter_primary"
+                                                                    alt=""
+                                                                />
+                                                            </span>
                                                         </span>
-                                                    </>
+
+                                                        {plan.cost !== null && (
+                                                            <del className="fsz-30 fw-400">
+                                                                {plan.cost}
+
+                                                                <img
+                                                                    src="/images/sar.png"
+                                                                    className="sar icon-15 mx-1 op-7"
+                                                                    alt=""
+                                                                />
+                                                            </del>
+                                                        )}
+
+                                                    </div>
                                                 ) : (
-                                                    <span className="contact-price">
+                                                    <span className="contact-price fsz-50 fw-300">
                                                         {t("contactUs")}
                                                     </span>
                                                 )}
+
                                             </div>
 
                                             {!isFree &&
@@ -202,8 +195,8 @@ const PricingPlans = async () => {
                                                     isFree
                                                         ? "/register"
                                                         : plan.has_price
-                                                        ? "/register"
-                                                        : "/contact"
+                                                          ? "/register"
+                                                          : "/contact"
                                                 }
                                                 className={`butn ${
                                                     isFeatured
@@ -217,24 +210,16 @@ const PricingPlans = async () => {
                                                         isFree
                                                             ? t("startNow")
                                                             : plan.has_price
-                                                            ? t(
-                                                                  "subscribeNow"
-                                                              )
-                                                            : t(
-                                                                  "contactTeam"
-                                                              )
+                                                              ? t("subscribeNow")
+                                                              : t("contactTeam")
                                                     }
                                                 >
                                                     <span>
                                                         {isFree
                                                             ? t("startNow")
                                                             : plan.has_price
-                                                            ? t(
-                                                                  "subscribeNow"
-                                                              )
-                                                            : t(
-                                                                  "contactTeam"
-                                                              )}
+                                                              ? t("subscribeNow")
+                                                              : t("contactTeam")}
                                                     </span>
                                                 </div>
                                             </Link>
@@ -266,7 +251,6 @@ const PricingPlans = async () => {
                         <div className="row">
 
                             {visiblePackages.map((plan) => {
-
                                 const isFree =
                                     plan.is_free === true ||
                                     plan.is_free === 1;
@@ -279,18 +263,16 @@ const PricingPlans = async () => {
                                 const isFeatured =
                                     !isFree && !isContactPlan;
 
-                                const visibleFeatures = (
-                                    plan.features || []
-                                )
-                                    .filter(
-                                        (feature) =>
-                                            feature.is_visible !== false
-                                    )
-                                    .sort(
-                                        (a, b) =>
-                                            Number(a.placement) -
-                                            Number(b.placement)
-                                    );
+                                const yearlyPrice =
+                                    plan.cost !== null
+                                        ? Number(
+                                              (
+                                                  plan.cost *
+                                                  12 *
+                                                  0.9
+                                              ).toFixed(2)
+                                          )
+                                        : null;
 
                                 return (
                                     <div
@@ -327,38 +309,39 @@ const PricingPlans = async () => {
                                                 />
                                             )}
 
-                                            <div
-                                                className={`price ${
-                                                    isFree
-                                                        ? "fsz-50 fw-300"
-                                                        : "fsz-60 fw-500 color_primary"
-                                                } mb-10`}
-                                            >
+                                            <div className="price mb-10">
+
                                                 {isFree ? (
-                                                    <span className="free-price">
+                                                    <span className="free-price fsz-50 fw-300">
                                                         {t("free")}
                                                     </span>
-                                                ) : plan.has_price &&
-                                                  plan.final_cost !== null ? (
-                                                    <>
-                                                        {plan.final_cost}
+                                                ) : isFeatured &&
+                                                  plan.has_price &&
+                                                  yearlyPrice !== null ? (
+                                                    <span className="fsz-60 fw-500 color_primary">
+                                                        {yearlyPrice}
 
                                                         <span className="fsz-16 ms-1 fw-400">
-                                                            {t("currency")}
+                                                            <img
+                                                                src="/images/sar.png"
+                                                                className="sar icon-20 mx-1 filter_primary"
+                                                                alt=""
+                                                            />
                                                         </span>
-                                                    </>
+                                                    </span>
                                                 ) : (
-                                                    <span className="contact-price">
+                                                    <span className="contact-price fsz-50 fw-300">
                                                         {t("contactUs")}
                                                     </span>
                                                 )}
+
                                             </div>
 
                                             {!isFree &&
                                                 plan.has_price &&
-                                                plan.final_cost !== null && (
+                                                yearlyPrice !== null && (
                                                     <div className="fsz-15 fw-700 mb-30">
-                                                        {t("perUserMonthly")}
+                                                        {t("perUserYearly")}
                                                     </div>
                                                 )}
 
@@ -373,8 +356,8 @@ const PricingPlans = async () => {
                                                     isFree
                                                         ? "/register"
                                                         : plan.has_price
-                                                        ? "/register"
-                                                        : "/contact"
+                                                          ? "/register"
+                                                          : "/contact"
                                                 }
                                                 className={`butn ${
                                                     isFeatured
@@ -388,24 +371,16 @@ const PricingPlans = async () => {
                                                         isFree
                                                             ? t("startNow")
                                                             : plan.has_price
-                                                            ? t(
-                                                                  "subscribeNow"
-                                                              )
-                                                            : t(
-                                                                  "contactTeam"
-                                                              )
+                                                              ? t("subscribeNow")
+                                                              : t("contactTeam")
                                                     }
                                                 >
                                                     <span>
                                                         {isFree
                                                             ? t("startNow")
                                                             : plan.has_price
-                                                            ? t(
-                                                                  "subscribeNow"
-                                                              )
-                                                            : t(
-                                                                  "contactTeam"
-                                                              )}
+                                                              ? t("subscribeNow")
+                                                              : t("contactTeam")}
                                                     </span>
                                                 </div>
                                             </Link>
@@ -418,48 +393,6 @@ const PricingPlans = async () => {
                                                             plan.description,
                                                     }}
                                                 />
-                                            )}
-
-                                            {visibleFeatures.length > 0 && (
-                                                <ul className="checks list-unstyled">
-
-                                                    {visibleFeatures.map(
-                                                        (feature) => (
-                                                            <li
-                                                                key={
-                                                                    feature.key
-                                                                }
-                                                                className="d-flex align-items-start mb-15 fsz-15"
-                                                            >
-                                                                {feature.is_boolean ? (
-                                                                    feature.is_enabled ? (
-                                                                        <i className="fas fa-check cr-blue me-10"></i>
-                                                                    ) : (
-                                                                        <i className="fas fa-xmark cr-blue me-10"></i>
-                                                                    )
-                                                                ) : (
-                                                                    <i className="fas fa-check cr-blue me-10"></i>
-                                                                )}
-
-                                                                <span>
-                                                                    {feature.title}
-
-                                                                    {feature.is_text &&
-                                                                        feature.value !==
-                                                                            null && (
-                                                                            <>
-                                                                                {" "}
-                                                                                {
-                                                                                    feature.value
-                                                                                }
-                                                                            </>
-                                                                        )}
-                                                                </span>
-                                                            </li>
-                                                        )
-                                                    )}
-
-                                                </ul>
                                             )}
 
                                         </div>

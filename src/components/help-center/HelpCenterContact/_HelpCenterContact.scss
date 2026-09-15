@@ -1,0 +1,36 @@
+.help-center-contact {
+    padding: 0 0 70px;
+
+    .contact-box {
+        position: relative;
+        padding: 70px 20px;
+        background: #ECEFF9;
+        border-radius: 25px;
+        overflow: hidden;
+    }
+
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        border-radius: 6px;
+        // background: var(--primary);
+        background-image: linear-gradient(135deg , #375BC1 , #58BFB1 , #0071E3);
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .title {
+        color: var(--secondary);
+        margin-bottom: 8px;
+    }
+
+    .description {
+        margin-bottom: 15px;
+        line-height: 1.7;
+    }
+
+}

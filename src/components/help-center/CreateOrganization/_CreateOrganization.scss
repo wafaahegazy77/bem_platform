@@ -1,0 +1,101 @@
+.create-organization {
+    padding: 155px 0 70px;
+    background: linear-gradient(
+        120deg,
+        #f7f9ff 0%,
+        #edf4ff 45%,
+        #c9ddff 100%
+    );
+    border-radius:  0 0 50px 50px;
+    .create-organization-content {
+        .help-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 18px;
+            margin-bottom: 15px;
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .title {
+            color: var(--secondary);
+        }
+
+        .description {
+            line-height: 1.7;
+        }
+    }
+
+    .steps {
+        margin-top: 40px;
+        margin-left: -5px;
+        margin-right: -5px;
+
+        > * {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
+
+    .step-card {
+        height: 100%;
+        padding: 25px;
+        text-align: start;
+        background: #fff;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(42, 76, 145, 0.06);
+    }
+
+    .step-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+
+    .step-icon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #eef5ff;
+        color: var(--primary);
+        font-size: 14px;
+    }
+
+    .step-number {
+        color: #7693df;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .step-title {
+        color: var(--secondary);
+        margin-bottom: 7px;
+    }
+
+    .step-description {
+        margin-bottom: 0;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 767px) {
+    .create-organization {
+        padding: 120px 0 40px;
+
+        .steps {
+            margin-top: 25px;
+
+            > * {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
