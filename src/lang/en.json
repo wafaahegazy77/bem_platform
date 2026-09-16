@@ -224,6 +224,68 @@
         "sales": "Sales",
         "support": "Technical Support",
         "footer": "We usually respond during official working hours."
-    }
+    },
+    "application": {
+        "productFeatures": "Package Details",
+        "organizationNeeds": "Package Features",
+        "saudiDataProtection": "Compliant with Saudi data protection regulations",
 
+        "subscriptionTitle": "Continue Setting Up Your Subscription",
+        "subscriptionDescription": "Two steps left to activate your organization's workspace",
+
+        "enterpriseTitle": "Contact Beem Team",
+        "enterpriseDescription": "Leave your details and the Beem team will contact you to assist you",
+
+        "organizationDetails": "Organization Details",
+        "organizationName": "Organization Name",
+        "organizationNamePlaceholder": "Organization Name",
+        "organizationNameHint": "Legal name as registered in the Commercial Registration (CR)",
+
+        "organizationType": "Organization Type",
+        "sector": "Sector",
+        "usersCount": "Number of Users",
+
+        "select": "Select",
+        "government": "Government Entity",
+        "education": "Education",
+        "usersRange": "1 - 20 Users",
+
+        "adminDetails": "Admin Details",
+        "adminName": "Admin Name",
+        "adminNamePlaceholder": "Name",
+
+        "adminPhone": "Admin Mobile Number",
+        "adminPhonePlaceholder": "5X XXX XXXX",
+
+        "jobTitle": "Admin Job Title",
+        "jobTitlePlaceholder": "Job Title",
+
+        "adminEmail": "Admin Email Address",
+        "adminEmailPlaceholder": "you@company.com",
+
+        "billingDetails": "Billing Information",
+
+        "officialCompanyName": "Official Company Name",
+        "officialCompanyNamePlaceholder": "Trade name as registered in the Commercial Registration (CR)",
+
+        "country": "Country",
+        "saudiArabia": "Saudi Arabia",
+        "egypt": "Egypt",
+
+        "city": "City",
+        "cityPlaceholder": "City",
+
+        "address": "Address",
+        "addressPlaceholder": "Address",
+
+        "taxNumber": "Tax Number",
+        "taxNumberPlaceholder": "Tax number must contain 15 digits",
+
+        "source": "How did you hear about Beem?",
+        "social": "Social Media",
+
+        "submit": "Submit",
+        "next": "Next",
+        "contactTeam": "Contact Beem Team"
+    }
 }

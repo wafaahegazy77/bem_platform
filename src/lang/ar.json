@@ -223,7 +223,69 @@
         "sales": "المبيعات",
         "support": "الدعم الفني",
         "footer": "عادةً ما نرد خلال ساعات العمل الرسمية"
-    }
+    },
+    "application": {
+        "productFeatures": "تفاصيل الباقة",
+        "organizationNeeds": "مميزات الباقة",
+        "saudiDataProtection": "متوافق مع أنظمة حماية البيانات السعودية",
 
-    
+        "subscriptionTitle": "تابع إعداد اشتراكك",
+        "subscriptionDescription": "خطوتان متبقيتان لتفعيل مساحة عمل مؤسستك",
+
+        "enterpriseTitle": "تواصل مع فريق Beem",
+        "enterpriseDescription": "اترك بياناتك وسيتواصل معك فريق Beem لمساعدتك",
+
+        "organizationDetails": "تفاصيل المنظمة",
+        "organizationName": "اسم المنظمة",
+        "organizationNamePlaceholder": "اسم المنظمة",
+        "organizationNameHint": "الاسم القانوني كما هو مسجل في السجل التجاري (CR)",
+
+        "organizationType": "نوع المنظمة",
+        "sector": "القطاع",
+        "usersCount": "عدد المستخدمين",
+
+        "select": "اختر",
+        "government": "جهة حكومية",
+        "education": "التعليم",
+        "usersRange": "1 - 20 مستخدم",
+
+        "adminDetails": "تفاصيل المسؤول",
+        "adminName": "اسم المسؤول",
+        "adminNamePlaceholder": "الاسم",
+
+        "adminPhone": "رقم جوال المسؤول",
+        "adminPhonePlaceholder": "5X XXX XXXX",
+
+        "jobTitle": "المسمى الوظيفي للمسؤول",
+        "jobTitlePlaceholder": "المسمى الوظيفي",
+
+        "adminEmail": "البريد الإلكتروني للمسؤول",
+        "adminEmailPlaceholder": "you@company.com",
+
+        "billingDetails": "معلومات الفوترة",
+
+        "officialCompanyName": "الاسم الرسمي للشركة",
+        "officialCompanyNamePlaceholder": "الاسم التجاري كما هو مسجل في السجل التجاري (CR)",
+
+        "country": "الدولة",
+        "saudiArabia": "السعودية",
+        "egypt": "مصر",
+
+        "city": "المدينة",
+        "cityPlaceholder": "المدينة",
+
+        "address": "العنوان",
+        "addressPlaceholder": "العنوان",
+
+        "taxNumber": "الرقم الضريبي",
+        "taxNumberPlaceholder": "يكون الرقم الضريبي من 15 رقم",
+
+        "source": "كيف سمعت عن Beem؟",
+        "social": "وسائل التواصل الاجتماعي",
+
+        "submit": "إرسال",
+        "next": "التالي",
+        "contactTeam": "تواصل مع فريق بيم"
+    }
+        
 }

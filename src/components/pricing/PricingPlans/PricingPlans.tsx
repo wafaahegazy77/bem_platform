@@ -81,7 +81,7 @@ const PricingPlans = async () => {
                         aria-labelledby="monthly-tab"
                     >
                         <div className="row">
-                            {visiblePackages.map((plan) => {
+                            {visiblePackages.map((plan, index) => {
                                 const isFree =
                                     plan.is_free === true ||
                                     plan.is_free === 1;
@@ -93,6 +93,32 @@ const PricingPlans = async () => {
 
                                 const isFeatured =
                                     !isFree && !isContactPlan;
+
+                                const isProfessional =
+                                    index === 1;
+
+                                const isEnterprise =
+                                    index === 2;
+
+                                const planHref = isFree
+                                    ? `/register?package=${plan.code}`
+                                    : isProfessional
+                                      ? `/apply?package=${plan.code}&type=professional`
+                                      : isEnterprise
+                                        ? `/apply?package=${plan.code}&type=enterprise`
+                                        : plan.has_price
+                                          ? `/checkout?package=${plan.code}&billing=monthly`
+                                          : "/contact";
+
+                                const planButtonText = isFree
+                                    ? t("startNow")
+                                    : isProfessional
+                                      ? t("subscribeNow")
+                                      : isEnterprise
+                                        ? t("contactTeam")
+                                        : plan.has_price
+                                          ? t("subscribeNow")
+                                          : t("contactTeam");
 
                                 return (
                                     <div
@@ -185,13 +211,7 @@ const PricingPlans = async () => {
                                             )}
 
                                             <Link
-                                                href={
-                                                    isFree
-                                                        ? "/register"
-                                                        : plan.has_price
-                                                          ? `/checkout?package=${plan.code}&billing=monthly`
-                                                          : "/contact"
-                                                }
+                                                href={planHref}
                                                 className={`butn ${
                                                     isFeatured
                                                         ? "primary_butn"
@@ -201,31 +221,13 @@ const PricingPlans = async () => {
                                                 <div
                                                     className="txt"
                                                     data-text={
-                                                        isFree
-                                                            ? t(
-                                                                  "startNow"
-                                                              )
-                                                            : plan.has_price
-                                                              ? t(
-                                                                    "subscribeNow"
-                                                                )
-                                                              : t(
-                                                                    "contactTeam"
-                                                                )
+                                                        planButtonText
                                                     }
                                                 >
                                                     <span>
-                                                        {isFree
-                                                            ? t(
-                                                                  "startNow"
-                                                              )
-                                                            : plan.has_price
-                                                              ? t(
-                                                                    "subscribeNow"
-                                                                )
-                                                              : t(
-                                                                    "contactTeam"
-                                                                )}
+                                                        {
+                                                            planButtonText
+                                                        }
                                                     </span>
                                                 </div>
                                             </Link>
@@ -253,7 +255,7 @@ const PricingPlans = async () => {
                         aria-labelledby="yearly-tab"
                     >
                         <div className="row">
-                            {visiblePackages.map((plan) => {
+                            {visiblePackages.map((plan, index) => {
                                 const isFree =
                                     plan.is_free === true ||
                                     plan.is_free === 1;
@@ -266,6 +268,12 @@ const PricingPlans = async () => {
                                 const isFeatured =
                                     !isFree && !isContactPlan;
 
+                                const isProfessional =
+                                    index === 1;
+
+                                const isEnterprise =
+                                    index === 2;
+
                                 const yearlyPrice =
                                     plan.cost !== null
                                         ? Number(
@@ -276,6 +284,26 @@ const PricingPlans = async () => {
                                               ).toFixed(2)
                                           )
                                         : null;
+
+                                const planHref = isFree
+                                    ? `/register?package=${plan.code}`
+                                    : isProfessional
+                                      ? `/apply?package=${plan.code}&type=professional`
+                                      : isEnterprise
+                                        ? `/apply?package=${plan.code}&type=enterprise`
+                                        : plan.has_price
+                                          ? `/checkout?package=${plan.code}&billing=yearly`
+                                          : "/contact";
+
+                                const planButtonText = isFree
+                                    ? t("startNow")
+                                    : isProfessional
+                                      ? t("subscribeNow")
+                                      : isEnterprise
+                                        ? t("contactTeam")
+                                        : plan.has_price
+                                          ? t("subscribeNow")
+                                          : t("contactTeam");
 
                                 return (
                                     <div
@@ -354,13 +382,7 @@ const PricingPlans = async () => {
                                             )}
 
                                             <Link
-                                                href={
-                                                    isFree
-                                                        ? "/register"
-                                                        : plan.has_price
-                                                          ? `/checkout?package=${plan.code}&billing=yearly`
-                                                          : "/contact"
-                                                }
+                                                href={planHref}
                                                 className={`butn ${
                                                     isFeatured
                                                         ? "primary_butn"
@@ -370,31 +392,13 @@ const PricingPlans = async () => {
                                                 <div
                                                     className="txt"
                                                     data-text={
-                                                        isFree
-                                                            ? t(
-                                                                  "startNow"
-                                                              )
-                                                            : plan.has_price
-                                                              ? t(
-                                                                    "subscribeNow"
-                                                                )
-                                                              : t(
-                                                                    "contactTeam"
-                                                                )
+                                                        planButtonText
                                                     }
                                                 >
                                                     <span>
-                                                        {isFree
-                                                            ? t(
-                                                                  "startNow"
-                                                              )
-                                                            : plan.has_price
-                                                              ? t(
-                                                                    "subscribeNow"
-                                                                )
-                                                              : t(
-                                                                    "contactTeam"
-                                                                )}
+                                                        {
+                                                            planButtonText
+                                                        }
                                                     </span>
                                                 </div>
                                             </Link>

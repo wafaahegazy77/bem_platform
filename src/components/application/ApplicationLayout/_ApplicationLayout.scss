@@ -1,0 +1,344 @@
+.application-page {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(
+        120deg,
+        #f8f9ff 0%,
+        #f2f6ff 45%,
+        #c9ddff 100%
+    );
+
+    .authNav {
+        background: transparent !important;
+        box-shadow: none;
+    }
+}
+
+.application-content {
+    padding: 30px 0 60px;
+}
+
+.application-card {
+    overflow: hidden;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(42, 76, 145, 0.08);
+}
+
+.application-sidebar {
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #f4f8ff 0%,
+        #edf6ff 100%
+    );
+}
+
+.application-sidebar-content {
+    min-height: 700px;
+    padding: 40px 30px;
+}
+
+.application-sidebar-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.application-sidebar-title {
+    margin-bottom: 28px;
+    color: var(--secondary);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.application-features {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    li {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        padding-inline-start: 40px;
+    }
+
+    li::before {
+        content: "\f00c";
+        position: absolute;
+        inset-inline-start: 0;
+        top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 5px;
+        background: #DDECFB;
+        color: var(--primary);
+        font-family: "Font Awesome 6 Pro";
+        font-size: 7px;
+        font-weight: 900;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.application-data-protection {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 35px;
+    padding-top: 22px;
+    border-top: 1px solid #dfe8f2;
+    color: #777;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+
+    i {
+        color: var(--primary);
+        font-size: 12px;
+        flex: 0 0 auto;
+    }
+}
+
+.application-form-wrapper {
+    min-height: 700px;
+    padding: 50px 2.5vw;
+    background: #fff;
+}
+
+.application-form {
+    .application-form-header {
+        margin-bottom: 34px;
+
+        h1 {
+            margin: 0 0 8px;
+            color: var(--secondary);
+            font-size: 26px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        p {
+            margin: 0;
+            color: #999;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+    }
+
+    .form-section {
+        margin-bottom: 30px;
+    }
+
+    .form-section-title {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin: 0 0 19px;
+        color: var(--secondary);
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.5;
+
+        i {
+            position: relative;
+            top: 1px;
+            color: var(--primary);
+            font-size: 13px;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 17px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--secondary);
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.5;
+        opacity: 0.8;
+    }
+
+    .form-control {
+        width: 100%;
+        height: 60px;
+        padding: 0 13px;
+        border: 1px solid #e7e9ee;
+        border-radius: 6px;
+        background: #fff;
+        color: #222;
+        outline: none;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 45px;
+        box-shadow: none;
+        transition: 0.2s ease;
+
+        &:focus {
+            border-color: var(--primary);
+            box-shadow: none;
+        }
+
+        &::placeholder {
+            color: #aaa;
+            font-size: 13px;
+            font-weight: 400;
+        }
+    }
+
+    small {
+        display: block;
+        margin-top: 6px;
+        color: #aaa;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    select.form-control {
+        line-height: normal;
+    }
+
+    .form-select {
+        padding-inline-end: 32px;
+        background-image: none;
+        appearance: none;
+        cursor: pointer;
+    }
+
+    .form-group:has(.form-select) {
+        position: relative;
+
+        &::after {
+            content: "\f078";
+            position: absolute;
+            inset-inline-end: 13px;
+            bottom: 22px;
+            color: #aab4c2;
+            font-family: "Font Awesome 6 Pro";
+            font-size: 7px;
+            font-weight: 900;
+            pointer-events: none;
+            transform: translateY(50%);
+        }
+    }
+
+    .country-form-group {
+        .country-select {
+            position: relative;
+        }
+
+        .country-flag {
+            position: absolute;
+            inset-inline-start: 12px;
+            top: 50%;
+            z-index: 2;
+            width: 24px;
+            height: 16px;
+            object-fit: cover;
+            border-radius: 2px;
+            pointer-events: none;
+            transform: translateY(-50%);
+        }
+
+        .form-select {
+            padding-inline-start: 48px;
+        }
+    }
+
+    .row {
+        margin-inline: -5px;
+
+        > * {
+            padding-inline: 5px;
+        }
+    }
+
+    .application-form-actions {
+        margin-top: 8px;
+
+        .butn {
+            width: 100%;
+            min-height: 60px;
+            border-radius: 10px !important;
+            font-size: 18px;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .application-content {
+        padding: 20px 0 40px;
+    }
+
+    .application-sidebar-content,
+    .application-form-wrapper {
+        min-height: auto;
+    }
+
+    .application-sidebar-content {
+        padding: 35px 25px;
+    }
+
+    .application-form-wrapper {
+        padding: 35px 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .application-content {
+        padding: 15px 0 30px;
+    }
+
+    .application-card {
+        border-radius: 15px;
+    }
+
+    .application-sidebar-content,
+    .application-form-wrapper {
+        padding: 25px 20px;
+    }
+
+    .application-form {
+        .application-form-header {
+            margin-bottom: 28px;
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+
+        .row {
+            margin-inline: 0;
+
+            > * {
+                padding-inline: 0;
+            }
+        }
+
+        .application-form-actions {
+            .butn {
+                width: 100%;
+            }
+        }
+    }
+}
