@@ -1,0 +1,64 @@
+.phone-input {
+    display: flex;
+    align-items: stretch;
+    direction: ltr;
+
+    .phone-country {
+        flex: 0 0 190px;
+    }
+
+    .form-control {
+        flex: 1;
+        border-radius: 0 6px 6px 0;
+        direction: rtl;
+    }
+}
+
+.phone-country-value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    svg {
+        width: 22px;
+        height: 15px;
+        border-radius: 2px;
+    }
+}
+
+.phone-country-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    svg {
+        width: 22px;
+        height: 15px;
+        flex: 0 0 auto;
+        border-radius: 2px;
+    }
+
+    .phone-country-name {
+        overflow: hidden;
+        flex: 1;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .phone-country-dial {
+        flex: 0 0 auto;
+        margin-inline-start: auto;
+        color: #999;
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 767px) {
+    .phone-input {
+        .phone-country {
+            flex: 0 0 150px;
+        }
+    }
+}

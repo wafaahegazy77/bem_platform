@@ -227,8 +227,16 @@
     },
     "application": {
         "productFeatures": "Package Details",
-        "organizationNeeds": "Package Features",
+        "organizationNeeds": "Organization Needs",
+        "packageFeatures": "Package Features",
+        "orderSummary": "Order Summary",
+        "invoiceDetails": "Invoice Details",
+        "package": "Package",
+        "amount": "Amount",
         "saudiDataProtection": "Compliant with Saudi data protection regulations",
+
+        "basicTitle": "Start Your Subscription",
+        "basicDescription": "Complete the following details to start using Beem",
 
         "subscriptionTitle": "Continue Setting Up Your Subscription",
         "subscriptionDescription": "Two steps left to activate your organization's workspace",
@@ -263,6 +271,9 @@
         "adminEmail": "Admin Email Address",
         "adminEmailPlaceholder": "you@company.com",
 
+        "officialEmail": "Official Admin Email Address",
+        "officialEmailPlaceholder": "you@company.com",
+
         "billingDetails": "Billing Information",
 
         "officialCompanyName": "Official Company Name",
@@ -286,6 +297,9 @@
 
         "submit": "Submit",
         "next": "Next",
+        "submitApplication": "Submit Application",
         "contactTeam": "Contact Beem Team"
     }
+
+    
 }

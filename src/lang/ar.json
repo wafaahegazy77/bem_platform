@@ -226,8 +226,16 @@
     },
     "application": {
         "productFeatures": "تفاصيل الباقة",
-        "organizationNeeds": "مميزات الباقة",
+        "organizationNeeds": "احتياجات المنظمة",
+        "packageFeatures": "مميزات الباقة",
+        "orderSummary": "ملخص الطلب",
+        "invoiceDetails": "بيانات الفاتورة",
+        "package": "الباقة",
+        "amount": "المبلغ",
         "saudiDataProtection": "متوافق مع أنظمة حماية البيانات السعودية",
+
+        "basicTitle": "ابدأ اشتراكك",
+        "basicDescription": "أكمل البيانات التالية لبدء استخدام Beem",
 
         "subscriptionTitle": "تابع إعداد اشتراكك",
         "subscriptionDescription": "خطوتان متبقيتان لتفعيل مساحة عمل مؤسستك",
@@ -262,6 +270,9 @@
         "adminEmail": "البريد الإلكتروني للمسؤول",
         "adminEmailPlaceholder": "you@company.com",
 
+        "officialEmail": "البريد الإلكتروني الرسمي للمسؤول",
+        "officialEmailPlaceholder": "you@company.com",
+
         "billingDetails": "معلومات الفوترة",
 
         "officialCompanyName": "الاسم الرسمي للشركة",
@@ -285,6 +296,7 @@
 
         "submit": "إرسال",
         "next": "التالي",
+        "submitApplication": "تقديم الطلب",
         "contactTeam": "تواصل مع فريق بيم"
     }
         

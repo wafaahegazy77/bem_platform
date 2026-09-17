@@ -101,7 +101,7 @@ const PricingPlans = async () => {
                                     index === 2;
 
                                 const planHref = isFree
-                                    ? `/register?package=${plan.code}`
+                                    ? `/apply?package=${plan.code}&type=basic`
                                     : isProfessional
                                       ? `/apply?package=${plan.code}&type=professional`
                                       : isEnterprise
@@ -164,7 +164,9 @@ const PricingPlans = async () => {
                                                   plan.final_cost !== null ? (
                                                     <div className="d-flex align-items-end justify-content-center gap-3">
                                                         <span className="fsz-60 fw-500 color_primary">
-                                                            {plan.final_cost}
+                                                            {
+                                                                plan.final_cost
+                                                            }
 
                                                             <span className="fsz-16 ms-1 fw-400">
                                                                 <img
@@ -177,7 +179,9 @@ const PricingPlans = async () => {
 
                                                         {plan.cost !== null && (
                                                             <del className="fsz-30 fw-400">
-                                                                {plan.cost}
+                                                                {
+                                                                    plan.cost
+                                                                }
 
                                                                 <img
                                                                     src="/images/sar.png"
@@ -286,7 +290,7 @@ const PricingPlans = async () => {
                                         : null;
 
                                 const planHref = isFree
-                                    ? `/register?package=${plan.code}`
+                                    ? `/apply?package=${plan.code}&type=basic`
                                     : isProfessional
                                       ? `/apply?package=${plan.code}&type=professional`
                                       : isEnterprise

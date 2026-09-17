@@ -39,6 +39,14 @@
     padding: 40px 30px;
 }
 
+.application-sidebar-main-title {
+    margin: 0 0 30px;
+    color: var(--secondary);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
 .application-sidebar-label {
     display: inline-block;
     margin-bottom: 10px;
@@ -52,6 +60,57 @@
     color: var(--secondary);
     font-size: 22px;
     font-weight: 700;
+}
+
+.application-order-summary {
+    margin-bottom: 42px;
+}
+
+.application-invoice-title {
+    margin: 0 0 18px;
+    color: var(--secondary);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.application-invoice-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: var(--secondary);
+    font-size: 15px;
+    line-height: 1.6;
+
+    span {
+        font-weight: 500;
+    }
+
+    strong {
+        font-weight: 600;
+    }
+}
+
+.application-invoice-divider {
+    width: 100%;
+    height: 1px;
+    margin: 14px 0;
+    background: #dfe8f2;
+}
+
+.application-price {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #1677ff !important;
+    font-size: 17px;
+
+    img {
+        width: 15px;
+        height: 15px;
+        object-fit: contain;
+    }
 }
 
 .application-features {
@@ -84,7 +143,7 @@
         width: 22px;
         height: 22px;
         border-radius: 5px;
-        background: #DDECFB;
+        background: #ddeafb;
         color: var(--primary);
         font-family: "Font Awesome 6 Pro";
         font-size: 7px;
@@ -284,6 +343,12 @@
         }
     }
 }
+
+.required {
+    margin-inline-start: 2px;
+    color: #ff3b30;
+}
+
 
 @media (max-width: 991px) {
     .application-content {

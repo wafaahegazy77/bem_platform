@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Link } from "@/i18n/routing";
 import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
 
 gsap.registerPlugin(MotionPathPlugin);
 
 interface Service {
     code: string;
     name: string;
+    slug: string;
     icon?: string | null;
 }
 
@@ -44,10 +47,19 @@ const TeamLinkAnimation = ({
             tweens.forEach((tween) => tween.kill());
             tweens = [];
 
-            hoverHandlers.forEach(({ node, enter, leave }) => {
-                node.removeEventListener("mouseenter", enter);
-                node.removeEventListener("mouseleave", leave);
-            });
+            hoverHandlers.forEach(
+                ({ node, enter, leave }) => {
+                    node.removeEventListener(
+                        "mouseenter",
+                        enter
+                    );
+
+                    node.removeEventListener(
+                        "mouseleave",
+                        leave
+                    );
+                }
+            );
 
             hoverHandlers.length = 0;
             pg.innerHTML = "";
@@ -76,8 +88,11 @@ const TeamLinkAnimation = ({
             const xFarL = cx - sideGap;
             const xInL = cx - sideGap * 0.42;
 
-            const xInR = cx + sideGap * 0.42 - NW;
-            const xFarR = cx + sideGap - NW;
+            const xInR =
+                cx + sideGap * 0.42 - NW;
+
+            const xFarR =
+                cx + sideGap - NW;
 
             const positions = [
                 { x: xFarL, y: yTop },
@@ -90,19 +105,31 @@ const TeamLinkAnimation = ({
                 { x: xFarR, y: yBot },
             ];
 
-            for (let i = 0; i < services.length; i++) {
-                const node = document.getElementById(`n${i}`);
+            for (
+                let i = 0;
+                i < services.length && i < positions.length;
+                i++
+            ) {
+                const node =
+                    document.getElementById(`n${i}`);
 
                 if (!node) {
                     continue;
                 }
 
-                node.style.left = `${positions[i].x}px`;
-                node.style.top = `${positions[i].y}px`;
+                node.style.left =
+                    `${positions[i].x}px`;
+
+                node.style.top =
+                    `${positions[i].y}px`;
+
                 node.style.transform = "none";
             }
 
-            const toSvg = (x: number, y: number) => ({
+            const toSvg = (
+                x: number,
+                y: number
+            ) => ({
                 x: x * sx,
                 y: y * sy,
             });
@@ -136,23 +163,28 @@ const TeamLinkAnimation = ({
                 const signY = isTop ? -1 : 1;
 
                 const startY =
-                    C.y + startOffsets[ni] * sy;
+                    C.y +
+                    startOffsets[ni] * sy;
 
                 const exitDist = 50 * sx;
 
                 const exitX =
-                    C.x + signX * exitDist;
+                    C.x +
+                    signX * exitDist;
 
                 const exitY = startY;
 
                 const cp1x =
-                    C.x + signX * -1 * sx;
+                    C.x +
+                    signX * -1 * sx;
 
                 const cp1y =
-                    startY + signY * -100 * sy;
+                    startY +
+                    signY * -100 * sy;
 
                 const cp2x =
-                    exitX - signX * 12 * sx;
+                    exitX -
+                    signX * 12 * sx;
 
                 const cp2y = exitY;
 
@@ -168,7 +200,11 @@ const TeamLinkAnimation = ({
                 ].join(" ");
             };
 
-            for (let i = 0; i < services.length; i++) {
+            for (
+                let i = 0;
+                i < services.length && i < positions.length;
+                i++
+            ) {
                 const d = makePath(i);
 
                 const path =
@@ -178,13 +214,25 @@ const TeamLinkAnimation = ({
                     );
 
                 path.setAttribute("d", d);
-                path.setAttribute("fill", "none");
+                path.setAttribute(
+                    "fill",
+                    "none"
+                );
+
                 path.setAttribute(
                     "stroke",
                     "rgba(100,120,200,0.15)"
                 );
-                path.setAttribute("stroke-width", "1.5");
-                path.setAttribute("id", `path${i}`);
+
+                path.setAttribute(
+                    "stroke-width",
+                    "1.5"
+                );
+
+                path.setAttribute(
+                    "id",
+                    `path${i}`
+                );
 
                 pg.appendChild(path);
 
@@ -206,8 +254,16 @@ const TeamLinkAnimation = ({
                             "circle"
                         );
 
-                    dot.setAttribute("r", `${config.r}`);
-                    dot.setAttribute("fill", config.color);
+                    dot.setAttribute(
+                        "r",
+                        `${config.r}`
+                    );
+
+                    dot.setAttribute(
+                        "fill",
+                        config.color
+                    );
+
                     dot.style.opacity =
                         `${config.opacity}`;
 
@@ -219,25 +275,34 @@ const TeamLinkAnimation = ({
                             motionPath: {
                                 path,
                                 align: path,
-                                alignOrigin: [0.5, 0.5],
+                                alignOrigin: [
+                                    0.5,
+                                    0.5,
+                                ],
                                 start: 1,
                                 end: 1,
                             },
                         },
                         {
                             duration:
-                                2 + Math.random() * 1.5,
+                                2 +
+                                Math.random() *
+                                    1.5,
                             repeat: -1,
                             ease: "power1.inOut",
                             delay:
                                 i * 0.35 +
                                 j * 0.15 +
-                                Math.random() * 0.4,
+                                Math.random() *
+                                    0.4,
                             motionPath: {
                                 path,
                                 align: path,
                                 autoRotate: false,
-                                alignOrigin: [0.5, 0.5],
+                                alignOrigin: [
+                                    0.5,
+                                    0.5,
+                                ],
                                 start: 1,
                                 end: 0,
                             },
@@ -247,9 +312,10 @@ const TeamLinkAnimation = ({
                     tweens.push(tween);
                 });
 
-                const node = document.getElementById(
-                    `n${i}`
-                );
+                const node =
+                    document.getElementById(
+                        `n${i}`
+                    );
 
                 if (!node) {
                     continue;
@@ -334,7 +400,9 @@ const TeamLinkAnimation = ({
                 handleResize
             );
 
-            tweens.forEach((tween) => tween.kill());
+            tweens.forEach((tween) =>
+                tween.kill()
+            );
 
             hoverHandlers.forEach(
                 ({ node, enter, leave }) => {
@@ -351,7 +419,6 @@ const TeamLinkAnimation = ({
             );
 
             hoverHandlers.length = 0;
-
             pg.innerHTML = "";
         };
     }, [services]);
@@ -359,7 +426,6 @@ const TeamLinkAnimation = ({
     return (
         <div className="lines-shap">
             <div className="team-animation">
-
                 <svg
                     ref={svgRef}
                     className="team-svg"
@@ -383,23 +449,29 @@ const TeamLinkAnimation = ({
                         </div>
                     </div>
 
-                    {services.map((service, index) => (
-                        <div
-                            key={service.code}
-                            id={`n${index}`}
-                            className="sn"
-                        >
-                            {service.icon && (
-                                <img
-                                    src={service.icon}
-                                    alt={service.name}
-                                    className="icon-30"
-                                />
-                            )}
-                        </div>
-                    ))}
+                    {services
+                        .slice(0, 8)
+                        .map((service, index) => (
+                            <Link
+                                key={service.code}
+                                id={`n${index}`}
+                                href={`/services/${service.slug}`}
+                                className="sn"
+                            >
+                                {service.icon && (
+                                    <img
+                                        src={
+                                            service.icon
+                                        }
+                                        alt={
+                                            service.name
+                                        }
+                                        className="icon-30"
+                                    />
+                                )}
+                            </Link>
+                        ))}
                 </div>
-
             </div>
         </div>
     );

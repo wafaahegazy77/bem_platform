@@ -20,6 +20,11 @@ type Package = {
     final_cost: number | null;
 };
 
+type ApplicationType =
+    | "basic"
+    | "professional"
+    | "enterprise";
+
 const ApplyPage = async ({
     searchParams,
 }: {
@@ -41,11 +46,13 @@ const ApplyPage = async ({
     }
 
     const applicationType =
-        params.type === "enterprise"
-            ? "enterprise"
-            : params.type === "professional"
-              ? "professional"
-              : null;
+        params.type === "basic"
+            ? "basic"
+            : params.type === "enterprise"
+              ? "enterprise"
+              : params.type === "professional"
+                ? "professional"
+                : null;
 
     if (!applicationType) {
         notFound();
