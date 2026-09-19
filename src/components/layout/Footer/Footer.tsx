@@ -103,54 +103,41 @@ const Footer = async () => {
 
                 <div className="foot-mid d-flex align-items-center justify-content-between py-5 col-lg-11 mx-auto border-bottom border-dr-1">
 
-                    <Reveal
-                        animation="fade-left"
-                        
-                    >
-                        <FooterLanguage />
-                    </Reveal>
+                    <FooterLanguage />
 
                     <div className="socials d-flex align-items-center gap-3">
 
-                        <Reveal animation="fade-up" delay={0.1}>
-                            <a
-                                href="#"
-                                className="cr-blue fsz-20"
-                                aria-label="Instagram"
-                            >
-                                <i className="fab fa-instagram"></i>
-                            </a>
-                        </Reveal>
+                        <a
+                            href="#"
+                            className="cr-blue fsz-20"
+                            aria-label="Instagram"
+                        >
+                            <i className="fab fa-instagram"></i>
+                        </a>
 
-                        <Reveal animation="fade-down" delay={0.15}>
-                            <a
-                                href="#"
-                                className="cr-blue fsz-20"
-                                aria-label="LinkedIn"
-                            >
-                                <i className="fab fa-linkedin-in"></i>
-                            </a>
-                        </Reveal>
+                        <a
+                            href="#"
+                            className="cr-blue fsz-20"
+                            aria-label="LinkedIn"
+                        >
+                            <i className="fab fa-linkedin-in"></i>
+                        </a>
 
-                        <Reveal animation="fade-up" delay={0.2}>
-                            <a
-                                href="#"
-                                className="cr-blue fsz-20"
-                                aria-label="X"
-                            >
-                                <i className="fab fa-x-twitter"></i>
-                            </a>
-                        </Reveal>
+                        <a
+                            href="#"
+                            className="cr-blue fsz-20"
+                            aria-label="X"
+                        >
+                            <i className="fab fa-x-twitter"></i>
+                        </a>
 
-                        <Reveal animation="fade-down" delay={0.25}>
-                            <a
-                                href="#"
-                                className="cr-blue fsz-20"
-                                aria-label="Facebook"
-                            >
-                                <i className="fab fa-facebook-f"></i>
-                            </a>
-                        </Reveal>
+                        <a
+                            href="#"
+                            className="cr-blue fsz-20"
+                            aria-label="Facebook"
+                        >
+                            <i className="fab fa-facebook-f"></i>
+                        </a>
 
                     </div>
                 </div>
@@ -161,161 +148,140 @@ const Footer = async () => {
 
                         <div className="col-lg-5 col-md-6 mb-40">
 
-                            <Reveal
-                                animation="fade-left-blur"
-                                duration={1.1}
-                            >
-                                <div className="brand">
+                            <div className="brand">
 
-                                    <a
-                                        href="#"
-                                        className="logo d-inline-block"
-                                    >
-                                        <img
-                                            src="/images/logo.svg"
-                                            alt="Beem"
-                                            className="th-40"
-                                        />
-                                    </a>
+                                <a
+                                    href="#"
+                                    className="logo d-inline-block"
+                                >
+                                    <img
+                                        src="/images/logo.svg"
+                                        alt="Beem"
+                                        className="th-40"
+                                    />
+                                </a>
 
-                                    <div className="isos d-flex align-items-center gap-3 mt-50">
-
-                                        <img
-                                            src="/images/iso1.svg"
-                                            alt="ISO 9001"
-                                            className="icon-80"
-                                        />
-
-                                        <img
-                                            src="/images/iso2.svg"
-                                            alt="ISO 22301"
-                                            className="icon-80"
-                                        />
-
-                                        <img
-                                            src="/images/iso3.svg"
-                                            alt="ISO 27001"
-                                            className="icon-80"
-                                        />
-
-                                    </div>
+                                <div className="isos d-flex align-items-center gap-3 mt-50">
 
                                     <img
-                                        src="/images/foot-logo-light.png"
-                                        alt=""
-                                        className="government-logo mt-70"
+                                        src="/images/iso1.svg"
+                                        alt="ISO 9001"
+                                        className="icon-80"
+                                    />
+
+                                    <img
+                                        src="/images/iso2.svg"
+                                        alt="ISO 22301"
+                                        className="icon-80"
+                                    />
+
+                                    <img
+                                        src="/images/iso3.svg"
+                                        alt="ISO 27001"
+                                        className="icon-80"
                                     />
 
                                 </div>
-                            </Reveal>
+
+                                <img
+                                    src="/images/foot-logo-light.png"
+                                    alt=""
+                                    className="government-logo mt-70"
+                                />
+
+                            </div>
 
                         </div>
 
                         <div className="col-lg-2 col-md-6 mb-40">
 
-                            <Reveal
-                                animation="fade-up-blur"
-                                delay={0.1}
-                                
-                            >
-                                <div>
 
-                                    <h5 className="title fsz-18 fw-800 cr-blue mb-20">
-                                        {t("services")}
-                                    </h5>
+                            <div>
 
-                                    <ul className="links">
+                                <h5 className="title fsz-18 fw-800 cr-blue mb-20">
+                                    {t("services")}
+                                </h5>
 
-                                        {services.map((service: any) => (
-                                            <li key={service.code}>
-                                                <Link
-                                                    href={`/services/${service.slug}`}
-                                                >
-                                                    {service.name}
-                                                </Link>
-                                            </li>
-                                        ))}
+                                <ul className="links">
 
-                                    </ul>
+                                    {services.map((service: any) => (
+                                        <li key={service.code}>
+                                            <Link
+                                                href={`/services/${service.slug}`}
+                                            >
+                                                {service.name}
+                                            </Link>
+                                        </li>
+                                    ))}
 
-                                </div>
-                            </Reveal>
+                                </ul>
+
+                            </div>
 
                         </div>
 
                         <div className="col-lg-2 col-6 mb-40">
 
-                            <Reveal
-                                animation="fade-up-blur"
-                                delay={0.2}
-                                
-                            >
-                                <div>
+                            <div>
 
-                                    <h5 className="title fsz-18 fw-800 cr-blue mb-20">
-                                        {t("about")}
-                                    </h5>
+                                <h5 className="title fsz-18 fw-800 cr-blue mb-20">
+                                    {t("about")}
+                                </h5>
 
-                                    <ul className="links">
+                                <ul className="links">
 
-                                        <li>
-                                            <Link href="/help-center">
-                                                {t("helpCenter")}
-                                            </Link>
-                                        </li>
+                                    <li>
+                                        <Link href="/help-center">
+                                            {t("helpCenter")}
+                                        </Link>
+                                    </li>
 
-                                        <li>
-                                            <Link href="/contact">
-                                                {t("contact")}
-                                            </Link>
-                                        </li>
+                                    <li>
+                                        <Link href="/contact">
+                                            {t("contact")}
+                                        </Link>
+                                    </li>
 
-                                        <li>
-                                            <Link href="/terms">
-                                                {t("terms")}
-                                            </Link>
-                                        </li>
+                                    <li>
+                                        <Link href="/terms">
+                                            {t("terms")}
+                                        </Link>
+                                    </li>
 
-                                        <li>
-                                            <Link href="/privacy">
-                                                {t("privacy")}
-                                            </Link>
-                                        </li>
+                                    <li>
+                                        <Link href="/privacy">
+                                            {t("privacy")}
+                                        </Link>
+                                    </li>
 
-                                    </ul>
+                                </ul>
 
-                                </div>
-                            </Reveal>
+                            </div>
 
                         </div>
 
                         <div className="col-lg-2 col-6 mb-40">
 
-                            <Reveal
-                                animation="fade-right-blur"
-                                delay={0.3}
-                                
-                            >
-                                <div>
 
-                                    <h5 className="fsz-18 fw-800 cr-blue mb-20">
-                                        {t("download")}
-                                    </h5>
+                            <div>
 
-                                    <ul className="links">
+                                <h5 className="fsz-18 fw-800 cr-blue mb-20">
+                                    {t("download")}
+                                </h5>
 
-                                        {apps.map((app) => (
-                                            <li key={app.name}>
-                                                <a href={app.href}>
-                                                    {app.name}
-                                                </a>
-                                            </li>
-                                        ))}
+                                <ul className="links">
 
-                                    </ul>
+                                    {apps.map((app) => (
+                                        <li key={app.name}>
+                                            <a href={app.href}>
+                                                {app.name}
+                                            </a>
+                                        </li>
+                                    ))}
 
-                                </div>
-                            </Reveal>
+                                </ul>
+
+                            </div>
 
                         </div>
 

@@ -21,9 +21,14 @@
         min-height: 560px;
         overflow: visible;
 
+        .hero_swiper {
+            width: 100%;
+            overflow: visible;
+        }
+
         .img {
             position: relative;
-            height: 400px;
+            height: 450px;
             border-radius: 40px;
             overflow: hidden;
             background-color: #fff;
@@ -31,25 +36,56 @@
             img {
                 object-fit: cover;
                 object-position: top;
+                backface-visibility: hidden;
             }
         }
 
         .swiper-slide {
             margin-top: 0;
-            transition: all 1s ease;
+            transform: translate3d(0, 0, 0);
+            transition: transform 1s ease;
+            backface-visibility: hidden;
         }
 
         .swiper-slide-active {
-            margin-top: 160px;
+            margin-top: 0;
+            transform: translate3d(0, 160px, 0);
         }
 
         .swiper-slide-next,
         .swiper-slide-prev {
-            margin-top: 100px;
+            margin-top: 0;
+            transform: translate3d(0, 100px, 0);
+        }
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .hero_section {
+        .hero-slider {
+            .swiper-slide-active {
+                transform: translate3d(0, 120px, 0);
+            }
+
+            .swiper-slide-next,
+            .swiper-slide-prev {
+                transform: translate3d(0, 80px, 0);
+            }
         }
     }
 }
 
 @media screen and (max-width: 991px) {
+    .hero_section {
+        .hero-slider {
+            .swiper-slide-active {
+                transform: translate3d(0, 100px, 0);
+            }
 
+            .swiper-slide-next,
+            .swiper-slide-prev {
+                transform: translate3d(0, 60px, 0);
+            }
+        }
+    }
 }

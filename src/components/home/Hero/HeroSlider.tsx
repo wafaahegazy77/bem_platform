@@ -35,17 +35,19 @@ const HeroSlider = ({
                 slidesPerView={1}
                 spaceBetween={24}
                 centeredSlides
+                centeredSlidesBounds
+                initialSlide={slides.length >= 5 ? 2 : 0}
                 speed={1500}
                 pagination={false}
                 navigation={false}
                 mousewheel={false}
                 keyboard
+                loop={slides.length > 5}
                 // autoplay={{
                 //     delay: 4000,
                 //     disableOnInteraction: false,
                 //     pauseOnMouseEnter: false,
                 // }}
-                loop={slides.length > 1}
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
@@ -60,19 +62,18 @@ const HeroSlider = ({
                         slidesPerView: 3,
                     },
                     1200: {
-                        slidesPerView: 4.2,
+                        slidesPerView: 5,
                     },
                 }}
                 className="hero_swiper"
             >
-                {slides.map((service, index) => (
+                {slides.map((service) => (
                     <SwiperSlide key={service.code}>
                         <Reveal
-                            animation="fade-up-blur"
-                            // delay={index * 0.08}
-                            duration={1.2}
+                            animation="fade-up"
+                            duration={0.8}
                             once
-                            amount={0.2}
+                            amount={0.1}
                             trigger="view"
                         >
                             <div className="img">
@@ -86,6 +87,8 @@ const HeroSlider = ({
                                     }
                                     alt={service.name}
                                     className="img-cover"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             </div>
                         </Reveal>
