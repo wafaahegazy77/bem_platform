@@ -12,6 +12,14 @@ export type AnimationType =
     | "fade-up-right"
     | "fade-down-left"
     | "fade-down-right"
+    | "fade-up-blur"
+    | "fade-down-blur"
+    | "fade-left-blur"
+    | "fade-right-blur"
+    | "fade-up-left-blur"
+    | "fade-up-right-blur"
+    | "fade-down-left-blur"
+    | "fade-down-right-blur"
     | "zoom-in"
     | "zoom-out"
     | "zoom-in-up"
@@ -27,8 +35,7 @@ export type AnimationType =
     | "flip-up"
     | "flip-down"
     | "slide-ltr"
-    | "slide-rtl"
-    ;
+    | "slide-rtl";
 
 type RevealProps = {
     children: ReactNode;
@@ -48,18 +55,37 @@ const show = {
     scale: 1,
     rotateX: 0,
     rotateY: 0,
+    filter: "blur(0px)",
 };
 
-const fade = (x = 0, y = 0) => ({
+const fade = (
+    x = 0,
+    y = 0,
+    blur = false
+) => ({
     initial: {
         opacity: 0,
         x,
         y,
+        ...(blur && {
+            filter: "blur(12px)",
+        }),
     },
-    animate: show,
+
+    animate: blur
+        ? show
+        : {
+              opacity: 1,
+              x: 0,
+              y: 0,
+          },
 });
 
-const zoom = (scale: number, x = 0, y = 0) => ({
+const zoom = (
+    scale: number,
+    x = 0,
+    y = 0
+) => ({
     initial: {
         opacity: 0,
         scale,
@@ -81,10 +107,15 @@ const flip = (
     animate: show,
 });
 
-const slide = (direction: "ltr" | "rtl") => ({
+const slide = (
+    direction: "ltr" | "rtl"
+) => ({
     initial: {
         opacity: 1,
-        x: direction === "ltr" ? 40 : -40,
+        x:
+            direction === "ltr"
+                ? 40
+                : -40,
     },
     animate: {
         opacity: 1,
@@ -92,8 +123,10 @@ const slide = (direction: "ltr" | "rtl") => ({
     },
 });
 
-const animations: Record<AnimationType, any> = {
-
+const animations: Record<
+    AnimationType,
+    any
+> = {
     // Fade
     "fade-up": fade(0, 60),
     "fade-down": fade(0, -60),
@@ -105,20 +138,75 @@ const animations: Record<AnimationType, any> = {
     "fade-down-left": fade(-60, -60),
     "fade-down-right": fade(60, -60),
 
-    // Zoom
-    "zoom-in": zoom(.7),
+    // Fade with blur
+    "fade-up-blur": fade(0, 60, true),
+    "fade-down-blur": fade(0, -60, true),
+    "fade-left-blur": fade(-60, 0, true),
+    "fade-right-blur": fade(60, 0, true),
 
-    "zoom-in-up": zoom(.7, 0, 60),
-    "zoom-in-down": zoom(.7, 0, -60),
-    "zoom-in-left": zoom(.7, -60),
-    "zoom-in-right": zoom(.7, 60),
+    "fade-up-left-blur": fade(
+        -60,
+        60,
+        true
+    ),
+    "fade-up-right-blur": fade(
+        60,
+        60,
+        true
+    ),
+    "fade-down-left-blur": fade(
+        -60,
+        -60,
+        true
+    ),
+    "fade-down-right-blur": fade(
+        60,
+        -60,
+        true
+    ),
+
+    // Zoom
+    "zoom-in": zoom(0.7),
+
+    "zoom-in-up": zoom(
+        0.7,
+        0,
+        60
+    ),
+    "zoom-in-down": zoom(
+        0.7,
+        0,
+        -60
+    ),
+    "zoom-in-left": zoom(
+        0.7,
+        -60
+    ),
+    "zoom-in-right": zoom(
+        0.7,
+        60
+    ),
 
     "zoom-out": zoom(1.3),
 
-    "zoom-out-up": zoom(1.3, 0, 60),
-    "zoom-out-down": zoom(1.3, 0, -60),
-    "zoom-out-left": zoom(1.3, -60),
-    "zoom-out-right": zoom(1.3, 60),
+    "zoom-out-up": zoom(
+        1.3,
+        0,
+        60
+    ),
+    "zoom-out-down": zoom(
+        1.3,
+        0,
+        -60
+    ),
+    "zoom-out-left": zoom(
+        1.3,
+        -60
+    ),
+    "zoom-out-right": zoom(
+        1.3,
+        60
+    ),
 
     // Flip
     "flip-left": flip(0, -90),
@@ -126,7 +214,7 @@ const animations: Record<AnimationType, any> = {
     "flip-up": flip(-90, 0),
     "flip-down": flip(90, 0),
 
-    // slide
+    // Slide
     "slide-ltr": slide("ltr"),
     "slide-rtl": slide("rtl"),
 };
@@ -137,19 +225,27 @@ export default function Reveal({
     delay = 0,
     duration = 1.5,
     once = true,
-    amount = .2,
+    amount = 0.2,
     className,
     trigger = "view",
 }: RevealProps) {
-
-    const variant = animations[animation];
+    const variant =
+        animations[animation];
 
     return (
         <m.div
             className={className}
             initial={variant.initial}
-            animate={trigger === "load" ? variant.animate : undefined}
-            whileInView={trigger === "view" ? variant.animate : undefined}
+            animate={
+                trigger === "load"
+                    ? variant.animate
+                    : undefined
+            }
+            whileInView={
+                trigger === "view"
+                    ? variant.animate
+                    : undefined
+            }
             viewport={{
                 once,
                 amount,
@@ -157,10 +253,16 @@ export default function Reveal({
             transition={{
                 duration,
                 delay,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [
+                    0.22,
+                    1,
+                    0.36,
+                    1,
+                ],
             }}
             style={{
-                transformStyle: "preserve-3d",
+                transformStyle:
+                    "preserve-3d",
             }}
         >
             {children}

@@ -5,15 +5,21 @@ import "@/app/styles/scss/style.scss";
 import BootstrapClient from "@/components/BootstrapClient";
 import LenisProvider from "@/components/LenisProvider";
 import Providers from "@/components/Providers";
-import {  diodrum  } from "@/lib/fonts";
+import { diodrum } from "@/lib/fonts";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import {
+    getMessages,
+    setRequestLocale,
+} from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import MotionProvider from "@/components/MotionProvider";
+import GSAPInit from "@/components/animations/GSAPInit";
 
 export function generateStaticParams() {
-    return routing.locales.map((locale) => ({ locale }));
+    return routing.locales.map((locale) => ({
+        locale,
+    }));
 }
 
 export const metadata: Metadata = {
@@ -26,28 +32,48 @@ export default async function RootLayout({
     params,
 }: Readonly<{
     children: React.ReactNode;
-    params: Promise<{ locale: string }>;
+    params: Promise<{
+        locale: string;
+    }>;
 }>) {
     const { locale } = await params;
 
-    if (!(routing.locales as readonly string[]).includes(locale)) {
-        notFound(); 
+    if (
+        !(routing.locales as readonly string[]).includes(
+            locale
+        )
+    ) {
+        notFound();
     }
 
     setRequestLocale(locale);
-    const messages = await getMessages({ locale });
+
+    const messages = await getMessages({
+        locale,
+    });
+
     const dir = locale === "ar" ? "rtl" : "ltr";
 
     return (
-        <html lang={locale} dir={dir} className={`${diodrum.variable}`}>
+        <html
+            lang={locale}
+            dir={dir}
+            className={`${diodrum.variable}`}
+        >
             <body suppressHydrationWarning>
-                <NextIntlClientProvider messages={messages}>
+                <NextIntlClientProvider
+                    messages={messages}
+                >
                     <Providers>
                         <MotionProvider>
-                            <LenisProvider>{children}</LenisProvider>
+                            <LenisProvider>
+                                <GSAPInit />
+                                {children}
+                            </LenisProvider>
                         </MotionProvider>
                     </Providers>
                 </NextIntlClientProvider>
+
                 <BootstrapClient />
             </body>
         </html>

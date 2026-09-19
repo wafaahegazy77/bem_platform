@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { api } from "@/lib/api";
 import "./_Categories.scss";
+import Reveal from "@/components/animations/Reveal";
 
 type Service = {
     code: string;
@@ -54,53 +55,87 @@ const Categories = async () => {
     return (
         <section className="help-center-categories">
             <div className="container">
-                <div className="categories-header text-center">
-                    <h2 className="title fsz-40 fw-600">
-                        {pageData?.first_title}
-                    </h2>
 
-                    <p className="description fsz-15 cr-999 mt-10">
-                        {pageData?.second_title}
-                    </p>
+                <div className="categories-header text-center">
+
+                    <Reveal
+                        animation="fade-down-blur"
+                        duration={1.1}
+                    >
+                        <h2 className="title fsz-40 fw-600">
+                            {pageData?.first_title}
+                        </h2>
+                    </Reveal>
+
+                    <Reveal
+                        animation="fade-up"
+                        delay={0.15}
+                        duration={1}
+                    >
+                        <p className="description fsz-15 cr-999 mt-10">
+                            {pageData?.second_title}
+                        </p>
+                    </Reveal>
+
                 </div>
 
                 <div className="categories-grid">
-                    {categories.map((category) => (
-                        <Link
+
+                    {categories.map((category, index) => (
+                        <Reveal
                             key={category.code}
-                            href={`/services/${category.slug}`}
-                            className="category-card"
+                            animation={
+                                index % 4 === 0
+                                    ? "fade-left-blur"
+                                    : index % 4 === 1
+                                    ? "fade-up-blur"
+                                    : index % 4 === 2
+                                    ? "fade-down-blur"
+                                    : "fade-right-blur"
+                            }
+                            delay={0.1 + index * 0.1}
+                            duration={1}
                         >
-                            <div
-                                className="category-icon"
-                                style={{
-                                    backgroundColor: category.theme_color
-                                        ? `${category.theme_color}18`
-                                        : undefined,
-                                }}
+                            <Link
+                                href={`/services/${category.slug}`}
+                                className="category-card"
                             >
-                                {category.icon && (
-                                    <img
-                                        src={category.icon}
-                                        alt={category.name}
-                                    />
-                                )}
-                            </div>
+                                <div
+                                    className="category-icon"
+                                    style={{
+                                        backgroundColor:
+                                            category.theme_color
+                                                ? `${category.theme_color}18`
+                                                : undefined,
+                                    }}
+                                >
+                                    {category.icon && (
+                                        <img
+                                            src={category.icon}
+                                            alt={category.name}
+                                        />
+                                    )}
+                                </div>
 
-                            <h3 className="category-title fsz-18 fw-600">
-                                {category.name}
-                            </h3>
+                                <h3 className="category-title fsz-18 fw-600">
+                                    {category.name}
+                                </h3>
 
-                            <p className="category-description fsz-13 cr-999">
-                                {category.homepage?.first_description}
-                            </p>
+                                <p className="category-description fsz-13 cr-999">
+                                    {
+                                        category.homepage
+                                            ?.first_description
+                                    }
+                                </p>
 
-                            <span className="category-link">
-                                {t("articles")}
-                                <i className="fa-light fa-arrow-left" />
-                            </span>
-                        </Link>
+                                <span className="category-link">
+                                    {t("articles")}
+                                    <i className="fa-light fa-arrow-left" />
+                                </span>
+                            </Link>
+                        </Reveal>
                     ))}
+
                 </div>
             </div>
         </section>

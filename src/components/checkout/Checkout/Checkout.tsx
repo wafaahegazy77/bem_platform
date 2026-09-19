@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { api } from "@/lib/api";
 import Navbar from "@/components/layout/Navbar";
 import CheckoutContent from "../CheckoutContent/CheckoutContent";
+import Reveal from "@/components/animations/Reveal";
 import "./_Checkout.scss";
 
 type Package = {
@@ -46,9 +47,14 @@ const Checkout = async ({
                 <Navbar auth />
 
                 <div className="container">
-                    <div className="checkout-error text-center">
-                        {t("packageNotFound")}
-                    </div>
+                    <Reveal
+                        animation="zoom-in"
+                        duration={0.9}
+                    >
+                        <div className="checkout-error text-center">
+                            {t("packageNotFound")}
+                        </div>
+                    </Reveal>
                 </div>
             </section>
         );
@@ -62,10 +68,15 @@ const Checkout = async ({
             <Navbar auth />
 
             <div className="container">
-                <CheckoutContent
-                    packageData={packageData}
-                    initialBilling={initialBilling}
-                />
+                <Reveal
+                    animation="fade-up-blur"
+                    duration={1.1}
+                >
+                    <CheckoutContent
+                        packageData={packageData}
+                        initialBilling={initialBilling}
+                    />
+                </Reveal>
             </div>
         </section>
     );

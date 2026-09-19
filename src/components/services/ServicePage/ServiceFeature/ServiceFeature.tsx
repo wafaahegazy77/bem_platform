@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import "./_ServiceFeature.scss";
+import Reveal from "@/components/animations/Reveal";
 
 type ServiceFeatureProps = {
     feature: {
@@ -19,6 +20,20 @@ const ServiceFeature = ({
     themeColor,
     isLast,
 }: ServiceFeatureProps) => {
+    const textAnimation =
+        feature.format === "image_first"
+            ? "fade-right-blur"
+            : feature.format === "image_last"
+            ? "fade-left-blur"
+            : "fade-up-blur";
+
+    const imageAnimation =
+        feature.format === "image_first"
+            ? "fade-left-blur"
+            : feature.format === "image_last"
+            ? "fade-right-blur"
+            : "zoom-in-up";
+
     return (
         <section>
             <div className="container">
@@ -34,25 +49,36 @@ const ServiceFeature = ({
                 >
                     <div className="feature-content">
 
-                        <div className="feature-text">
-                            <h2 className="fsz-35">
-                                {feature.title}
-                            </h2>
+                        <Reveal
+                            animation={textAnimation}
+                            duration={1.1}
+                        >
+                            <div className="feature-text">
+                                <h2 className="fsz-35">
+                                    {feature.title}
+                                </h2>
 
-                            {feature.description && (
-                                <div className="description col-lg-11">
-                                    {feature.description}
-                                </div>
-                            )}
-                        </div>
+                                {feature.description && (
+                                    <div className="description col-lg-11">
+                                        {feature.description}
+                                    </div>
+                                )}
+                            </div>
+                        </Reveal>
 
                         {feature.image && (
-                            <div className="feature-image">
-                                <img
-                                    src={feature.image}
-                                    alt={feature.title}
-                                />
-                            </div>
+                            <Reveal
+                                animation={imageAnimation}
+                                delay={0.15}
+                                duration={1.2}
+                            >
+                                <div className="feature-image">
+                                    <img
+                                        src={feature.image}
+                                        alt={feature.title}
+                                    />
+                                </div>
+                            </Reveal>
                         )}
 
                     </div>

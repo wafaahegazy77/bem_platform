@@ -3,6 +3,7 @@ import { Link } from "@/i18n/routing";
 import { api } from "@/lib/api";
 import ComparisonCategories from "./ComparisonCategories";
 import "./_PricingComparison.scss";
+import Reveal from "@/components/animations/Reveal";
 
 type PackageFeature = {
     key: string;
@@ -69,92 +70,133 @@ const PricingComparison = async () => {
     return (
         <section className="pricing-comparison section-padding">
             <div className="container">
+
                 <div className="comparison-content">
-                    <h2 className="fsz-40 fw-600 text-center comparison-title mb-5 pb-3">
-                        {t("comparisonTitle")}
-                    </h2>
+
+                    <Reveal
+                        animation="fade-down-blur"
+                        duration={1.1}
+                    >
+                        <h2 className="fsz-40 fw-600 text-center comparison-title mb-5 pb-3">
+                            {t("comparisonTitle")}
+                        </h2>
+                    </Reveal>
 
                     <div className="comparison-table">
+
                         <div className="comparison-head">
+
                             <div className="row align-items-center">
+
                                 <div className="col-lg-5"></div>
 
                                 <div className="col-lg-7">
+
                                     <div className="row">
-                                        {visiblePackages.map((plan) => {
-                                            const isFree =
-                                                plan.is_free === true ||
-                                                plan.is_free === 1;
 
-                                            const isContactPlan =
-                                                !isFree &&
-                                                (!plan.has_price ||
-                                                    plan.final_cost === null);
+                                        {visiblePackages.map(
+                                            (plan, index) => {
+                                                const isFree =
+                                                    plan.is_free ===
+                                                        true ||
+                                                    plan.is_free === 1;
 
-                                            return (
-                                                <div
-                                                    className="col-6"
-                                                    key={plan.code}
-                                                >
-                                                    <div className="comparison-plan">
-                                                        <h3 className="fsz-18 fw-700 mb-15 mb-4">
-                                                            {plan.title}
-                                                        </h3>
+                                                const isContactPlan =
+                                                    !isFree &&
+                                                    (!plan.has_price ||
+                                                        plan.final_cost ===
+                                                            null);
 
-                                                        <Link
-                                                            href={
-                                                                isContactPlan
-                                                                    ? "/contact"
-                                                                    : isFree
-                                                                      ? "/register"
-                                                                      : `/checkout?package=${plan.code}`
+                                                return (
+                                                    <div
+                                                        className="col-6"
+                                                        key={plan.code}
+                                                    >
+                                                        <Reveal
+                                                            animation={
+                                                                index === 0
+                                                                    ? "fade-left-blur"
+                                                                    : "fade-right-blur"
                                                             }
-                                                            className="butn primary_border_butn rounded-pill hvr-txt-trans fw-bold mx-auto"
+                                                            delay={
+                                                                0.15 +
+                                                                index * 0.12
+                                                            }
+                                                            duration={1}
                                                         >
-                                                            <div
-                                                                className="txt px-3"
-                                                                data-text={
-                                                                    isContactPlan
-                                                                        ? t(
-                                                                              "contactTeam"
-                                                                          )
-                                                                        : isFree
-                                                                          ? t(
-                                                                                "startNow"
-                                                                            )
-                                                                          : t(
-                                                                                "subscribeNow"
-                                                                            )
-                                                                }
-                                                            >
-                                                                <span>
-                                                                    {isContactPlan
-                                                                        ? t(
-                                                                              "contactTeam"
-                                                                          )
-                                                                        : isFree
-                                                                          ? t(
-                                                                                "startNow"
-                                                                            )
-                                                                          : t(
-                                                                                "subscribeNow"
-                                                                            )}
-                                                                </span>
+                                                            <div className="comparison-plan">
+
+                                                                <h3 className="fsz-18 fw-700 mb-15 mb-4">
+                                                                    {
+                                                                        plan.title
+                                                                    }
+                                                                </h3>
+
+                                                                <Link
+                                                                    href={
+                                                                        isContactPlan
+                                                                            ? "/contact"
+                                                                            : isFree
+                                                                              ? "/register"
+                                                                              : `/checkout?package=${plan.code}`
+                                                                    }
+                                                                    className="butn primary_border_butn rounded-pill hvr-txt-trans fw-bold mx-auto"
+                                                                >
+                                                                    <div
+                                                                        className="txt px-3"
+                                                                        data-text={
+                                                                            isContactPlan
+                                                                                ? t(
+                                                                                      "contactTeam"
+                                                                                  )
+                                                                                : isFree
+                                                                                  ? t(
+                                                                                        "startNow"
+                                                                                    )
+                                                                                  : t(
+                                                                                        "subscribeNow"
+                                                                                    )
+                                                                        }
+                                                                    >
+                                                                        <span>
+                                                                            {isContactPlan
+                                                                                ? t(
+                                                                                      "contactTeam"
+                                                                                  )
+                                                                                : isFree
+                                                                                  ? t(
+                                                                                        "startNow"
+                                                                                    )
+                                                                                  : t(
+                                                                                        "subscribeNow"
+                                                                                    )}
+                                                                        </span>
+                                                                    </div>
+                                                                </Link>
+
                                                             </div>
-                                                        </Link>
+                                                        </Reveal>
                                                     </div>
-                                                </div>
-                                            );
-                                        })}
+                                                );
+                                            }
+                                        )}
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <ComparisonCategories
-                            categories={categories}
-                            packages={visiblePackages}
-                        />
+                        <Reveal
+                            animation="fade-up-blur"
+                            delay={0.3}
+                            duration={1.1}
+                        >
+                            <ComparisonCategories
+                                categories={categories}
+                                packages={visiblePackages}
+                            />
+                        </Reveal>
+
                     </div>
                 </div>
             </div>

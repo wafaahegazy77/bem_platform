@@ -1,9 +1,12 @@
 .hero_section {
     position: relative;
     padding-top: 200px;
-    background-image: linear-gradient(to bottom , #375BC1 , #375cc100);
+    background-image: linear-gradient(
+        to bottom,
+        #375BC1,
+        #375cc100
+    );
     min-height: 100vh;
-
 
     .txt_box {
         .description * {
@@ -12,18 +15,19 @@
         }
     }
 
-
     .hero-slider {
         position: relative;
-        padding: 0 ;
+        padding: 0;
         min-height: 560px;
         overflow: visible;
+
         .img {
             position: relative;
             height: 400px;
             border-radius: 40px;
             overflow: hidden;
             background-color: #fff;
+
             img {
                 object-fit: cover;
                 object-position: top;
@@ -47,7 +51,5 @@
 }
 
 @media screen and (max-width: 991px) {
-
-
 
 }

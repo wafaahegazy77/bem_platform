@@ -2,6 +2,7 @@
 
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Reveal from "@/components/animations/Reveal";
 
 import "swiper/css";
 
@@ -18,9 +19,13 @@ type HeroSliderProps = {
     services: Service[];
 };
 
-const HeroSlider = ({ services }: HeroSliderProps) => {
+const HeroSlider = ({
+    services,
+}: HeroSliderProps) => {
     const slides = services.filter(
-        (service) => service.homepage?.hero_image || service.homepage?.image
+        (service) =>
+            service.homepage?.hero_image ||
+            service.homepage?.image
     );
 
     return (
@@ -35,11 +40,11 @@ const HeroSlider = ({ services }: HeroSliderProps) => {
                 navigation={false}
                 mousewheel={false}
                 keyboard
-                autoplay={{
-                    delay: 4000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: false,
-                }}
+                // autoplay={{
+                //     delay: 4000,
+                //     disableOnInteraction: false,
+                //     pauseOnMouseEnter: false,
+                // }}
                 loop={slides.length > 1}
                 breakpoints={{
                     0: {
@@ -60,19 +65,30 @@ const HeroSlider = ({ services }: HeroSliderProps) => {
                 }}
                 className="hero_swiper"
             >
-                {slides.map((service) => (
+                {slides.map((service, index) => (
                     <SwiperSlide key={service.code}>
-                        <div className="img">
-                            <img
-                                src={
-                                    service.homepage?.hero_image ||
-                                    service.homepage?.image ||
-                                    ""
-                                }
-                                alt={service.name}
-                                className="img-cover"
-                            />
-                        </div>
+                        <Reveal
+                            animation="fade-up-blur"
+                            // delay={index * 0.08}
+                            duration={1.2}
+                            once
+                            amount={0.2}
+                            trigger="view"
+                        >
+                            <div className="img">
+                                <img
+                                    src={
+                                        service.homepage
+                                            ?.hero_image ||
+                                        service.homepage
+                                            ?.image ||
+                                        ""
+                                    }
+                                    alt={service.name}
+                                    className="img-cover"
+                                />
+                            </div>
+                        </Reveal>
                     </SwiperSlide>
                 ))}
             </Swiper>

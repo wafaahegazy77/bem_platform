@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { api } from "@/lib/api";
 import "./_Download.scss";
+import Reveal from "@/components/animations/Reveal";
 
 const Download = async () => {
     const locale = await getLocale();
@@ -36,43 +37,79 @@ const Download = async () => {
         <section className="download pb-80">
             <div className="container">
 
-                <div className="download-box radius-40 p-40 d-flex align-items-center justify-content-between">
+                <Reveal
+                    animation="fade-up-blur"
+                    duration={1.1}
+                >
+                    <div className="download-box radius-40 p-40 d-flex align-items-center justify-content-between">
 
-                    <div className="info">
-                        <h3 className="fsz-30 fw-800">
-                            {data.first_title}
-                        </h3>
+                        <div className="info">
 
-                        <div className="text fsz-20 fw-500 mt-10">
-                            {data.second_title}
-                        </div>
-                    </div>
-
-                    <div className="apps d-flex gap-3">
-
-                        {apps.map((app) => (
-                            <a
-                                href={app.href}
-                                key={app.name}
-                                className="app-item radius-15 overflow-hidden text-center"
+                            <Reveal
+                                animation="fade-left"
+                                duration={1}
                             >
-                                <div className="ico df-center">
-                                    <img
-                                        src={app.icon}
-                                        alt={app.name}
-                                        className="icon-40"
-                                    />
-                                </div>
+                                <h3 className="fsz-30 fw-800">
+                                    {data.first_title}
+                                </h3>
+                            </Reveal>
 
-                                <span className="label bg_primary d-block fsz-14 fw-500">
-                                    {app.name}
-                                </span>
-                            </a>
-                        ))}
+                            <Reveal
+                                animation="fade-left-blur"
+                                delay={0.15}
+                                duration={1}
+                            >
+                                <div className="text fsz-20 fw-500 mt-10">
+                                    {data.second_title}
+                                </div>
+                            </Reveal>
+
+                        </div>
+
+                        <div className="apps row g-3">
+
+                            {apps.map((app, index) => (
+                                <div
+                                    className="col-6 col-sm-3"
+                                    key={app.name}
+                                >
+                                    <Reveal
+                                        animation={
+                                            index === 0
+                                                ? "fade-up"
+                                                : index === 1
+                                                ? "fade-down"
+                                                : index === 2
+                                                ? "zoom-in"
+                                                : "fade-up-blur"
+                                        }
+                                        delay={0.15 + index * 0.1}
+                                        duration={0.9}
+                                    >
+                                        <a
+                                            href={app.href}
+                                            className="app-item radius-15 overflow-hidden text-center"
+                                        >
+                                            <div className="ico df-center">
+                                                <img
+                                                    src={app.icon}
+                                                    alt={app.name}
+                                                    className="icon-40"
+                                                />
+                                            </div>
+
+                                            <span className="label bg_primary d-block fsz-14 fw-500">
+                                                {app.name}
+                                            </span>
+                                        </a>
+                                    </Reveal>
+                                </div>
+                            ))}
+
+                        </div>
 
                     </div>
-
-                </div>
+                </Reveal>
 
             </div>
         </section>

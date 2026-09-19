@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import "./_Terms.scss";
 import TermsAccordion from "../TermsAccordion/TermsAccordion";
+import Reveal from "@/components/animations/Reveal";
 
 type TermsPageData = {
     id: number;
@@ -56,29 +57,59 @@ const Terms = async ({
 
     return (
         <div className="terms-page">
+
             <section className="terms-hero">
                 <div className="container">
+
                     <div className="terms-hero-content text-center">
-                        <span className="terms-badge">
-                            {t("badge")}
-                        </span>
 
-                        <h1 className="terms-title fsz-40 fw-600 mb-4">
-                            {page?.title}
-                        </h1>
+                        <Reveal
+                            animation="zoom-in"
+                            duration={0.9}
+                        >
+                            <span className="terms-badge">
+                                {t("badge")}
+                            </span>
+                        </Reveal>
 
-                        <p className="terms-description fsz-15 cr-666 fw-500">
-                            {t("description")}
-                        </p>
+                        <Reveal
+                            animation="fade-down-blur"
+                            delay={0.1}
+                            duration={1.1}
+                        >
+                            <h1 className="terms-title fsz-40 fw-600 mb-4">
+                                {page?.title}
+                            </h1>
+                        </Reveal>
+
+                        <Reveal
+                            animation="fade-up"
+                            delay={0.2}
+                            duration={1}
+                        >
+                            <p className="terms-description fsz-15 cr-666 fw-500">
+                                {t("description")}
+                            </p>
+                        </Reveal>
+
                     </div>
                 </div>
             </section>
 
             <section className="terms-content">
                 <div className="container">
-                    <TermsAccordion sections={sections} />
+
+                    <Reveal
+                        animation="fade-up-blur"
+                        delay={0.15}
+                        duration={1.1}
+                    >
+                        <TermsAccordion sections={sections} />
+                    </Reveal>
+
                 </div>
             </section>
+
         </div>
     );
 };

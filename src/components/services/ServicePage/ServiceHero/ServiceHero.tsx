@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import "./_ServiceHero.scss";
+import Reveal from "@/components/animations/Reveal";
 
 type ServiceHeroProps = {
     service: {
@@ -56,49 +57,78 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
             <div className="container">
                 <div className="service-hero-content text-center">
 
-                    <div
-                        className="service-hero-name"
-                        style={{
-                            color: service.theme_color,
-                        }}
-                    >
-                        <img
-                            src={service.icon}
-                            alt={service.name}
-                        />
-
-                        <span>{service.name}</span>
-                    </div>
-
-                    <h1 className="fsz-45">
-                        {service.inner_page.title}
-                    </h1>
-
-                    {service.inner_page.description && (
-                        <div className="description">
-                            {service.inner_page.description}
-                        </div>
-                    )}
-
-                    <Link
-                        href="/pricing"
-                        className="butn secondary_border_butn hvr-txt-trans px-4 mx-auto mt-4   "
+                    <Reveal
+                        animation="zoom-in"
+                        duration={0.9}
                     >
                         <div
-                            className="txt px-2"
-                            data-text={t("startFree")}
+                            className="service-hero-name"
+                            style={{
+                                color: service.theme_color,
+                            }}
                         >
-                            <span>{t("startFree")}</span>
+                            <img
+                                src={service.icon}
+                                alt={service.name}
+                            />
+
+                            <span>{service.name}</span>
                         </div>
-                    </Link>
+                    </Reveal>
+
+                    <Reveal
+                        animation="fade-down-blur"
+                        delay={0.15}
+                        duration={1.1}
+                    >
+                        <h1 className="fsz-45">
+                            {service.inner_page.title}
+                        </h1>
+                    </Reveal>
+
+                    {service.inner_page.description && (
+                        <Reveal
+                            animation="fade-up"
+                            delay={0.25}
+                            duration={1}
+                        >
+                            <div className="description">
+                                {service.inner_page.description}
+                            </div>
+                        </Reveal>
+                    )}
+
+                    <Reveal
+                        animation="fade-up-blur"
+                        delay={0.4}
+                        duration={0.9}
+                    >
+                        <Link
+                            href="/pricing"
+                            className="butn secondary_border_butn hvr-txt-trans px-4 mx-auto mt-4"
+                        >
+                            <div
+                                className="txt px-2"
+                                data-text={t("startFree")}
+                            >
+                                <span>{t("startFree")}</span>
+                            </div>
+                        </Link>
+                    </Reveal>
 
                     {service.inner_page.hero_image && (
-                        <div className="service-hero-image">
-                            <img
-                                src={service.inner_page.hero_image}
-                                alt={service.inner_page.title}
-                            />
-                        </div>
+                        <Reveal
+                            animation="zoom-in-up"
+                            delay={0.5}
+                            duration={1.2}
+                        >
+                            <div className="service-hero-image">
+                                <img
+                                    src={service.inner_page.hero_image}
+                                    alt={service.inner_page.title}
+                                />
+                            </div>
+                        </Reveal>
                     )}
 
                 </div>

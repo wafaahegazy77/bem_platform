@@ -1,20 +1,27 @@
 .download {
     position: relative;
-    
+
     .download-box {
         position: relative;
         background-image: url("/images/why-bg.png");
         background-size: cover;
         background-position: top;
+        .apps {
+            width: 50%;
+            .col-6.col-sm-3 div {
+                width: 100%;
+            }
+            > div {
+                display: flex;
+            }
+        }
 
         .app-item {
             position: relative;
-            width: 150px;
-            // background: #fff;
+            width: 100%;
             border: 1px solid #c5dff0;
-            flex-shrink: 0;
             transition: all 0.3s ease;
-
+            display: block;
             .ico {
                 height: 95px;
             }
@@ -42,8 +49,8 @@
             gap: 30px;
 
             .apps {
+                width: 100%;
                 justify-content: center;
-                flex-wrap: wrap;
             }
         }
     }

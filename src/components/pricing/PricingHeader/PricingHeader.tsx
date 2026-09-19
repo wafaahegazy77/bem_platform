@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { api } from "@/lib/api";
 import "./_PricingHeader.scss";
+import Reveal from "@/components/animations/Reveal";
 
 type Service = {
     code: string;
@@ -32,44 +33,93 @@ const PricingHeader = async () => {
 
                 <div className="text-center">
 
-                    <div className="pricing-label">
-                        {t("label")}
-                    </div>
+                    <Reveal
+                        animation="zoom-in"
+                        duration={0.9}
+                    >
+                        <div className="pricing-label">
+                            {t("label")}
+                        </div>
+                    </Reveal>
 
-                    <h1 className="fsz-45 fw-bold">
-                        {page?.title}
-                    </h1>
+                    <Reveal
+                        animation="fade-down-blur"
+                        delay={0.1}
+                        duration={1.1}
+                    >
+                        <h1 className="fsz-45 fw-bold">
+                            {page?.title}
+                        </h1>
+                    </Reveal>
 
                 </div>
 
                 <div className="pricing-services">
-                    <p className="services-title text-center mb-4">
-                        {t("included")}
-                    </p>
 
-                    <div className="services-list-box">
-                        <div className="services-list col-lg-10 mx-auto">
-                            {selectedServices.map((service) => (
-                                <div
-                                    className="service-item"
-                                    key={service.code}
-                                >
-                                    {service.icon && (
-                                        <div className="service-icon">
-                                            <img
-                                                src={service.icon}
-                                                alt={service.name}
-                                            />
-                                        </div>
-                                    )}
+                    <Reveal
+                        animation="fade-up"
+                        delay={0.2}
+                        duration={1}
+                    >
+                        <p className="services-title text-center mb-4">
+                            {t("included")}
+                        </p>
+                    </Reveal>
 
-                                    <span className="fw-500">
-                                        {service.name}
-                                    </span>
-                                </div>
-                            ))}
+                    <Reveal
+                        animation="fade-up-blur"
+                        delay={0.3}
+                        duration={1.1}
+                    >
+                        <div className="services-list-box">
+
+                            <div className="services-list col-lg-10 mx-auto">
+
+                                {selectedServices.map(
+                                    (service, index) => (
+                                        <Reveal
+                                            key={service.code}
+                                            animation={
+                                                index % 2 === 0
+                                                    ? "fade-left"
+                                                    : "fade-right"
+                                            }
+                                            delay={
+                                                0.1 +
+                                                index * 0.08
+                                            }
+                                            duration={0.8}
+                                        >
+                                            <div className="service-item">
+
+                                                {service.icon && (
+                                                    <div className="service-icon">
+                                                        <img
+                                                            src={
+                                                                service.icon
+                                                            }
+                                                            alt={
+                                                                service.name
+                                                            }
+                                                        />
+                                                    </div>
+                                                )}
+
+                                                <span className="fw-500">
+                                                    {
+                                                        service.name
+                                                    }
+                                                </span>
+
+                                            </div>
+                                        </Reveal>
+                                    )
+                                )}
+
+                            </div>
+
                         </div>
-                    </div>
+                    </Reveal>
 
                 </div>
 
