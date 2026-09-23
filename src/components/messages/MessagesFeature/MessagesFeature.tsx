@@ -216,7 +216,7 @@ const MessagesFeature = ({
                                         ref={videoRef}
                                         src={video}
                                         muted
-                                        loop
+                                        // loop
                                         playsInline
                                         preload="metadata"
                                     />

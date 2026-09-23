@@ -70,7 +70,7 @@ const MessagesHero = ({
             return;
         }
 
-        element.playbackRate = 1.4;
+        element.playbackRate = 1.8;
 
         const observer =
             new IntersectionObserver(
@@ -309,7 +309,7 @@ const MessagesHero = ({
                             ref={videoRef}
                             src={video}
                             muted
-                            loop
+                            // loop
                             playsInline
                             preload="metadata"
                         />
