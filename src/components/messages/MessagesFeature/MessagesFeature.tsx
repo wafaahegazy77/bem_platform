@@ -31,10 +31,10 @@ const MessagesFeature = ({
     const videoRef =
         useRef<HTMLVideoElement | null>(null);
 
-    const [isVisible, setIsVisible] =
-        useState(false);
+    const mediaRef =
+        useRef<HTMLDivElement | null>(null);
 
-    const [animationComplete, setAnimationComplete] =
+    const [isVisible, setIsVisible] =
         useState(false);
 
     const hasVideo = Boolean(video);
@@ -45,12 +45,22 @@ const MessagesFeature = ({
         }
 
         const element = videoRef.current;
+        const media = mediaRef.current;
 
-        if (!element) {
+        if (!element || !media) {
             return;
         }
 
-        element.playbackRate = 1.4;
+        const setPlaybackRate = () => {
+            element.playbackRate = 1.4;
+        };
+
+        setPlaybackRate();
+
+        element.addEventListener(
+            "loadedmetadata",
+            setPlaybackRate
+        );
 
         const observer =
             new IntersectionObserver(
@@ -58,20 +68,25 @@ const MessagesFeature = ({
                     setIsVisible(
                         entry.isIntersecting
                     );
-
-                    if (!entry.isIntersecting) {
-                        element.pause();
-                    }
                 },
                 {
-                    threshold: 0.2,
+                    threshold: 0,
+                    rootMargin:
+                        "0px 0px 120px 0px",
                 }
             );
 
-        observer.observe(element);
+        observer.observe(media);
 
         return () => {
             observer.disconnect();
+
+            element.removeEventListener(
+                "loadedmetadata",
+                setPlaybackRate
+            );
+
+            element.pause();
         };
     }, [hasVideo]);
 
@@ -86,20 +101,53 @@ const MessagesFeature = ({
             return;
         }
 
-        element.playbackRate = 1.4;
+        const playVideo = () => {
+            if (!isVisible) {
+                return;
+            }
 
-        if (
-            isVisible &&
-            animationComplete
-        ) {
-            element.play().catch(() => {});
+            element.playbackRate = 1.4;
+
+            if (element.paused) {
+                element
+                    .play()
+                    .catch(() => {});
+            }
+        };
+
+        const pauseVideo = () => {
+            if (!isVisible) {
+                element.pause();
+            }
+        };
+
+        if (isVisible) {
+            if (
+                element.readyState >= 3
+            ) {
+                playVideo();
+            } else {
+                element.addEventListener(
+                    "canplay",
+                    playVideo,
+                    {
+                        once: true,
+                    }
+                );
+            }
         } else {
-            element.pause();
+            pauseVideo();
         }
+
+        return () => {
+            element.removeEventListener(
+                "canplay",
+                playVideo
+            );
+        };
     }, [
         hasVideo,
         isVisible,
-        animationComplete,
     ]);
 
     const mediaInitial =
@@ -178,6 +226,7 @@ const MessagesFeature = ({
                             } ${mediaOrder}`}
                         >
                             <m.div
+                                ref={mediaRef}
                                 className="messages-feature-media"
                                 initial={{
                                     opacity: 0,
@@ -194,7 +243,7 @@ const MessagesFeature = ({
                                 }}
                                 viewport={{
                                     once: true,
-                                    amount: 0.2,
+                                    amount: 0.05,
                                 }}
                                 transition={{
                                     duration: 1.1,
@@ -205,11 +254,6 @@ const MessagesFeature = ({
                                         1,
                                     ],
                                 }}
-                                onAnimationComplete={() =>
-                                    setAnimationComplete(
-                                        true
-                                    )
-                                }
                             >
                                 {hasVideo ? (
                                     <video

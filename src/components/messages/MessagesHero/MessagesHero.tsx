@@ -102,7 +102,7 @@ const MessagesHero = ({
             return;
         }
 
-        element.playbackRate = 1.4;
+        element.playbackRate = 1.7;
 
         if (
             isVisible &&
