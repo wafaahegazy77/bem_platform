@@ -7,13 +7,13 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 const messagesVideos = [
-    "/videos/2.webm",
-    "/videos/3.webm",
-    "/videos/4.webm",
-    "/videos/5.webm",
-    "/videos/6.webm",
+    "/videos/vid-2.mp4",
+    "/videos/vid-3.mp4",
+    "/videos/vid-4.mp4",
+    "/videos/vid-5.mp4",
+    "/videos/vid-6.mp4",
     null,
-    "/videos/8.webm",
+    "/videos/vid-8.mp4",
 ];
 
 const MessagesPage = async () => {
