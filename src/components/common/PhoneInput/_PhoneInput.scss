@@ -1,28 +1,23 @@
 .phone-input {
     display: flex;
     align-items: stretch;
-    direction: ltr;
 
     .phone-country {
-        flex: 0 0 190px;
+        flex: 0 0 110px;
+        max-width: 110px;
+        width: 110px;
+
+        .phone-select__control {
+            height: 60px;
+            min-height: 60px;
+            border-radius: 6px 0 0 6px;
+        }
     }
 
     .form-control {
         flex: 1;
+        min-width: 0;
         border-radius: 0 6px 6px 0;
-        direction: rtl;
-    }
-}
-
-.phone-country-value {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    svg {
-        width: 22px;
-        height: 15px;
-        border-radius: 2px;
     }
 }
 
@@ -39,26 +34,53 @@
         border-radius: 2px;
     }
 
-    .phone-country-name {
-        overflow: hidden;
-        flex: 1;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
     .phone-country-dial {
         flex: 0 0 auto;
-        margin-inline-start: auto;
-        color: #999;
-        font-size: 12px;
+        color: #222;
+        font-size: 13px;
         font-weight: 500;
+    }
+}
+
+.phone-select__menu-portal {
+    z-index: 99999;
+}
+
+.phone-select__menu {
+    z-index: 99999;
+}
+
+.phone-select__menu-list {
+    max-height: 250px;
+    padding: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #c7c7c7;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--primary);
     }
 }
 
 @media (max-width: 767px) {
     .phone-input {
         .phone-country {
-            flex: 0 0 150px;
+            flex: 0 0 110px;
+            max-width: 110px;
+            width: 110px;
         }
     }
 }

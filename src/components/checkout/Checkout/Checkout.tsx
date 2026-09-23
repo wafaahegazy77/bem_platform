@@ -49,7 +49,6 @@ const Checkout = async ({
                 <div className="container">
                     <Reveal
                         animation="zoom-in"
-                        duration={0.9}
                     >
                         <div className="checkout-error text-center">
                             {t("packageNotFound")}
@@ -70,7 +69,6 @@ const Checkout = async ({
             <div className="container">
                 <Reveal
                     animation="fade-up-blur"
-                    duration={1.1}
                 >
                     <CheckoutContent
                         packageData={packageData}

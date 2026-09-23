@@ -8,7 +8,10 @@ type ServiceFeatureProps = {
         title: string;
         description: string | null;
         image: string | null;
-        format: "image_first" | "image_last" | "image_below";
+        format:
+            | "image_first"
+            | "image_last"
+            | "image_below";
         placement: number;
     };
     themeColor: string;
@@ -38,7 +41,9 @@ const ServiceFeature = ({
         <section>
             <div className="container">
                 <div
-                    className={`service-feature ${feature.format} ${
+                    className={`service-feature ${
+                        feature.format
+                    } ${
                         isLast ? "last-feature" : ""
                     }`}
                     style={
@@ -47,40 +52,68 @@ const ServiceFeature = ({
                         } as CSSProperties
                     }
                 >
-                    <div className="feature-content">
-
-                        <Reveal
-                            animation={textAnimation}
-                            duration={1.1}
-                        >
-                            <div className="feature-text">
-                                <h2 className="fsz-35">
-                                    {feature.title}
-                                </h2>
-
-                                {feature.description && (
-                                    <div className="description col-lg-11">
-                                        {feature.description}
-                                    </div>
-                                )}
-                            </div>
-                        </Reveal>
-
+                    <div className="feature-content row align-items-center">
                         {feature.image && (
-                            <Reveal
-                                animation={imageAnimation}
-                                delay={0.15}
-                                duration={1.2}
+                            <div
+                                className={`feature-image-col col-lg-6 col-12 ${
+                                    feature.format ===
+                                    "image_first"
+                                        ? "order-lg-1"
+                                        : feature.format ===
+                                          "image_last"
+                                        ? "order-lg-2"
+                                        : "order-2"
+                                }`}
                             >
-                                <div className="feature-image">
-                                    <img
-                                        src={feature.image}
-                                        alt={feature.title}
-                                    />
-                                </div>
-                            </Reveal>
+                                <Reveal
+                                    animation={imageAnimation}
+                                    delay={0.15}
+                                >
+                                    <div className="feature-image">
+                                        <img
+                                            src={
+                                                feature.image
+                                            }
+                                            alt={
+                                                feature.title
+                                            }
+                                        />
+                                    </div>
+                                </Reveal>
+                            </div>
                         )}
 
+                        <div
+                            className={`feature-text-col col-lg-6 col-12 ${
+                                feature.format ===
+                                "image_first"
+                                    ? "order-lg-2"
+                                    : feature.format ===
+                                      "image_last"
+                                    ? "order-lg-1"
+                                    : "order-1"
+                            }`}
+                        >
+                            <Reveal
+                                animation={textAnimation}
+                            >
+                                <div className="feature-text">
+                                    <h2 className="fsz-35">
+                                        {feature.title}
+                                    </h2>
+
+                                    {feature.description && (
+                                        <div
+                                            className="description col-lg-11"
+                                            dangerouslySetInnerHTML={{
+                                                __html:
+                                                    feature.description,
+                                            }}
+                                        />
+                                    )}
+                                </div>
+                            </Reveal>
+                        </div>
                     </div>
                 </div>
             </div>

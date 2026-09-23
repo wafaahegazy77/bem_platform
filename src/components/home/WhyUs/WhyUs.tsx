@@ -32,7 +32,6 @@ const WhyUs = async () => {
 
                     <Reveal
                         animation="fade-down-blur"
-                        duration={1.2}
                     >
                         <h2 className="fsz-45 fw-600 color_secondary">
                             {pageData.first_title}
@@ -42,7 +41,6 @@ const WhyUs = async () => {
                     <Reveal
                         animation="fade-up"
                         delay={0.15}
-                        duration={1.1}
                     >
                         <div className="text fsz-18 cr-666 mt-30">
                             {pageData.second_title}
@@ -77,7 +75,6 @@ const WhyUs = async () => {
                                                 3) *
                                                 0.12
                                         }
-                                        duration={1.1}
                                     >
                                         <div className="why-card">
 

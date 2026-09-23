@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import PhoneInput from "@/components/common/PhoneInput/PhoneInput";
 
 const EnterpriseApplicationForm = async () => {
     const t = await getTranslations("application");
@@ -146,13 +147,7 @@ const EnterpriseApplicationForm = async () => {
                                     {t("adminPhone")}
                                 </label>
 
-                                <input
-                                    type="tel"
-                                    className="form-control"
-                                    placeholder={t(
-                                        "adminPhonePlaceholder"
-                                    )}
-                                />
+                                <PhoneInput />
                             </div>
                         </div>
                     </div>

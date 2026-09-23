@@ -42,7 +42,7 @@ const Footer = async () => {
         <footer className="footer">
             <div className="container">
 
-                <div className="foot-top d-flex align-items-center justify-content-between pb-40">
+                <div className="foot-top d-flex align-items-center justify-content-between pb-70">
 
                     <div className="info col-lg-6">
 
@@ -109,7 +109,7 @@ const Footer = async () => {
 
                         <a
                             href="#"
-                            className="cr-blue fsz-20"
+                            className="color_primary fsz-20"
                             aria-label="Instagram"
                         >
                             <i className="fab fa-instagram"></i>
@@ -117,7 +117,7 @@ const Footer = async () => {
 
                         <a
                             href="#"
-                            className="cr-blue fsz-20"
+                            className="color_primary fsz-20"
                             aria-label="LinkedIn"
                         >
                             <i className="fab fa-linkedin-in"></i>
@@ -125,7 +125,7 @@ const Footer = async () => {
 
                         <a
                             href="#"
-                            className="cr-blue fsz-20"
+                            className="color_primary fsz-20"
                             aria-label="X"
                         >
                             <i className="fab fa-x-twitter"></i>
@@ -133,7 +133,7 @@ const Footer = async () => {
 
                         <a
                             href="#"
-                            className="cr-blue fsz-20"
+                            className="color_primary fsz-20"
                             aria-label="Facebook"
                         >
                             <i className="fab fa-facebook-f"></i>
@@ -198,7 +198,7 @@ const Footer = async () => {
 
                             <div>
 
-                                <h5 className="title fsz-18 fw-800 cr-blue mb-20">
+                                <h5 className="title fsz-18 fw-800 color_primary mb-20">
                                     {t("services")}
                                 </h5>
 
@@ -224,7 +224,7 @@ const Footer = async () => {
 
                             <div>
 
-                                <h5 className="title fsz-18 fw-800 cr-blue mb-20">
+                                <h5 className="title fsz-18 fw-800 color_primary mb-20">
                                     {t("about")}
                                 </h5>
 
@@ -265,7 +265,7 @@ const Footer = async () => {
 
                             <div>
 
-                                <h5 className="fsz-18 fw-800 cr-blue mb-20">
+                                <h5 className="fsz-18 fw-800 color_primary mb-20">
                                     {t("download")}
                                 </h5>
 

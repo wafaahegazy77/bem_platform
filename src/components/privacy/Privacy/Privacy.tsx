@@ -26,13 +26,34 @@ const parsePrivacyContent = (
 } => {
     const sections: PrivacySection[] = [];
 
-    const parts = content.split(/<h4[^>]*>/i);
+    const parts = content.split(/<h2[^>]*>/i);
 
-    const intro = parts[0]?.trim() || "";
+    let intro = "";
 
-    parts.slice(1).forEach((part, index) => {
+    if (parts.length > 1) {
+        const firstPart = parts[1];
+
+        const firstTitleMatch = firstPart.match(
+            /^([\s\S]*?)<\/h2>/i
+        );
+
+        if (firstTitleMatch) {
+            const firstTitle = firstTitleMatch[1].trim();
+
+            const firstContent = firstPart
+                .replace(firstTitleMatch[0], "")
+                .trim();
+
+            intro = `
+                <h2>${firstTitle}</h2>
+                ${firstContent}
+            `;
+        }
+    }
+
+    parts.slice(2).forEach((part, index) => {
         const titleMatch = part.match(
-            /^([\s\S]*?)<\/h4>/i
+            /^([\s\S]*?)<\/h2>/i
         );
 
         if (!titleMatch) {
@@ -78,7 +99,6 @@ const Privacy = async ({
 
                         <Reveal
                             animation="zoom-in"
-                            duration={0.9}
                         >
                             <span className="privacy-badge">
                                 {t("badge")}
@@ -88,7 +108,6 @@ const Privacy = async ({
                         <Reveal
                             animation="fade-down-blur"
                             delay={0.1}
-                            duration={1.1}
                         >
                             <h1 className="privacy-title fsz-40 fw-600 mb-4">
                                 {page?.title}
@@ -98,7 +117,6 @@ const Privacy = async ({
                         <Reveal
                             animation="fade-up"
                             delay={0.2}
-                            duration={1}
                         >
                             <p className="privacy-description fsz-15 cr-666 fw-500 col-lg-6 mx-auto">
                                 {t("description")}
@@ -118,8 +136,8 @@ const Privacy = async ({
                         <div className="col-lg-3 privacy-sidebar-column">
 
                             <Reveal
-                                animation="fade-left-blur"
-                                duration={1.1}
+                                animation="fade-left"
+                                amount={0.1}
                             >
                                 <PrivacySidebar
                                     sections={parsed.sections}
@@ -130,26 +148,14 @@ const Privacy = async ({
 
                         <div className="col-lg-9">
 
-                            <Reveal
-                                animation="fade-right-blur"
-                                delay={0.1}
-                                duration={1.1}
-                            >
-                                <PrivacyContent
-                                    intro={parsed.intro}
-                                    sections={parsed.sections}
-                                />
-                            </Reveal>
+                            <PrivacyContent
+                                intro={parsed.intro}
+                                sections={parsed.sections}
+                            />
 
-                            <Reveal
-                                animation="fade-up-blur"
-                                delay={0.2}
-                                duration={1}
-                            >
-                                <div id="privacy-contact">
-                                    <PrivacyContact />
-                                </div>
-                            </Reveal>
+                            <div id="privacy-contact">
+                                <PrivacyContact />
+                            </div>
 
                         </div>
 

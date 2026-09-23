@@ -14,7 +14,9 @@ export default function HelpCenterPage() {
             <main>
                 <CreateOrganization />
                 <Categories />
-                <Faqs />
+                <div className="bg_linear_light">
+                    <Faqs />
+                </div>
                 <HelpCenterContact />
                 <Download />
             </main>

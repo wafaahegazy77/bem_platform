@@ -35,7 +35,6 @@ const PricingHeader = async () => {
 
                     <Reveal
                         animation="zoom-in"
-                        duration={0.9}
                     >
                         <div className="pricing-label">
                             {t("label")}
@@ -45,7 +44,6 @@ const PricingHeader = async () => {
                     <Reveal
                         animation="fade-down-blur"
                         delay={0.1}
-                        duration={1.1}
                     >
                         <h1 className="fsz-45 fw-bold">
                             {page?.title}
@@ -59,7 +57,6 @@ const PricingHeader = async () => {
                     <Reveal
                         animation="fade-up"
                         delay={0.2}
-                        duration={1}
                     >
                         <p className="services-title text-center mb-4">
                             {t("included")}
@@ -69,7 +66,6 @@ const PricingHeader = async () => {
                     <Reveal
                         animation="fade-up-blur"
                         delay={0.3}
-                        duration={1.1}
                     >
                         <div className="services-list-box">
 
@@ -88,7 +84,6 @@ const PricingHeader = async () => {
                                                 0.1 +
                                                 index * 0.08
                                             }
-                                            duration={0.8}
                                         >
                                             <div className="service-item">
 

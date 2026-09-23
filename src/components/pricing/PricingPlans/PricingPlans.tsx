@@ -47,7 +47,6 @@ const PricingPlans = async () => {
 
                 <Reveal
                     animation="fade-up-blur"
-                    duration={1}
                 >
                     <ul
                         className="nav nav-pills pricing-tabs p-1 mx-auto mb-50 flex-nowrap"
@@ -90,7 +89,7 @@ const PricingPlans = async () => {
                             >
                                 {t("yearly")}
 
-                                <span className="color_primary fsz-12 fw-500 mx-1">
+                                <span className="cr_green fsz-12 fw-500 mx-1">
                                     ( {t("yearlyDiscount")} 10% )
                                 </span>
                             </button>
@@ -157,7 +156,6 @@ const PricingPlans = async () => {
                                                 index
                                             )}
                                             delay={0.1 + index * 0.12}
-                                            duration={1.1}
                                         >
                                             <div
                                                 className={`item h-100 radius-20 p-40 ${
@@ -363,7 +361,6 @@ const PricingPlans = async () => {
                                                 index
                                             )}
                                             delay={0.1 + index * 0.12}
-                                            duration={1.1}
                                         >
                                             <div
                                                 className={`item h-100 radius-20 p-40 ${

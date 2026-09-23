@@ -4,25 +4,8 @@ import { useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-
-type Country = {
-    value: string;
-    label: string;
-    flag: string;
-};
-
-const countries: Country[] = [
-    {
-        value: "saudi-arabia",
-        label: "السعودية",
-        flag: "https://flagcdn.com/w40/sa.png",
-    },
-    {
-        value: "egypt",
-        label: "مصر",
-        flag: "https://flagcdn.com/w40/eg.png",
-    },
-];
+import PhoneInput from "@/components/common/PhoneInput/PhoneInput";
+import CountryInput from "@/components/common/CountryInput/CountryInput";
 
 const SubscriptionApplicationForm = () => {
     const t = useTranslations("application");
@@ -31,12 +14,6 @@ const SubscriptionApplicationForm = () => {
 
     const [selectedCountry, setSelectedCountry] =
         useState("saudi-arabia");
-
-    const country =
-        countries.find(
-            (item) =>
-                item.value === selectedCountry
-        ) || countries[0];
 
     const handleSubmit = (
         event: React.FormEvent<HTMLFormElement>
@@ -100,7 +77,9 @@ const SubscriptionApplicationForm = () => {
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>
-                                    {t("organizationType")}
+                                    {t(
+                                        "organizationType"
+                                    )}
                                 </label>
 
                                 <select
@@ -180,13 +159,7 @@ const SubscriptionApplicationForm = () => {
                                     {t("adminPhone")}
                                 </label>
 
-                                <input
-                                    type="tel"
-                                    className="form-control"
-                                    placeholder={t(
-                                        "adminPhonePlaceholder"
-                                    )}
-                                />
+                                <PhoneInput />
                             </div>
                         </div>
                     </div>
@@ -248,45 +221,12 @@ const SubscriptionApplicationForm = () => {
 
                     <div className="row">
                         <div className="col-md-6">
-                            <div className="form-group country-form-group">
+                            <div className="form-group">
                                 <label>
                                     {t("country")}
                                 </label>
 
-                                <div className="country-select">
-                                    <img
-                                        src={country.flag}
-                                        alt={country.label}
-                                        className="country-flag"
-                                    />
-
-                                    <select
-                                        className="form-control form-select"
-                                        value={
-                                            selectedCountry
-                                        }
-                                        onChange={(event) =>
-                                            setSelectedCountry(
-                                                event.target.value
-                                            )
-                                        }
-                                    >
-                                        {countries.map(
-                                            (item) => (
-                                                <option
-                                                    key={
-                                                        item.value
-                                                    }
-                                                    value={
-                                                        item.value
-                                                    }
-                                                >
-                                                    {item.label}
-                                                </option>
-                                            )
-                                        )}
-                                    </select>
-                                </div>
+                                <CountryInput />
                             </div>
                         </div>
 
@@ -351,7 +291,9 @@ const SubscriptionApplicationForm = () => {
                             className="txt px-3"
                             data-text={t("next")}
                         >
-                            <span>{t("next")}</span>
+                            <span>
+                                {t("next")}
+                            </span>
                         </div>
                     </button>
                 </div>

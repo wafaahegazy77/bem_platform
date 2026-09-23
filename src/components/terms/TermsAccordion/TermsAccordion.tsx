@@ -46,7 +46,6 @@ const TermsAccordion = ({
                             ]
                         }
                         delay={index * 0.08}
-                        duration={1}
                     >
                         <div
                             className={`terms-item ${

@@ -39,7 +39,6 @@ const Download = async () => {
 
                 <Reveal
                     animation="fade-up-blur"
-                    duration={1.1}
                 >
                     <div className="download-box radius-40 p-40 d-flex align-items-center justify-content-between">
 
@@ -47,7 +46,6 @@ const Download = async () => {
 
                             <Reveal
                                 animation="fade-left"
-                                duration={1}
                             >
                                 <h3 className="fsz-30 fw-800">
                                     {data.first_title}
@@ -57,7 +55,6 @@ const Download = async () => {
                             <Reveal
                                 animation="fade-left-blur"
                                 delay={0.15}
-                                duration={1}
                             >
                                 <div className="text fsz-20 fw-500 mt-10">
                                     {data.second_title}
@@ -84,7 +81,6 @@ const Download = async () => {
                                                 : "fade-up-blur"
                                         }
                                         delay={0.15 + index * 0.1}
-                                        duration={0.9}
                                     >
                                         <a
                                             href={app.href}

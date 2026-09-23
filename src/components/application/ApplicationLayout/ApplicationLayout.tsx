@@ -49,20 +49,20 @@ const ApplicationLayout = async ({
         0;
 
     const isBasic = applicationType === "basic";
+    const isProfessional = applicationType === "professional";
+    const isEnterprise = applicationType === "enterprise";
 
     return (
         <div className="application-content">
             <div className="container">
                 <Reveal
                     animation="fade-up-blur"
-                    duration={1.1}
                 >
                     <div className="application-card">
                         <div className="row g-0">
                             <div className="col-lg-8">
                                 <Reveal
                                     animation="fade-left-blur"
-                                    duration={1.1}
                                 >
                                     <div className="application-form-wrapper">
                                         {applicationType === "basic" ? (
@@ -81,7 +81,6 @@ const ApplicationLayout = async ({
                                     <Reveal
                                         animation="fade-right-blur"
                                         delay={0.15}
-                                        duration={1.1}
                                     >
                                             <div className="application-sidebar-content">
                                             {isBasic && (
@@ -133,7 +132,13 @@ const ApplicationLayout = async ({
                                                 </span>
                                             )}
 
-                                            {!isBasic && (
+                                            {isProfessional && (
+                                                <h2 className="application-sidebar-title fsz-24 fw-700">
+                                                    {t("pkgFeatures")}
+                                                </h2>
+                                            )}
+
+                                            {isEnterprise && (
                                                 <h2 className="application-sidebar-title fsz-24 fw-700">
                                                     {t("organizationNeeds")}
                                                 </h2>

@@ -18,11 +18,11 @@ type TermsSection = {
 const parseSections = (content: string): TermsSection[] => {
     const sections: TermsSection[] = [];
 
-    const parts = content.split(/<h4[^>]*>/i);
+    const parts = content.split(/<h2[^>]*>/i);
 
     parts.slice(1).forEach((part) => {
         const titleMatch = part.match(
-            /^([\s\S]*?)<\/h4>/i
+            /^([\s\S]*?)<\/h2>/i
         );
 
         if (!titleMatch) {
@@ -65,7 +65,6 @@ const Terms = async ({
 
                         <Reveal
                             animation="zoom-in"
-                            duration={0.9}
                         >
                             <span className="terms-badge">
                                 {t("badge")}
@@ -75,7 +74,6 @@ const Terms = async ({
                         <Reveal
                             animation="fade-down-blur"
                             delay={0.1}
-                            duration={1.1}
                         >
                             <h1 className="terms-title fsz-40 fw-600 mb-4">
                                 {page?.title}
@@ -85,7 +83,6 @@ const Terms = async ({
                         <Reveal
                             animation="fade-up"
                             delay={0.2}
-                            duration={1}
                         >
                             <p className="terms-description fsz-15 cr-666 fw-500">
                                 {t("description")}
@@ -101,8 +98,7 @@ const Terms = async ({
 
                     <Reveal
                         animation="fade-up-blur"
-                        delay={0.15}
-                        duration={1.1}
+                        delay={0.05}
                     >
                         <TermsAccordion sections={sections} />
                     </Reveal>

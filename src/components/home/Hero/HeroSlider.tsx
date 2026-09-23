@@ -71,7 +71,6 @@ const HeroSlider = ({
                     <SwiperSlide key={service.code}>
                         <Reveal
                             animation="fade-up"
-                            duration={0.8}
                             once
                             amount={0.1}
                             trigger="view"

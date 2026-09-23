@@ -71,7 +71,7 @@
     "register": {
         "title": "أنشئ حسابك في ",
         "Beem": "Beem",
-        "description": "ابدأ الآن واستمتع بتجربة بيم المتكاملة",
+        "description": "ابدأ خلال دقائق — أدخل بياناتك لإكمال التسجيل.",
         "organization_details": "تفاصيل المنظمة",
         "organization_name": "اسم المنظمة",
         "organization_name_placeholder": "اسم المنظمة",
@@ -226,7 +226,8 @@
     },
     "application": {
         "productFeatures": "تفاصيل الباقة",
-        "organizationNeeds": "احتياجات المنظمة",
+        "organizationNeeds": "كل ما تحتاجه مؤسستك",
+        "pkgFeatures" : "مميزات الباقة",
         "packageFeatures": "مميزات الباقة",
         "orderSummary": "ملخص الطلب",
         "invoiceDetails": "بيانات الفاتورة",

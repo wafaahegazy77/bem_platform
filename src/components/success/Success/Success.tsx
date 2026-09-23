@@ -31,13 +31,11 @@ const Success = ({ type }: SuccessProps) => {
 
                     <Reveal
                         animation="zoom-in"
-                        duration={1}
                     >
                         <div className="success-card text-center col-lg-6 mx-auto">
 
                             <Reveal
                                 animation="zoom-in"
-                                duration={0.8}
                             >
                                 <div className="success-icon">
                                     <i
@@ -53,7 +51,6 @@ const Success = ({ type }: SuccessProps) => {
                             <Reveal
                                 animation="fade-down-blur"
                                 delay={0.15}
-                                duration={1}
                             >
                                 <h1 className="success-title fsz-30 fw-600">
                                     {isBasic
@@ -65,7 +62,6 @@ const Success = ({ type }: SuccessProps) => {
                             <Reveal
                                 animation="fade-up"
                                 delay={0.25}
-                                duration={1}
                             >
                                 <p className="success-description fsz-14 cr-999 col-lg-10 mx-auto mt-4 mb-5">
                                     {isBasic
@@ -78,7 +74,6 @@ const Success = ({ type }: SuccessProps) => {
                                 <Reveal
                                     animation="fade-up-blur"
                                     delay={0.35}
-                                    duration={1}
                                 >
                                     <div className="success-summary">
 
@@ -121,7 +116,6 @@ const Success = ({ type }: SuccessProps) => {
                             <Reveal
                                 animation="fade-up"
                                 delay={0.5}
-                                duration={0.9}
                             >
                                 <Link
                                     href="/"
@@ -141,7 +135,6 @@ const Success = ({ type }: SuccessProps) => {
                             <Reveal
                                 animation="fade-up-blur"
                                 delay={0.6}
-                                duration={0.9}
                             >
                                 <p className="success-footer fsz-18 cr-666 mt-3">
                                     {t("downloadPrompt")}{" "}

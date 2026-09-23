@@ -48,6 +48,7 @@ const PricingComparison = async () => {
                         ...category,
                         features: [...category.features],
                     });
+
                     return;
                 }
 
@@ -70,12 +71,9 @@ const PricingComparison = async () => {
     return (
         <section className="pricing-comparison section-padding">
             <div className="container">
-
                 <div className="comparison-content">
-
                     <Reveal
                         animation="fade-down-blur"
-                        duration={1.1}
                     >
                         <h2 className="fsz-40 fw-600 text-center comparison-title mb-5 pb-3">
                             {t("comparisonTitle")}
@@ -83,17 +81,12 @@ const PricingComparison = async () => {
                     </Reveal>
 
                     <div className="comparison-table">
-
                         <div className="comparison-head">
-
                             <div className="row align-items-center">
-
                                 <div className="col-lg-5"></div>
 
                                 <div className="col-lg-7">
-
                                     <div className="row">
-
                                         {visiblePackages.map(
                                             (plan, index) => {
                                                 const isFree =
@@ -122,10 +115,9 @@ const PricingComparison = async () => {
                                                                 0.15 +
                                                                 index * 0.12
                                                             }
-                                                            duration={1}
+                                                            
                                                         >
                                                             <div className="comparison-plan">
-
                                                                 <h3 className="fsz-18 fw-700 mb-15 mb-4">
                                                                     {
                                                                         plan.title
@@ -137,10 +129,15 @@ const PricingComparison = async () => {
                                                                         isContactPlan
                                                                             ? "/contact"
                                                                             : isFree
-                                                                              ? "/register"
-                                                                              : `/checkout?package=${plan.code}`
+                                                                            ? "/register"
+                                                                            : `/checkout?package=${plan.code}`
                                                                     }
-                                                                    className="butn primary_border_butn rounded-pill hvr-txt-trans fw-bold mx-auto"
+                                                                    className={`butn ${
+                                                                        index ===
+                                                                        0
+                                                                            ? "secondary_border_butn"
+                                                                            : "primary_butn"
+                                                                    } rounded-pill hvr-txt-trans fw-bold mx-auto`}
                                                                 >
                                                                     <div
                                                                         className="txt px-3"
@@ -150,12 +147,12 @@ const PricingComparison = async () => {
                                                                                       "contactTeam"
                                                                                   )
                                                                                 : isFree
-                                                                                  ? t(
-                                                                                        "startNow"
-                                                                                    )
-                                                                                  : t(
-                                                                                        "subscribeNow"
-                                                                                    )
+                                                                                ? t(
+                                                                                      "startNow"
+                                                                                  )
+                                                                                : t(
+                                                                                      "subscribeNow"
+                                                                                  )
                                                                         }
                                                                     >
                                                                         <span>
@@ -164,23 +161,21 @@ const PricingComparison = async () => {
                                                                                       "contactTeam"
                                                                                   )
                                                                                 : isFree
-                                                                                  ? t(
-                                                                                        "startNow"
-                                                                                    )
-                                                                                  : t(
-                                                                                        "subscribeNow"
-                                                                                    )}
+                                                                                ? t(
+                                                                                      "startNow"
+                                                                                  )
+                                                                                : t(
+                                                                                      "subscribeNow"
+                                                                                  )}
                                                                         </span>
                                                                     </div>
                                                                 </Link>
-
                                                             </div>
                                                         </Reveal>
                                                     </div>
                                                 );
                                             }
                                         )}
-
                                     </div>
                                 </div>
                             </div>
@@ -188,15 +183,12 @@ const PricingComparison = async () => {
 
                         <Reveal
                             animation="fade-up-blur"
-                            delay={0.3}
-                            duration={1.1}
                         >
                             <ComparisonCategories
                                 categories={categories}
                                 packages={visiblePackages}
                             />
                         </Reveal>
-
                     </div>
                 </div>
             </div>

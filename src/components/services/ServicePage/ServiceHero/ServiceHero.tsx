@@ -59,7 +59,6 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
 
                     <Reveal
                         animation="zoom-in"
-                        duration={0.9}
                     >
                         <div
                             className="service-hero-name"
@@ -79,7 +78,6 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
                     <Reveal
                         animation="fade-down-blur"
                         delay={0.15}
-                        duration={1.1}
                     >
                         <h1 className="fsz-45">
                             {service.inner_page.title}
@@ -90,7 +88,6 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
                         <Reveal
                             animation="fade-up"
                             delay={0.25}
-                            duration={1}
                         >
                             <div className="description">
                                 {service.inner_page.description}
@@ -101,7 +98,6 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
                     <Reveal
                         animation="fade-up-blur"
                         delay={0.4}
-                        duration={0.9}
                     >
                         <Link
                             href="/pricing"
@@ -120,7 +116,6 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
                         <Reveal
                             animation="zoom-in-up"
                             delay={0.5}
-                            duration={1.2}
                         >
                             <div className="service-hero-image">
                                 <img

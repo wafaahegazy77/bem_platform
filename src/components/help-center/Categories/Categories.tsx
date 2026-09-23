@@ -60,7 +60,6 @@ const Categories = async () => {
 
                     <Reveal
                         animation="fade-down-blur"
-                        duration={1.1}
                     >
                         <h2 className="title fsz-40 fw-600">
                             {pageData?.first_title}
@@ -70,7 +69,6 @@ const Categories = async () => {
                     <Reveal
                         animation="fade-up"
                         delay={0.15}
-                        duration={1}
                     >
                         <p className="description fsz-15 cr-999 mt-10">
                             {pageData?.second_title}
@@ -94,7 +92,6 @@ const Categories = async () => {
                                     : "fade-right-blur"
                             }
                             delay={0.1 + index * 0.1}
-                            duration={1}
                         >
                             <Link
                                 href={`/services/${category.slug}`}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useLocale } from "next-intl";
 import Select, {
     SingleValue,
     StylesConfig,
@@ -17,7 +18,16 @@ type CountryOption = {
 };
 
 const PhoneInput = () => {
+    const locale = useLocale();
+
     const countryOptions = useMemo<CountryOption[]>(() => {
+        const displayNames = new Intl.DisplayNames(
+            [locale === "ar" ? "ar" : "en"],
+            {
+                type: "region",
+            }
+        );
+
         return countries.all
             .filter(
                 (country) =>
@@ -27,15 +37,20 @@ const PhoneInput = () => {
             )
             .map((country) => ({
                 value: country.alpha2,
-                label: country.name,
+                label:
+                    displayNames.of(country.alpha2) ||
+                    country.name,
                 dialCode:
                     country.countryCallingCodes[0],
                 code: country.alpha2,
             }))
             .sort((a, b) =>
-                a.label.localeCompare(b.label)
+                a.label.localeCompare(
+                    b.label,
+                    locale === "ar" ? "ar" : "en"
+                )
             );
-    }, []);
+    }, [locale]);
 
     const defaultCountry =
         countryOptions.find(
@@ -62,12 +77,6 @@ const PhoneInput = () => {
             boxShadow: "none",
             backgroundColor: "#fff",
             cursor: "pointer",
-
-            "&:hover": {
-                borderColor: state.isFocused
-                    ? "var(--primary)"
-                    : "#e7e9ee",
-            },
         }),
 
         valueContainer: (base) => ({
@@ -98,9 +107,14 @@ const PhoneInput = () => {
             display: "none",
         }),
 
+        menuPortal: (base) => ({
+            ...base,
+            zIndex: 99999,
+        }),
+
         menu: (base) => ({
             ...base,
-            zIndex: 100,
+            zIndex: 99999,
             marginTop: 4,
             border: "1px solid #e7e9ee",
             borderRadius: 6,
@@ -111,8 +125,11 @@ const PhoneInput = () => {
 
         menuList: (base) => ({
             ...base,
-            maxHeight: 250,
             padding: 0,
+            maxHeight: 250,
+            overflowY: "auto",
+            overscrollBehavior: "contain",
+            WebkitOverflowScrolling: "touch",
         }),
 
         option: (base, state) => ({
@@ -132,24 +149,8 @@ const PhoneInput = () => {
     };
 
     const formatOptionLabel = (
-        option: CountryOption,
-        meta: {
-            context: "menu" | "value";
-        }
+        option: CountryOption
     ) => {
-        if (meta.context === "value") {
-            return (
-                <div className="phone-country-value">
-                    <ReactCountryFlag
-                        countryCode={option.code}
-                        svg
-                    />
-
-                    <span>{option.dialCode}</span>
-                </div>
-            );
-        }
-
         return (
             <div className="phone-country-option">
                 <ReactCountryFlag
@@ -157,14 +158,43 @@ const PhoneInput = () => {
                     svg
                 />
 
-                <span className="phone-country-name">
-                    {option.label}
-                </span>
-
                 <span className="phone-country-dial">
                     {option.dialCode}
                 </span>
             </div>
+        );
+    };
+
+    const filterOption = (
+        option: {
+            data: CountryOption;
+        },
+        inputValue: string
+    ) => {
+        const search = inputValue
+            .trim()
+            .toLowerCase();
+
+        if (!search) {
+            return true;
+        }
+
+        const country = option.data;
+
+        const label = country.label.toLowerCase();
+        const dialCode =
+            country.dialCode.toLowerCase();
+        const dialCodeWithoutPlus =
+            dialCode.replace(/^\+/, "");
+        const code = country.code.toLowerCase();
+        const value = country.value.toLowerCase();
+
+        return (
+            label.includes(search) ||
+            dialCode.includes(search) ||
+            dialCodeWithoutPlus.includes(search) ||
+            code.includes(search) ||
+            value.includes(search)
         );
     };
 
@@ -175,17 +205,34 @@ const PhoneInput = () => {
     };
 
     return (
-        <div className="phone-input">
+        <div className="phone-input" dir="ltr">
             <div className="phone-country">
-                <Select
+                <Select<CountryOption>
+                    instanceId="phone-country-select"
+                    inputId="phone-country"
                     value={selectedCountry}
                     options={countryOptions}
                     onChange={handleCountryChange}
                     styles={customStyles}
+                    filterOption={filterOption}
                     formatOptionLabel={formatOptionLabel}
                     isSearchable
                     classNamePrefix="phone-select"
                     placeholder=""
+                    isRtl={false}
+                    menuPortalTarget={
+                        typeof document !== "undefined"
+                            ? document.body
+                            : undefined
+                    }
+                    menuPosition="fixed"
+                    menuPlacement="auto"
+                    menuShouldScrollIntoView={false}
+                    menuShouldBlockScroll={false}
+                    captureMenuScroll={false}
+                    closeMenuOnScroll={false}
+                    maxMenuHeight={250}
+                    minMenuHeight={120}
                 />
             </div>
 
@@ -193,6 +240,7 @@ const PhoneInput = () => {
                 type="tel"
                 className="form-control"
                 placeholder="5X XXX XXXX"
+                dir={locale === "ar" ? "rtl" : "ltr"}
                 required
             />
         </div>

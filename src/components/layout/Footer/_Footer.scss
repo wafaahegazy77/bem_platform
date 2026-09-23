@@ -128,7 +128,7 @@
         .socials {
             a {
                 transition: all 0.3s ease;
-
+                color: var(--primary) !important;
                 &:hover {
                     opacity: 0.7;
                 }
@@ -163,8 +163,10 @@
             }
         }
 
-        .title {
+        .title ,
+        h5 {
             margin-bottom: 40px !important;
+            color: var(--primary) !important;
         }
 
         .links {

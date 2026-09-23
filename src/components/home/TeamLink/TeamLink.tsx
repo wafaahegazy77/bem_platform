@@ -26,7 +26,6 @@ const TeamLink = async () => {
 
                     <Reveal
                         animation="fade-down-blur"
-                        duration={1.1}
                     >
                         <h2 className="fsz-45 fw-600">
                             <span className="color_primary d-block mb-2">

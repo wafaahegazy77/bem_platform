@@ -72,7 +72,7 @@
     "register": {
         "title": "Create your account on ",
         "Beem": "Beem",
-        "description": "Get started and enjoy the complete Beem experience",
+        "description": "Get started in minutes — enter your details to complete registration.",
         "organization_details": "Organization Details",
         "organization_name": "Organization Name",
         "organization_name_placeholder": "Organization Name",
@@ -228,6 +228,7 @@
     "application": {
         "productFeatures": "Package Details",
         "organizationNeeds": "Organization Needs",
+        "pkgFeatures" : "Package Features",
         "packageFeatures": "Package Features",
         "orderSummary": "Order Summary",
         "invoiceDetails": "Invoice Details",
