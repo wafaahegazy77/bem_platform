@@ -29,7 +29,7 @@ const Faqs = async () => {
                             duration={1.1}
                         >
                             <div className="faq-title col-lg-6">
-                                <h2 className="fsz-40 fw-600 color_primary mb-0">
+                                <h2 className="fsz-45 fw-600 color_primary mb-0">
                                     {t("title")}
                                 </h2>
                             </div>
@@ -65,7 +65,7 @@ const Faqs = async () => {
 
                                                 <h2 className="accordion-header">
                                                     <button
-                                                        className={`accordion-button fsz-16 fw-700 ${
+                                                        className={`accordion-button fsz-20 fw-500 ${
                                                             index !== 0
                                                                 ? "collapsed"
                                                                 : ""
@@ -103,7 +103,7 @@ const Faqs = async () => {
                                                     data-bs-parent="#faqAccordion"
                                                 >
                                                     <div
-                                                        className="accordion-body cr-666 fsz-15"
+                                                        className="accordion-body color_secondary op-7 fsz-16"
                                                         dangerouslySetInnerHTML={{
                                                             __html:
                                                                 faq.answer,

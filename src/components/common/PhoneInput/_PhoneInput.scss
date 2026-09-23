@@ -3,21 +3,33 @@
     align-items: stretch;
 
     .phone-country {
-        flex: 0 0 110px;
-        max-width: 110px;
-        width: 110px;
+        flex: 0 0 120px;
+        max-width: 120px;
+        width: 120px;
 
         .phone-select__control {
-            height: 60px;
+            height: 65px;
             min-height: 60px;
             border-radius: 6px 0 0 6px;
         }
+
+        .phone-select__value-container ,
+        .phone-select__input-container  {
+            height: 65px;
+            
+        }
+        .phone-select__single-value {
+            font-size: 18px !important;
+            padding-bottom: 5px;
+        }
+
     }
 
     .form-control {
         flex: 1;
         min-width: 0;
         border-radius: 0 6px 6px 0;
+        // text-decoration: ltr;
     }
 }
 

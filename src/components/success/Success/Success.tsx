@@ -42,7 +42,7 @@ const Success = ({ type }: SuccessProps) => {
                                         className={
                                             isBasic
                                                 ? "fa-light fa-check"
-                                                : "fa-light fa-envelope"
+                                                : "fa-light fa-check"
                                         }
                                     />
                                 </div>
@@ -112,7 +112,17 @@ const Success = ({ type }: SuccessProps) => {
                                     </div>
                                 </Reveal>
                             )}
-
+                            <Reveal
+                                animation="fade-up-blur"
+                                delay={0.6}
+                            >
+                                <p className="success-footer fsz-18 cr-666 mb-3">
+                                    {t("downloadPrompt")}{" "}
+                                    <Link href="/download">
+                                        {t("downloadApp")}
+                                    </Link>
+                                </p>
+                            </Reveal>
                             <Reveal
                                 animation="fade-up"
                                 delay={0.5}
@@ -132,17 +142,7 @@ const Success = ({ type }: SuccessProps) => {
                                 </Link>
                             </Reveal>
 
-                            <Reveal
-                                animation="fade-up-blur"
-                                delay={0.6}
-                            >
-                                <p className="success-footer fsz-18 cr-666 mt-3">
-                                    {t("downloadPrompt")}{" "}
-                                    <Link href="/download">
-                                        {t("downloadApp")}
-                                    </Link>
-                                </p>
-                            </Reveal>
+
 
                         </div>
                     </Reveal>

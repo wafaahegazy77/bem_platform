@@ -57,18 +57,20 @@
     }
 
     .category-description {
-        max-width: 280px;
+        height: 62px;
         margin-bottom: 20px;
         line-height: 1.7;
+        overflow: hidden;
     }
 
     .category-link {
-        display: inline-flex;
-        align-items: center;
+        display: flex !important;
+        align-items: end;
         gap: 6px;
         color: var(--primary);
         font-size: 12px;
         font-weight: 500;
+        justify-content: end;
 
         i {
             font-size: 12px;

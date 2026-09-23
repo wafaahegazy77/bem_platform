@@ -118,7 +118,7 @@ const Privacy = async ({
                             animation="fade-up"
                             delay={0.2}
                         >
-                            <p className="privacy-description fsz-15 cr-666 fw-500 col-lg-6 mx-auto">
+                            <p className="privacy-description fsz-18 color_secondary op-7 col-lg-7 mx-auto">
                                 {t("description")}
                             </p>
                         </Reveal>

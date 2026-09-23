@@ -48,7 +48,7 @@ const CreateOrganization = async () => {
                         animation="fade-down-blur"
                         delay={0.1}
                     >
-                        <h1 className="title fsz-40 fw-600">
+                        <h1 className="title fsz-50 fw-600">
                             {data?.first_title}
                         </h1>
                     </Reveal>
@@ -57,7 +57,7 @@ const CreateOrganization = async () => {
                         animation="fade-up"
                         delay={0.2}
                     >
-                        <p className="description fsz-15 cr-999 mt-20">
+                        <p className="description fsz-18  color_secondary pt-20 op-7">
                             {data?.second_title}
                         </p>
                     </Reveal>
@@ -84,7 +84,7 @@ const CreateOrganization = async () => {
                                     >
                                         <div className="step-card">
                                             <div className="step-card-top">
-                                                <span className="step-number">
+                                                <span className="step-number fsz-18 ">
                                                     {t("step")}{" "}
                                                     {String(
                                                         index + 1
@@ -108,11 +108,11 @@ const CreateOrganization = async () => {
                                                 </div>
                                             </div>
 
-                                            <h2 className="step-title fsz-18 fw-600">
+                                            <h2 className="step-title fsz-20 fw-500">
                                                 {step.name}
                                             </h2>
 
-                                            <p className="step-description fsz-16 cr-666 mt-3">
+                                            <p className="step-description fsz-17 color_secondary op-7 mt-3">
                                                 {
                                                     step.description
                                                 }

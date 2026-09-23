@@ -12,12 +12,12 @@
         gap: 7px;
         margin-bottom: 25px;
         color: var(--secondary);
-        font-size: 20px;
+        font-size: 28px;
         font-weight: 600;
 
         i {
             position: relative;
-            top: 3px;
+            top: 5px;
             color: var(--primary);
             margin-inline-end: 7px;
         }
@@ -40,13 +40,13 @@
 
     .summary-label {
         color: var(--secondary);
-        font-size: 17px;
+        font-size: 22px;
         font-weight: 500;
     }
 
     .summary-info small {
         color: #999;
-        font-size: 13px;
+        font-size: 18px;
     }
 
     .summary-price {
@@ -56,14 +56,14 @@
         direction: ltr;
         align-items: end;
         img {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             object-fit: contain;
         }
 
         strong {
             color: #161b26;
-            font-size: 17px;
+            font-size: 22px;
             font-weight: 600;
         }
     }
@@ -74,18 +74,18 @@
         justify-content: space-between;
         padding: 18px 0;
         color: var(--primary);
-        font-size: 18px;
+        font-size: 28px;
         font-weight: 600;
 
         .summary-price {
             strong {
                 color: var(--primary);
-                font-size: 20px;
+                font-size: 28px;
             }
 
             img {
-                width: 20px;
-                height: 20px;
+                width: 26px;
+                height: 26px;
             }
         }
     }

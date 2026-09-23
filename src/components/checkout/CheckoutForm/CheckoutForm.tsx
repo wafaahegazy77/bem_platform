@@ -59,7 +59,7 @@ const CheckoutForm = ({
                 <div className="form-group">
                     <label>{t("billingCycle")}</label>
 
-                    <div className="billing-options">
+                    <div className="billing-options col-lg-10">
                         <button
                             type="button"
                             className={`billing-option ${
@@ -117,7 +117,7 @@ const CheckoutForm = ({
                     </div>
                 </div>
 
-                <div className="form-group users-group">
+                <div className="form-group users-group mt-4 ">
                     <label>{t("usersCount")}</label>
 
                     <div className="users-counter">
@@ -242,7 +242,7 @@ const CheckoutForm = ({
 
             <div className="checkout-actions">
                 <div className="row">
-                    <div className="col-lg-9 col-7">
+                    <div className="col-lg-8 col-7">
                         <button
                             type="submit"
                             className="butn primary_butn rounded-pill hvr-txt-trans"
@@ -263,7 +263,7 @@ const CheckoutForm = ({
                             </div>
                         </button>
                     </div>
-                    <div className="col-lg-3 col-5">
+                    <div className="col-lg-4 col-5">
                         <Link
                             href="/contact"
                             className="butn secondary_border_butn rounded-pill hvr-txt-trans"

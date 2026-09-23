@@ -246,7 +246,7 @@ const PricingPlans = async () => {
                                                     )}
 
                                                 {isFree && (
-                                                    <div className="fsz-13 cr-999 mb-30">
+                                                    <div className="fsz-16 color_secondary pt-1 mb-30">
                                                         {t(
                                                             "noCreditCard"
                                                         )}

@@ -45,7 +45,7 @@ const PricingHeader = async () => {
                         animation="fade-down-blur"
                         delay={0.1}
                     >
-                        <h1 className="fsz-45 fw-bold">
+                        <h1 className="fsz-50 fw-bold">
                             {page?.title}
                         </h1>
                     </Reveal>
@@ -58,7 +58,7 @@ const PricingHeader = async () => {
                         animation="fade-up"
                         delay={0.2}
                     >
-                        <p className="services-title text-center mb-4">
+                        <p className="services-title text-center mb-4 pb-2">
                             {t("included")}
                         </p>
                     </Reveal>

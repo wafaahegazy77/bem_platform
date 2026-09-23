@@ -70,7 +70,7 @@ const Categories = async () => {
                         animation="fade-up"
                         delay={0.15}
                     >
-                        <p className="description fsz-15 cr-999 mt-10">
+                        <p className="description fsz-20 color_secondary op-7 pt-2 mt-10">
                             {pageData?.second_title}
                         </p>
                     </Reveal>
@@ -95,7 +95,7 @@ const Categories = async () => {
                         >
                             <Link
                                 href={`/services/${category.slug}`}
-                                className="category-card"
+                                className="category-card "
                             >
                                 <div
                                     className="category-icon"
@@ -114,20 +114,20 @@ const Categories = async () => {
                                     )}
                                 </div>
 
-                                <h3 className="category-title fsz-18 fw-600">
+                                <h3 className="category-title fsz-24 fw-500">
                                     {category.name}
                                 </h3>
 
-                                <p className="category-description fsz-13 cr-999">
+                                <p className="category-description fsz-18 color_secondary op-7">
                                     {
                                         category.homepage
                                             ?.first_description
                                     }
                                 </p>
 
-                                <span className="category-link">
+                                <span className="category-link text-end fsz-16 pt-4 mr-auto ">
                                     {t("articles")}
-                                    <i className="fa-light fa-arrow-left" />
+                                    <i className="fa-light fa-arrow-left mx-2 fsz-16" />
                                 </span>
                             </Link>
                         </Reveal>

@@ -84,7 +84,7 @@ const Terms = async ({
                             animation="fade-up"
                             delay={0.2}
                         >
-                            <p className="terms-description fsz-15 cr-666 fw-500">
+                            <p className="terms-description fsz-18 color_secondary op-7 col-lg-6 mx-auto ">
                                 {t("description")}
                             </p>
                         </Reveal>

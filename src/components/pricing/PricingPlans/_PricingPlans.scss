@@ -39,6 +39,9 @@
             margin: 4vw 0;
             height: calc(100% - 8vw) !important;
 
+            h4 {
+                font-size: 26px !important;
+            }
             &.featured {
                 background-image: linear-gradient(
                     120deg,

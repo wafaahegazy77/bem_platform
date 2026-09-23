@@ -75,7 +75,7 @@ const PricingComparison = async () => {
                     <Reveal
                         animation="fade-down-blur"
                     >
-                        <h2 className="fsz-40 fw-600 text-center comparison-title mb-5 pb-3">
+                        <h2 className="fsz-45 fw-600 text-center comparison-title mb-5 pb-3">
                             {t("comparisonTitle")}
                         </h2>
                     </Reveal>
