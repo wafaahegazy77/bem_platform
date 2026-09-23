@@ -1,4 +1,16 @@
 .features {
+
+    .title-wrapper {
+        h2 {
+            font-size: 47px;
+        }
+        .butn {
+            font-size: 18px;
+            height: 62px;
+            min-width: 230px;
+        }
+    }
+
     .feature-box {
         background: #eef7fb;
         border: 1px solid #c5e0ef;
@@ -12,7 +24,7 @@
             h3 {
                 position: relative;
                 padding-inline-start: 20px;
-
+                font-size: 18px;
                 &::before {
                     position: absolute;
                     content: "";
@@ -26,13 +38,19 @@
 
             .first-description {
                 line-height: 1.8;
-
+                display: none;
+                
                 p {
                     margin-bottom: 0;
+                    
                 }
             }
 
             .checks {
+                span {
+                    color: #161B26 ;
+                }
+                
                 i {
                     color: #57C0B1;
                     font-size: 13px;
@@ -60,6 +78,10 @@
             background: #57C0B115;
             border-radius: 20px;
             overflow: hidden;
+        }
+
+        .col-lg-5 div:first-child {
+            height: 100%;
         }
     }
 
@@ -162,7 +184,7 @@
                 .txt {
                     opacity: 1;
                     visibility: visible;
-                    transform: translate(-50%, -30px);
+                    transform: translate(-50%, -25px);
                 }
 
                 .ico {

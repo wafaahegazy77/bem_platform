@@ -61,7 +61,7 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
                         animation="zoom-in"
                     >
                         <div
-                            className="service-hero-name"
+                            className="service-hero-name fsz-15"
                             style={{
                                 color: service.theme_color,
                             }}
@@ -79,7 +79,7 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
                         animation="fade-down-blur"
                         delay={0.15}
                     >
-                        <h1 className="fsz-45">
+                        <h1 className="fsz-55">
                             {service.inner_page.title}
                         </h1>
                     </Reveal>
@@ -89,7 +89,7 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
                             animation="fade-up"
                             delay={0.25}
                         >
-                            <div className="description">
+                            <div className="description fsz-18 color_secondary op-7 mt-4">
                                 {service.inner_page.description}
                             </div>
                         </Reveal>

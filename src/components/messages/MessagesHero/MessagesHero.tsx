@@ -211,7 +211,7 @@ const MessagesHero = ({
                     {service.inner_page
                         .description && (
                         <m.div
-                            className="description"
+                            className="description pt-1"
                             initial={{
                                 opacity: 0,
                                 y: 50,

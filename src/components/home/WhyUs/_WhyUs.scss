@@ -3,7 +3,7 @@
 
     .why-card {
         position: relative;
-        padding: 50px;
+        padding: 50px 60px;
         border-radius: 20px;
         border: 1px solid #9994;
         display: flex;
@@ -30,6 +30,7 @@
         .title {
             position: relative;
             font-size: 28px;
+            line-height: 1.4;
         }
 
         &:hover {

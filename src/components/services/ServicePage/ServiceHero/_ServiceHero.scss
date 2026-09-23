@@ -7,6 +7,13 @@
     .service-hero-content {
         position: relative;
         z-index: 2;
+
+        .butn {
+            min-width: 250px;
+            height: 62px;
+            font-size: 18px;
+            border-radius: 35px;
+        }
     }
 
     .service-hero-name {

@@ -16,7 +16,7 @@ const Features = async () => {
             (service: any) =>
                 service.homepage?.image
         )
-        .slice(0, 7);
+        .slice(0, 8);
 
     const servicesWithDetails =
         await Promise.all(
@@ -47,7 +47,7 @@ const Features = async () => {
                 <div className="title-wrapper text-center col-lg-6 mx-auto">
 
                     <Reveal animation="fade-up-blur">
-                        <h2 className="fsz-45 color_primary fw-bold">
+                        <h2 className="color_primary fw-bold">
                             {t("title_first")}{" "}
                             <br />
 
@@ -122,58 +122,58 @@ const Features = async () => {
                                                         trigger="view"
                                                     >
                                                         <div className="info h-100 d-flex flex-column">
+                                                            <div>
+                                                                <h3 className="fsz-18 fw-500 mb-5 cr-000">
+                                                                    {
+                                                                        service.name
+                                                                    }
+                                                                </h3>
 
-                                                            <h3 className="fsz-18 fw-800 cr-000">
-                                                                {
-                                                                    service.name
-                                                                }
-                                                            </h3>
+                                                                {service
+                                                                    .homepage
+                                                                    ?.first_description && (
+                                                                    <div
+                                                                        className="first-description fsz-16 cr-666 mt-20"
+                                                                        dangerouslySetInnerHTML={{
+                                                                            __html:
+                                                                                service
+                                                                                    .homepage
+                                                                                    .first_description,
+                                                                        }}
+                                                                    />
+                                                                )}
 
-                                                            {service
-                                                                .homepage
-                                                                ?.first_description && (
-                                                                <div
-                                                                    className="first-description fsz-16 cr-666 mt-20"
-                                                                    dangerouslySetInnerHTML={{
-                                                                        __html:
-                                                                            service
-                                                                                .homepage
-                                                                                .first_description,
-                                                                    }}
-                                                                />
-                                                            )}
+                                                                <Reveal
+                                                                    animation="fade-up-blur"
+                                                                    delay={0.15}
+                                                                >
+                                                                    <ul className="checks mt-30">
 
-                                                            <Reveal
-                                                                animation="fade-up-blur"
-                                                                delay={0.15}
-                                                            >
-                                                                <ul className="checks mt-30">
-
-                                                                    {serviceData.features?.map(
-                                                                        (
-                                                                            feature: any
-                                                                        ) => (
-                                                                            <li
-                                                                                key={
-                                                                                    feature.id
-                                                                                }
-                                                                                className="d-flex align-items-start mb-15 fsz-16 cr-666"
-                                                                            >
-                                                                                <i className="fas fa-check me-10"></i>
-
-                                                                                <span>
-                                                                                    {
-                                                                                        feature.title ||
-                                                                                        feature.description
+                                                                        {serviceData.features?.map(
+                                                                            (
+                                                                                feature: any
+                                                                            ) => (
+                                                                                <li
+                                                                                    key={
+                                                                                        feature.id
                                                                                     }
-                                                                                </span>
-                                                                            </li>
-                                                                        )
-                                                                    )}
+                                                                                    className="d-flex align-items-start mb-10 fsz-16 cr-666"
+                                                                                >
+                                                                                    <i className="fas fa-check me-10"></i>
 
-                                                                </ul>
-                                                            </Reveal>
+                                                                                    <span>
+                                                                                        {
+                                                                                            feature.title ||
+                                                                                            feature.description
+                                                                                        }
+                                                                                    </span>
+                                                                                </li>
+                                                                            )
+                                                                        )}
 
+                                                                    </ul>
+                                                                </Reveal>
+                                                            </div>
                                                             {service
                                                                 .homepage
                                                                 ?.second_description && (
@@ -237,7 +237,7 @@ const Features = async () => {
                         delay={0.25}
                     >
                         <ul
-                            className="nav nav-pills mx-auto mt-100 flex-nowrap align-items-center justify-content-evenly col-11"
+                            className="nav nav-pills mx-auto mt-70 flex-nowrap align-items-center justify-content-evenly col-11"
                             id="features-tab"
                             role="tablist"
                         >

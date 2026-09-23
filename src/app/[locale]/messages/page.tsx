@@ -72,7 +72,7 @@ const MessagesPage = async () => {
                         feature: any,
                         index: number
                     ) => {
-                        if (index === 2) {
+                        if (index === 1) {
                             return (
                                 <MessagesStepsFeature
                                     key={feature.id}

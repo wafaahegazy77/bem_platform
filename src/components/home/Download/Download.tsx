@@ -47,7 +47,7 @@ const Download = async () => {
                             <Reveal
                                 animation="fade-left"
                             >
-                                <h3 className="fsz-30 fw-800">
+                                <h3 className="fsz-35 fw-800 mb-2">
                                     {data.first_title}
                                 </h3>
                             </Reveal>
@@ -90,7 +90,7 @@ const Download = async () => {
                                                 <img
                                                     src={app.icon}
                                                     alt={app.name}
-                                                    className="icon-40"
+                                                    className="icon-45"
                                                 />
                                             </div>
 

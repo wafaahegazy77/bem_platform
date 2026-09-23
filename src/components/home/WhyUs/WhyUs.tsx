@@ -42,7 +42,7 @@ const WhyUs = async () => {
                         animation="fade-up"
                         delay={0.15}
                     >
-                        <div className="text fsz-18 cr-666 mt-30">
+                        <div className="text fsz-18 color_secondary mt-30">
                             {pageData.second_title}
                         </div>
                     </Reveal>
@@ -84,7 +84,7 @@ const WhyUs = async () => {
                                                 }
                                             </h4>
 
-                                            <div className="text fsz-16 mt-15">
+                                            <div className="text fsz-16 mt-15 color_secondary">
                                                 {
                                                     item.description
                                                 }
