@@ -309,7 +309,7 @@ const MessagesHero = ({
                             ref={videoRef}
                             src={video}
                             muted
-                            // loop
+                            loop
                             playsInline
                             preload="metadata"
                         />

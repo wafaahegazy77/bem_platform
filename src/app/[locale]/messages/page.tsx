@@ -63,7 +63,7 @@ const MessagesPage = async () => {
             <main>
                 <MessagesHero
                     service={serviceData}
-                    video="/videos/1.webm"
+                    video="/videos/1.mp4"
                 />
 
                 {features.map(
