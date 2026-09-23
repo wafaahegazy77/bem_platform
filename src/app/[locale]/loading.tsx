@@ -13,7 +13,7 @@ export default function Loading() {
 
     return (
         <section className="page_loader">
-            <div className="loader_wrapper">
+            {/* <div className="loader_wrapper">
                 <div className="loader_animation">
                     <span className="ring ring1"></span>
                     <span className="ring ring2"></span>
@@ -31,7 +31,7 @@ export default function Loading() {
                 <p className="loader_text">
                     Preparing your workspace...
                 </p>
-            </div>
+            </div> */}
         </section>
     );
 }

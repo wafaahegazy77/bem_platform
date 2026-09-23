@@ -114,7 +114,7 @@ export default function Navbar({
 
                         <button
                             type="button"
-                            className="language_switcher fw-medium"
+                            className="language_switcher fw-medium d-none"
                             onClick={toggleLanguage}
                         >
                             <i className="fa-regular fa-globe"></i>

@@ -15,6 +15,9 @@
                 transparent
             )
         );
+        video {
+            border-radius: 35px;
+        }
     }
 
     .messages-feature-content {
@@ -73,7 +76,6 @@
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 35px;
         }
     }
 

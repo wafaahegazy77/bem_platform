@@ -101,9 +101,11 @@ const Footer = async () => {
                     </div>
                 </div>
 
-                <div className="foot-mid d-flex align-items-center justify-content-between py-5 col-lg-11 mx-auto border-bottom border-dr-1">
-
-                    <FooterLanguage />
+                <div className="foot-mid d-flex align-items-center justify-content-end py-5 col-lg-11 mx-auto border-bottom border-dr-1">
+                            
+                    <div className="d-none">      
+                        <FooterLanguage />
+                    </div>
 
                     <div className="socials d-flex align-items-center gap-3">
 
