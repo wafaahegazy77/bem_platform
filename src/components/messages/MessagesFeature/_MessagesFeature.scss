@@ -1,0 +1,184 @@
+.messages-feature {
+    padding: 70px 0;
+
+    &.last-feature {
+        padding: 3vw;
+        border-radius: 45px;
+        margin-top: 35px;
+        background: linear-gradient(
+            20deg,
+            #f7f8fc,
+            #f7f8fc,
+            color-mix(
+                in srgb,
+                var(--theme-color) 40%,
+                transparent
+            )
+        );
+    }
+
+    .messages-feature-content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .messages-feature-media-col,
+    .messages-feature-text-col {
+        min-width: 0;
+    }
+
+    .messages-feature-text {
+        padding: 0 2vw;
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .description {
+            font-size: 17px;
+            line-height: 1.8;
+            opacity: 0.7;
+
+            ul {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            li {
+                position: relative;
+                padding-inline-start: 25px;
+                margin-bottom: 8px;
+
+                &::before {
+                    content: "\f00c";
+                    position: absolute;
+                    top: 15px;
+                    inset-inline-start: 0;
+                    font-family: "Font Awesome 6 Pro";
+                    font-weight: 900;
+                    font-size: 10px;
+                    color: #7693df;
+                }
+            }
+        }
+    }
+
+    .messages-feature-media {
+        width: 100%;
+
+        video,
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    &.image_below {
+        .messages-feature-content {
+            text-align: center;
+        }
+
+        .messages-feature-text-col {
+            order: 1;
+        }
+
+        .messages-feature-media-col {
+            order: 2;
+        }
+
+        .messages-feature-text {
+            width: 100%;
+
+            .description {
+                margin-inline: auto;
+            }
+        }
+
+        .messages-feature-media {
+            width: 80%;
+            margin: 50px auto 0;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .messages-feature {
+        padding: 40px 0;
+
+        .messages-feature-text-col,
+        .messages-feature-media-col {
+            width: 100%;
+        }
+
+        &.image_first,
+        &.image_last {
+            .messages-feature-media-col {
+                order: 1;
+            }
+
+            .messages-feature-text-col {
+                order: 2;
+            }
+        }
+
+        &.image_below {
+            .messages-feature-text-col {
+                order: 1;
+            }
+
+            .messages-feature-media-col {
+                order: 2;
+            }
+
+            .messages-feature-media {
+                width: 75%;
+                margin-top: 45px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .messages-feature {
+        padding: 30px 0;
+
+        .messages-feature-text-col,
+        .messages-feature-media-col {
+            width: 100%;
+        }
+
+        .messages-feature-text {
+            text-align: center;
+
+            .description {
+                margin-inline: auto;
+            }
+        }
+
+        &.image_first,
+        &.image_last {
+            .messages-feature-media-col {
+                order: 1;
+            }
+
+            .messages-feature-text-col {
+                order: 2;
+            }
+        }
+
+        &.image_below {
+            .messages-feature-media {
+                width: 100%;
+                margin-top: 35px;
+            }
+        }
+    }
+
+    .messages-feature.last-feature {
+        border-radius: 25px;
+        padding: 25px;
+    }
+}

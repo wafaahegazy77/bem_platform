@@ -37,6 +37,9 @@ const ServiceFeature = ({
             ? "fade-right-blur"
             : "zoom-in-up";
 
+    const isImageBelow =
+        feature.format === "image_below";
+
     return (
         <section>
             <div className="container">
@@ -55,7 +58,11 @@ const ServiceFeature = ({
                     <div className="feature-content row align-items-center">
                         {feature.image && (
                             <div
-                                className={`feature-image-col col-lg-6 col-12 ${
+                                className={`feature-image-col ${
+                                    isImageBelow
+                                        ? "col-12"
+                                        : "col-lg-6 col-12"
+                                } ${
                                     feature.format ===
                                     "image_first"
                                         ? "order-lg-1"
@@ -84,7 +91,11 @@ const ServiceFeature = ({
                         )}
 
                         <div
-                            className={`feature-text-col col-lg-6 col-12 ${
+                            className={`feature-text-col ${
+                                isImageBelow
+                                    ? "col-12"
+                                    : "col-lg-6 col-12"
+                            } ${
                                 feature.format ===
                                 "image_first"
                                     ? "order-lg-2"
