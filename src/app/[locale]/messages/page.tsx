@@ -3,13 +3,14 @@ import { getLocale } from "next-intl/server";
 import { api } from "@/lib/api";
 import MessagesHero from "@/components/messages/MessagesHero/MessagesHero";
 import MessagesFeature from "@/components/messages/MessagesFeature/MessagesFeature";
+import MessagesStepsFeature from "@/components/messages/MessagesStepsFeature/MessagesStepsFeature";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 const messagesVideos = [
     "/videos/vid-2.mp4",
     "/videos/vid-3.mp4",
-    "/videos/vid-4.mp4",
+    null,
     "/videos/vid-5.mp4",
     "/videos/vid-6.mp4",
     null,
@@ -71,6 +72,14 @@ const MessagesPage = async () => {
                         feature: any,
                         index: number
                     ) => {
+                        if (index === 2) {
+                            return (
+                                <MessagesStepsFeature
+                                    key={feature.id}
+                                />
+                            );
+                        }
+
                         const video =
                             messagesVideos[index] ??
                             undefined;
