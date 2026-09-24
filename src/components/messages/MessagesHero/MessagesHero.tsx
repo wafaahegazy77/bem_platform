@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { m } from "motion/react";
@@ -55,8 +59,8 @@ const MessagesHero = ({
     const [animationComplete, setAnimationComplete] =
         useState(false);
 
-    const [isVisible, setIsVisible] =
-        useState(true);
+    const [showReplay, setShowReplay] =
+        useState(false);
 
     const themeColor = hexToRgba(
         service.theme_color,
@@ -70,52 +74,84 @@ const MessagesHero = ({
             return;
         }
 
-        element.playbackRate = 1.8;
+        const setPlaybackRate = () => {
+            element.playbackRate = 1.7;
+        };
 
-        const observer =
-            new IntersectionObserver(
-                ([entry]) => {
-                    setIsVisible(
-                        entry.isIntersecting
-                    );
+        setPlaybackRate();
 
-                    if (!entry.isIntersecting) {
-                        element.pause();
-                    }
-                },
-                {
-                    threshold: 0.2,
-                }
-            );
-
-        observer.observe(element);
+        element.addEventListener(
+            "loadedmetadata",
+            setPlaybackRate
+        );
 
         return () => {
-            observer.disconnect();
+            element.pause();
+
+            element.removeEventListener(
+                "loadedmetadata",
+                setPlaybackRate
+            );
         };
     }, []);
 
     useEffect(() => {
+        if (!animationComplete) {
+            return;
+        }
+
         const element = videoRef.current;
 
         if (!element) {
             return;
         }
 
+        const startVideo = () => {
+            element.playbackRate = 1.7;
+
+            element.play().catch(() => {});
+        };
+
+        setShowReplay(false);
+
+        if (element.readyState >= 3) {
+            startVideo();
+        } else {
+            element.addEventListener(
+                "canplay",
+                startVideo,
+                {
+                    once: true,
+                }
+            );
+        }
+
+        return () => {
+            element.removeEventListener(
+                "canplay",
+                startVideo
+            );
+        };
+    }, [animationComplete]);
+
+    const handleVideoEnd = () => {
+        setShowReplay(true);
+    };
+
+    const handleReplay = () => {
+        const element = videoRef.current;
+
+        if (!element) {
+            return;
+        }
+
+        setShowReplay(false);
+
+        element.currentTime = 0;
         element.playbackRate = 1.7;
 
-        if (
-            isVisible &&
-            animationComplete
-        ) {
-            element.play().catch(() => {});
-        } else {
-            element.pause();
-        }
-    }, [
-        isVisible,
-        animationComplete,
-    ]);
+        element.play().catch(() => {});
+    };
 
     return (
         <section
@@ -305,14 +341,31 @@ const MessagesHero = ({
                             )
                         }
                     >
-                        <video
-                            ref={videoRef}
-                            src={video}
-                            muted
-                            loop
-                            playsInline
-                            preload="metadata"
-                        />
+                        <div className="messages-hero-video-wrapper">
+                            <video
+                                ref={videoRef}
+                                src={video}
+                                muted
+                                playsInline
+                                preload="metadata"
+                                onEnded={
+                                    handleVideoEnd
+                                }
+                            />
+
+                            {showReplay && (
+                                <button
+                                    type="button"
+                                    className="messages-hero-replay"
+                                    onClick={
+                                        handleReplay
+                                    }
+                                    aria-label="Replay video"
+                                >
+                                    <i className="fa-light fa-rotate-right" />
+                                </button>
+                            )}
+                        </div>
                     </m.div>
                 </div>
             </div>

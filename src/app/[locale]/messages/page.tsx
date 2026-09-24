@@ -9,9 +9,9 @@ import Footer from "@/components/layout/Footer";
 
 const messagesVideos = [
     "/videos/vid-2.mp4",
-    "/videos/vid-3.mp4",
+    "/videos/vid-3.webm",
     "/videos/vid-4.mp4",
-    "/videos/vid-5.mp4",
+    "/videos/vid-5.webm",
     "/videos/vid-6.mp4",
     null,
     "/videos/vid-8.mp4",

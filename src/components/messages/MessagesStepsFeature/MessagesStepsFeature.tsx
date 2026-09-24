@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { AnimatePresence, m } from "motion/react";
 import "./_MessagesStepsFeature.scss";
 
@@ -33,6 +37,15 @@ const MessagesStepsFeature = () => {
     const [activeStep, setActiveStep] =
         useState(0);
 
+    const videoRef =
+        useRef<HTMLVideoElement | null>(null);
+
+    const [animationComplete, setAnimationComplete] =
+        useState(false);
+
+    const [showReplay, setShowReplay] =
+        useState(false);
+
     useEffect(() => {
         const timer = setInterval(() => {
             setActiveStep((currentStep) => {
@@ -51,6 +64,92 @@ const MessagesStepsFeature = () => {
             clearInterval(timer);
         };
     }, []);
+
+    useEffect(() => {
+        const element = videoRef.current;
+
+        if (!element) {
+            return;
+        }
+
+        const setPlaybackRate = () => {
+            element.playbackRate = 1.5;
+        };
+
+        setPlaybackRate();
+
+        element.addEventListener(
+            "loadedmetadata",
+            setPlaybackRate
+        );
+
+        return () => {
+            element.pause();
+
+            element.removeEventListener(
+                "loadedmetadata",
+                setPlaybackRate
+            );
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!animationComplete) {
+            return;
+        }
+
+        const element = videoRef.current;
+
+        if (!element) {
+            return;
+        }
+
+        const startVideo = () => {
+            element.playbackRate = 1.5;
+
+            element.play().catch(() => {});
+        };
+
+        setShowReplay(false);
+
+        if (element.readyState >= 3) {
+            startVideo();
+        } else {
+            element.addEventListener(
+                "canplay",
+                startVideo,
+                {
+                    once: true,
+                }
+            );
+        }
+
+        return () => {
+            element.removeEventListener(
+                "canplay",
+                startVideo
+            );
+        };
+    }, [animationComplete]);
+
+    const handleVideoEnd = () => {
+        setShowReplay(true);
+    };
+
+    const handleReplay = () => {
+        const element = videoRef.current;
+
+        if (!element) {
+            return;
+        }
+
+        setShowReplay(false);
+
+        element.currentTime = 0;
+        element.playbackRate = 1.5;
+
+        element.play().catch(() => {});
+    };
 
     return (
         <section className="messages-steps-feature">
@@ -89,9 +188,8 @@ const MessagesStepsFeature = () => {
                 </div>
 
                 <div className="messages-steps-feature-content row align-items-center">
-
                     <div className="messages-steps-col col-lg-6">
-                        <div className="messages-steps mt-4 ">
+                        <div className="messages-steps mt-4">
                             <div className="messages-steps-list">
                                 {steps.map(
                                     (
@@ -246,18 +344,39 @@ const MessagesStepsFeature = () => {
                                     1,
                                 ],
                             }}
+                            onAnimationComplete={() =>
+                                setAnimationComplete(
+                                    true
+                                )
+                            }
                         >
-                            <video
-                                src="/videos/vid-4.mp4"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
-                                preload="metadata"
-                            />
+                            <div className="messages-steps-feature-video-wrapper">
+                                <video
+                                    ref={videoRef}
+                                    src="/videos/vid-3.webm"
+                                    muted
+                                    playsInline
+                                    preload="metadata"
+                                    onEnded={
+                                        handleVideoEnd
+                                    }
+                                />
+
+                                {showReplay && (
+                                    <button
+                                        type="button"
+                                        className="messages-steps-feature-replay"
+                                        onClick={
+                                            handleReplay
+                                        }
+                                        aria-label="Replay video"
+                                    >
+                                        <i className="fa-light fa-rotate-right" />
+                                    </button>
+                                )}
+                            </div>
                         </m.div>
                     </div>
-
                 </div>
             </div>
         </section>

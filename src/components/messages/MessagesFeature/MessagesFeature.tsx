@@ -38,6 +38,9 @@ const MessagesFeature = ({
     const [showReplay, setShowReplay] =
         useState(false);
 
+    const [animationComplete, setAnimationComplete] =
+        useState(false);
+
     const hasVideo = Boolean(video);
 
     useEffect(() => {
@@ -72,7 +75,55 @@ const MessagesFeature = ({
         };
     }, [hasVideo]);
 
-    const playVideo = () => {
+    useEffect(() => {
+        if (!hasVideo || !animationComplete) {
+            return;
+        }
+
+        const element = videoRef.current;
+
+        if (!element) {
+            return;
+        }
+
+        const startVideo = () => {
+            element.playbackRate = 1.5;
+
+            element
+                .play()
+                .catch(() => {});
+        };
+
+        setShowReplay(false);
+
+        if (element.readyState >= 3) {
+            startVideo();
+        } else {
+            element.addEventListener(
+                "canplay",
+                startVideo,
+                {
+                    once: true,
+                }
+            );
+        }
+
+        return () => {
+            element.removeEventListener(
+                "canplay",
+                startVideo
+            );
+        };
+    }, [
+        hasVideo,
+        animationComplete,
+    ]);
+
+    const handleVideoEnd = () => {
+        setShowReplay(true);
+    };
+
+    const handleReplay = () => {
         const element = videoRef.current;
 
         if (!element) {
@@ -85,14 +136,6 @@ const MessagesFeature = ({
         element.playbackRate = 1.5;
 
         element.play().catch(() => {});
-    };
-
-    const handleVideoEnd = () => {
-        setShowReplay(true);
-    };
-
-    const handleReplay = () => {
-        playVideo();
     };
 
     const mediaInitial =
@@ -187,7 +230,7 @@ const MessagesFeature = ({
                                 }}
                                 viewport={{
                                     once: true,
-                                    amount: 0.05,
+                                    amount: 0.01,
                                 }}
                                 transition={{
                                     duration: 1.1,
@@ -200,7 +243,9 @@ const MessagesFeature = ({
                                 }}
                                 onAnimationComplete={() => {
                                     if (hasVideo) {
-                                        playVideo();
+                                        setAnimationComplete(
+                                            true
+                                        );
                                     }
                                 }}
                             >
@@ -269,7 +314,7 @@ const MessagesFeature = ({
                                 }}
                                 viewport={{
                                     once: true,
-                                    amount: 0.2,
+                                    amount: 0.01,
                                 }}
                                 transition={{
                                     duration: 1.1,
