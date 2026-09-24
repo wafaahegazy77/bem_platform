@@ -74,11 +74,11 @@ const MessagesHero = ({
             return;
         }
 
+        element.playbackRate = 1.7;
+
         const setPlaybackRate = () => {
             element.playbackRate = 1.7;
         };
-
-        setPlaybackRate();
 
         element.addEventListener(
             "loadedmetadata",
@@ -106,51 +106,32 @@ const MessagesHero = ({
             return;
         }
 
-        let started = false;
+        setShowReplay(false);
+        element.playbackRate = 1.7;
 
         const startVideo = () => {
-            if (started) {
-                return;
-            }
-
-            started = true;
-
             element.playbackRate = 1.7;
-            setShowReplay(false);
 
-            const playPromise = element.play();
-
-            if (playPromise !== undefined) {
-                playPromise.catch(() => {
-                    started = false;
-                });
-            }
+            element.play().catch(() => {});
         };
+
+        if (element.readyState >= 2) {
+            startVideo();
+        }
 
         const handleCanPlay = () => {
             startVideo();
         };
 
-        if (element.readyState >= 2) {
-            startVideo();
-        } else {
-            element.addEventListener(
-                "loadeddata",
-                handleCanPlay
-            );
-
-            element.addEventListener(
-                "canplay",
-                handleCanPlay
-            );
-        }
+        element.addEventListener(
+            "canplay",
+            handleCanPlay,
+            {
+                once: true,
+            }
+        );
 
         return () => {
-            element.removeEventListener(
-                "loadeddata",
-                handleCanPlay
-            );
-
             element.removeEventListener(
                 "canplay",
                 handleCanPlay
