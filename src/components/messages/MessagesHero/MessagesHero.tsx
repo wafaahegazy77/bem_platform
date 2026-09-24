@@ -56,11 +56,19 @@ const MessagesHero = ({
     const videoRef =
         useRef<HTMLVideoElement | null>(null);
 
+    const retryTimeoutRef =
+        useRef<ReturnType<typeof setTimeout> | null>(
+            null
+        );
+
     const [animationComplete, setAnimationComplete] =
         useState(false);
 
     const [showReplay, setShowReplay] =
         useState(false);
+
+    const [isVisible, setIsVisible] =
+        useState(true);
 
     const themeColor = hexToRgba(
         service.theme_color,
@@ -74,7 +82,25 @@ const MessagesHero = ({
             return;
         }
 
+        element.muted = true;
+        element.defaultMuted = true;
+        element.playsInline = true;
         element.playbackRate = 1.7;
+
+        element.setAttribute(
+            "muted",
+            ""
+        );
+
+        element.setAttribute(
+            "playsinline",
+            ""
+        );
+
+        element.setAttribute(
+            "webkit-playsinline",
+            ""
+        );
 
         const setPlaybackRate = () => {
             element.playbackRate = 1.7;
@@ -85,7 +111,29 @@ const MessagesHero = ({
             setPlaybackRate
         );
 
+        const observer =
+            new IntersectionObserver(
+                ([entry]) => {
+                    setIsVisible(
+                        entry.isIntersecting
+                    );
+                },
+                {
+                    threshold: 0.01,
+                }
+            );
+
+        observer.observe(element);
+
         return () => {
+            observer.disconnect();
+
+            if (retryTimeoutRef.current) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
+
             element.pause();
 
             element.removeEventListener(
@@ -96,7 +144,10 @@ const MessagesHero = ({
     }, []);
 
     useEffect(() => {
-        if (!animationComplete) {
+        if (
+            !animationComplete ||
+            !isVisible
+        ) {
             return;
         }
 
@@ -106,38 +157,224 @@ const MessagesHero = ({
             return;
         }
 
-        setShowReplay(false);
+        if (retryTimeoutRef.current) {
+            clearTimeout(
+                retryTimeoutRef.current
+            );
+        }
+
+        element.muted = true;
+        element.defaultMuted = true;
+        element.playsInline = true;
         element.playbackRate = 1.7;
+        element.autoplay = true;
+
+        element.setAttribute(
+            "muted",
+            ""
+        );
+
+        element.setAttribute(
+            "playsinline",
+            ""
+        );
+
+        element.setAttribute(
+            "webkit-playsinline",
+            ""
+        );
 
         const startVideo = () => {
+            if (!isVisible) {
+                return;
+            }
+
+            element.muted = true;
+            element.defaultMuted = true;
             element.playbackRate = 1.7;
 
-            element.play().catch(() => {});
-        };
+            const playPromise =
+                element.play();
 
-        if (element.readyState >= 2) {
-            startVideo();
-        }
+            if (
+                playPromise !== undefined
+            ) {
+                playPromise.catch(() => {
+                    if (
+                        retryTimeoutRef.current
+                    ) {
+                        clearTimeout(
+                            retryTimeoutRef.current
+                        );
+                    }
+
+                    retryTimeoutRef.current =
+                        setTimeout(() => {
+                            if (
+                                isVisible &&
+                                !element.ended
+                            ) {
+                                startVideo();
+                            }
+                        }, 250);
+                });
+            }
+        };
 
         const handleCanPlay = () => {
             startVideo();
         };
 
+        const handleLoadedData = () => {
+            startVideo();
+        };
+
+        const handlePlaying = () => {
+            setShowReplay(false);
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+
+                retryTimeoutRef.current =
+                    null;
+            }
+        };
+
+        const handleWaiting = () => {
+            if (!isVisible) {
+                return;
+            }
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
+
+            retryTimeoutRef.current =
+                setTimeout(() => {
+                    startVideo();
+                }, 250);
+        };
+
+        const handleStalled = () => {
+            if (!isVisible) {
+                return;
+            }
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
+
+            retryTimeoutRef.current =
+                setTimeout(() => {
+                    startVideo();
+                }, 250);
+        };
+
         element.addEventListener(
             "canplay",
-            handleCanPlay,
-            {
-                once: true,
-            }
+            handleCanPlay
         );
+
+        element.addEventListener(
+            "loadeddata",
+            handleLoadedData
+        );
+
+        element.addEventListener(
+            "playing",
+            handlePlaying
+        );
+
+        element.addEventListener(
+            "waiting",
+            handleWaiting
+        );
+
+        element.addEventListener(
+            "stalled",
+            handleStalled
+        );
+
+        setShowReplay(false);
+
+        startVideo();
 
         return () => {
             element.removeEventListener(
                 "canplay",
                 handleCanPlay
             );
+
+            element.removeEventListener(
+                "loadeddata",
+                handleLoadedData
+            );
+
+            element.removeEventListener(
+                "playing",
+                handlePlaying
+            );
+
+            element.removeEventListener(
+                "waiting",
+                handleWaiting
+            );
+
+            element.removeEventListener(
+                "stalled",
+                handleStalled
+            );
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+
+                retryTimeoutRef.current =
+                    null;
+            }
         };
-    }, [animationComplete]);
+    }, [
+        animationComplete,
+        isVisible,
+    ]);
+
+    useEffect(() => {
+        const element = videoRef.current;
+
+        if (!element) {
+            return;
+        }
+
+        if (!isVisible) {
+            element.pause();
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+
+                retryTimeoutRef.current =
+                    null;
+            }
+        }
+    }, [isVisible]);
 
     const handleVideoEnd = () => {
         setShowReplay(true);
@@ -150,12 +387,33 @@ const MessagesHero = ({
             return;
         }
 
+        if (!isVisible) {
+            return;
+        }
+
+        if (
+            retryTimeoutRef.current
+        ) {
+            clearTimeout(
+                retryTimeoutRef.current
+            );
+
+            retryTimeoutRef.current =
+                null;
+        }
+
         setShowReplay(false);
 
-        element.currentTime = 0;
+        element.muted = true;
+        element.defaultMuted = true;
+        element.playsInline = true;
         element.playbackRate = 1.7;
 
-        element.play().catch(() => {});
+        element.currentTime = 0;
+
+        element
+            .play()
+            .catch(() => {});
     };
 
     return (
@@ -312,7 +570,9 @@ const MessagesHero = ({
                                 )}
                             >
                                 <span>
-                                    {t("startFree")}
+                                    {t(
+                                        "startFree"
+                                    )}
                                 </span>
                             </div>
                         </Link>
@@ -352,6 +612,9 @@ const MessagesHero = ({
                                 src={video}
                                 muted
                                 playsInline
+                                autoPlay={
+                                    animationComplete
+                                }
                                 preload="metadata"
                                 onEnded={
                                     handleVideoEnd

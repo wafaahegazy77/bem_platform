@@ -35,10 +35,18 @@ const MessagesFeature = ({
     const videoRef =
         useRef<HTMLVideoElement | null>(null);
 
+    const retryTimeoutRef =
+        useRef<ReturnType<typeof setTimeout> | null>(
+            null
+        );
+
     const [showReplay, setShowReplay] =
         useState(false);
 
     const [animationComplete, setAnimationComplete] =
+        useState(false);
+
+    const [isVisible, setIsVisible] =
         useState(false);
 
     const hasVideo = Boolean(video);
@@ -54,6 +62,25 @@ const MessagesFeature = ({
             return;
         }
 
+        element.muted = true;
+        element.defaultMuted = true;
+        element.playsInline = true;
+
+        element.setAttribute(
+            "muted",
+            ""
+        );
+
+        element.setAttribute(
+            "playsinline",
+            ""
+        );
+
+        element.setAttribute(
+            "webkit-playsinline",
+            ""
+        );
+
         element.playbackRate = 1.5;
 
         const setPlaybackRate = () => {
@@ -66,6 +93,12 @@ const MessagesFeature = ({
         );
 
         return () => {
+            if (retryTimeoutRef.current) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
+
             element.pause();
 
             element.removeEventListener(
@@ -76,7 +109,7 @@ const MessagesFeature = ({
     }, [hasVideo]);
 
     useEffect(() => {
-        if (!hasVideo || !animationComplete) {
+        if (!hasVideo) {
             return;
         }
 
@@ -86,40 +119,264 @@ const MessagesFeature = ({
             return;
         }
 
-        setShowReplay(false);
+        const observer =
+            new IntersectionObserver(
+                ([entry]) => {
+                    setIsVisible(
+                        entry.isIntersecting
+                    );
+                },
+                {
+                    threshold: 0.01,
+                }
+            );
+
+        observer.observe(element);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [hasVideo]);
+
+    useEffect(() => {
+        if (
+            !hasVideo ||
+            !animationComplete ||
+            !isVisible
+        ) {
+            return;
+        }
+
+        const element = videoRef.current;
+
+        if (!element) {
+            return;
+        }
+
+        if (retryTimeoutRef.current) {
+            clearTimeout(
+                retryTimeoutRef.current
+            );
+        }
+
+        element.muted = true;
+        element.defaultMuted = true;
+        element.playsInline = true;
         element.playbackRate = 1.5;
 
+        element.setAttribute(
+            "muted",
+            ""
+        );
+
+        element.setAttribute(
+            "playsinline",
+            ""
+        );
+
+        element.setAttribute(
+            "webkit-playsinline",
+            ""
+        );
+
+        element.autoplay = true;
+
         const startVideo = () => {
+            if (!isVisible) {
+                return;
+            }
+
+            element.muted = true;
+            element.defaultMuted = true;
             element.playbackRate = 1.5;
 
-            element.play().catch(() => {});
-        };
+            const playPromise =
+                element.play();
 
-        if (element.readyState >= 2) {
-            startVideo();
-        }
+            if (
+                playPromise !== undefined
+            ) {
+                playPromise.catch(() => {
+                    if (
+                        retryTimeoutRef.current
+                    ) {
+                        clearTimeout(
+                            retryTimeoutRef.current
+                        );
+                    }
+
+                    retryTimeoutRef.current =
+                        setTimeout(() => {
+                            if (
+                                isVisible &&
+                                !element.ended
+                            ) {
+                                startVideo();
+                            }
+                        }, 250);
+                });
+            }
+        };
 
         const handleCanPlay = () => {
             startVideo();
         };
 
+        const handleLoadedData = () => {
+            startVideo();
+        };
+
+        const handlePlaying = () => {
+            setShowReplay(false);
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+
+                retryTimeoutRef.current =
+                    null;
+            }
+        };
+
+        const handleWaiting = () => {
+            if (!isVisible) {
+                return;
+            }
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
+
+            retryTimeoutRef.current =
+                setTimeout(() => {
+                    startVideo();
+                }, 250);
+        };
+
+        const handleStalled = () => {
+            if (!isVisible) {
+                return;
+            }
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
+
+            retryTimeoutRef.current =
+                setTimeout(() => {
+                    startVideo();
+                }, 250);
+        };
+
         element.addEventListener(
             "canplay",
-            handleCanPlay,
-            {
-                once: true,
-            }
+            handleCanPlay
         );
+
+        element.addEventListener(
+            "loadeddata",
+            handleLoadedData
+        );
+
+        element.addEventListener(
+            "playing",
+            handlePlaying
+        );
+
+        element.addEventListener(
+            "waiting",
+            handleWaiting
+        );
+
+        element.addEventListener(
+            "stalled",
+            handleStalled
+        );
+
+        startVideo();
 
         return () => {
             element.removeEventListener(
                 "canplay",
                 handleCanPlay
             );
+
+            element.removeEventListener(
+                "loadeddata",
+                handleLoadedData
+            );
+
+            element.removeEventListener(
+                "playing",
+                handlePlaying
+            );
+
+            element.removeEventListener(
+                "waiting",
+                handleWaiting
+            );
+
+            element.removeEventListener(
+                "stalled",
+                handleStalled
+            );
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+
+                retryTimeoutRef.current =
+                    null;
+            }
         };
     }, [
         hasVideo,
         animationComplete,
+        isVisible,
+    ]);
+
+    useEffect(() => {
+        if (!hasVideo) {
+            return;
+        }
+
+        const element = videoRef.current;
+
+        if (!element) {
+            return;
+        }
+
+        if (!isVisible) {
+            element.pause();
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+
+                retryTimeoutRef.current =
+                    null;
+            }
+        }
+    }, [
+        hasVideo,
+        isVisible,
     ]);
 
     const handleVideoEnd = () => {
@@ -133,12 +390,33 @@ const MessagesFeature = ({
             return;
         }
 
+        if (!isVisible) {
+            return;
+        }
+
+        if (
+            retryTimeoutRef.current
+        ) {
+            clearTimeout(
+                retryTimeoutRef.current
+            );
+
+            retryTimeoutRef.current =
+                null;
+        }
+
         setShowReplay(false);
 
-        element.currentTime = 0;
+        element.muted = true;
+        element.defaultMuted = true;
+        element.playsInline = true;
         element.playbackRate = 1.5;
 
-        element.play().catch(() => {});
+        element.currentTime = 0;
+
+        element
+            .play()
+            .catch(() => {});
     };
 
     const mediaInitial =
@@ -255,10 +533,15 @@ const MessagesFeature = ({
                                 {hasVideo ? (
                                     <div className="messages-feature-video">
                                         <video
-                                            ref={videoRef}
+                                            ref={
+                                                videoRef
+                                            }
                                             src={video}
                                             muted
                                             playsInline
+                                            autoPlay={
+                                                animationComplete
+                                            }
                                             preload="metadata"
                                             onEnded={
                                                 handleVideoEnd
