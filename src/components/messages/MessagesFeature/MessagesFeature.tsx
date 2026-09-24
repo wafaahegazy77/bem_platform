@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { m } from "motion/react";
 import type { CSSProperties } from "react";
 import "./_MessagesFeature.scss";
@@ -31,8 +35,13 @@ const MessagesFeature = ({
     const videoRef =
         useRef<HTMLVideoElement | null>(null);
 
-    const mediaRef =
-        useRef<HTMLDivElement | null>(null);
+    const featureRef =
+        useRef<HTMLElement | null>(null);
+
+    const retryTimeoutRef =
+        useRef<ReturnType<
+            typeof setTimeout
+        > | null>(null);
 
     const [isVisible, setIsVisible] =
         useState(false);
@@ -45,14 +54,14 @@ const MessagesFeature = ({
         }
 
         const element = videoRef.current;
-        const media = mediaRef.current;
+        const section = featureRef.current;
 
-        if (!element || !media) {
+        if (!element || !section) {
             return;
         }
 
         const setPlaybackRate = () => {
-            element.playbackRate = 1.4;
+            element.playbackRate = 1.5;
         };
 
         setPlaybackRate();
@@ -72,21 +81,29 @@ const MessagesFeature = ({
                 {
                     threshold: 0,
                     rootMargin:
-                        "0px 0px 120px 0px",
+                        "0px 0px 200px 0px",
                 }
             );
 
-        observer.observe(media);
+        observer.observe(section);
 
         return () => {
             observer.disconnect();
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
+
+            element.pause();
 
             element.removeEventListener(
                 "loadedmetadata",
                 setPlaybackRate
             );
-
-            element.pause();
         };
     }, [hasVideo]);
 
@@ -106,7 +123,7 @@ const MessagesFeature = ({
                 return;
             }
 
-            element.playbackRate = 1.4;
+            element.playbackRate = 2;
 
             if (element.paused) {
                 element
@@ -115,35 +132,115 @@ const MessagesFeature = ({
             }
         };
 
-        const pauseVideo = () => {
+        const retryPlayback = () => {
             if (!isVisible) {
-                element.pause();
+                return;
             }
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
+
+            retryTimeoutRef.current =
+                setTimeout(() => {
+                    playVideo();
+                }, 500);
+        };
+
+        const handleCanPlay = () => {
+            playVideo();
+        };
+
+        const handleWaiting = () => {
+            retryPlayback();
+        };
+
+        const handleStalled = () => {
+            retryPlayback();
+        };
+
+        const handleEnded = () => {
+            if (!isVisible) {
+                return;
+            }
+
+            element.currentTime = 0;
+
+            playVideo();
+        };
+
+        const handleError = () => {
+            retryPlayback();
         };
 
         if (isVisible) {
-            if (
-                element.readyState >= 3
-            ) {
-                playVideo();
-            } else {
-                element.addEventListener(
-                    "canplay",
-                    playVideo,
-                    {
-                        once: true,
-                    }
-                );
-            }
+            playVideo();
         } else {
-            pauseVideo();
+            element.pause();
         }
+
+        element.addEventListener(
+            "canplay",
+            handleCanPlay
+        );
+
+        element.addEventListener(
+            "waiting",
+            handleWaiting
+        );
+
+        element.addEventListener(
+            "stalled",
+            handleStalled
+        );
+
+        element.addEventListener(
+            "ended",
+            handleEnded
+        );
+
+        element.addEventListener(
+            "error",
+            handleError
+        );
 
         return () => {
             element.removeEventListener(
                 "canplay",
-                playVideo
+                handleCanPlay
             );
+
+            element.removeEventListener(
+                "waiting",
+                handleWaiting
+            );
+
+            element.removeEventListener(
+                "stalled",
+                handleStalled
+            );
+
+            element.removeEventListener(
+                "ended",
+                handleEnded
+            );
+
+            element.removeEventListener(
+                "error",
+                handleError
+            );
+
+            if (
+                retryTimeoutRef.current
+            ) {
+                clearTimeout(
+                    retryTimeoutRef.current
+                );
+            }
         };
     }, [
         hasVideo,
@@ -200,7 +297,7 @@ const MessagesFeature = ({
             : "order-1";
 
     return (
-        <section>
+        <section ref={featureRef}>
             <div className="container">
                 <div
                     className={`messages-feature ${
@@ -226,7 +323,6 @@ const MessagesFeature = ({
                             } ${mediaOrder}`}
                         >
                             <m.div
-                                ref={mediaRef}
                                 className="messages-feature-media"
                                 initial={{
                                     opacity: 0,
@@ -259,6 +355,7 @@ const MessagesFeature = ({
                                     <video
                                         ref={videoRef}
                                         src={video}
+                                        autoPlay
                                         muted
                                         loop
                                         playsInline
