@@ -106,30 +106,54 @@ const MessagesHero = ({
             return;
         }
 
-        const startVideo = () => {
-            element.playbackRate = 1.7;
+        let started = false;
 
-            element.play().catch(() => {});
+        const startVideo = () => {
+            if (started) {
+                return;
+            }
+
+            started = true;
+
+            element.playbackRate = 1.7;
+            setShowReplay(false);
+
+            const playPromise = element.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    started = false;
+                });
+            }
         };
 
-        setShowReplay(false);
+        const handleCanPlay = () => {
+            startVideo();
+        };
 
-        if (element.readyState >= 3) {
+        if (element.readyState >= 2) {
             startVideo();
         } else {
             element.addEventListener(
+                "loadeddata",
+                handleCanPlay
+            );
+
+            element.addEventListener(
                 "canplay",
-                startVideo,
-                {
-                    once: true,
-                }
+                handleCanPlay
             );
         }
 
         return () => {
             element.removeEventListener(
+                "loadeddata",
+                handleCanPlay
+            );
+
+            element.removeEventListener(
                 "canplay",
-                startVideo
+                handleCanPlay
             );
         };
     }, [animationComplete]);
