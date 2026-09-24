@@ -96,6 +96,55 @@
         }
     }
 
+        .messages-feature-video {
+        position: relative;
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .messages-feature-replay {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            width: 46px;
+            height: 46px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.131);
+            backdrop-filter: blur(10px);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 5;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            transition:
+                transform 0.3s ease,
+                background-color 0.3s ease;
+
+            &:hover {
+                transform: rotate(180deg);
+                background-color: #fff;
+            }
+        }
+    }
+
+    .messages-feature {
+    .messages-feature-video {
+            .messages-feature-replay {
+                right: 12px;
+                bottom: 12px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+    }
     &.image_below {
         .messages-feature-content {
             text-align: center;

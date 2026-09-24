@@ -35,15 +35,7 @@ const MessagesFeature = ({
     const videoRef =
         useRef<HTMLVideoElement | null>(null);
 
-    const featureRef =
-        useRef<HTMLElement | null>(null);
-
-    const retryTimeoutRef =
-        useRef<ReturnType<
-            typeof setTimeout
-        > | null>(null);
-
-    const [isVisible, setIsVisible] =
+    const [showReplay, setShowReplay] =
         useState(false);
 
     const hasVideo = Boolean(video);
@@ -54,9 +46,8 @@ const MessagesFeature = ({
         }
 
         const element = videoRef.current;
-        const section = featureRef.current;
 
-        if (!element || !section) {
+        if (!element) {
             return;
         }
 
@@ -71,33 +62,7 @@ const MessagesFeature = ({
             setPlaybackRate
         );
 
-        const observer =
-            new IntersectionObserver(
-                ([entry]) => {
-                    setIsVisible(
-                        entry.isIntersecting
-                    );
-                },
-                {
-                    threshold: 0,
-                    rootMargin:
-                        "0px 0px 200px 0px",
-                }
-            );
-
-        observer.observe(section);
-
         return () => {
-            observer.disconnect();
-
-            if (
-                retryTimeoutRef.current
-            ) {
-                clearTimeout(
-                    retryTimeoutRef.current
-                );
-            }
-
             element.pause();
 
             element.removeEventListener(
@@ -107,145 +72,28 @@ const MessagesFeature = ({
         };
     }, [hasVideo]);
 
-    useEffect(() => {
-        if (!hasVideo) {
-            return;
-        }
-
+    const playVideo = () => {
         const element = videoRef.current;
 
         if (!element) {
             return;
         }
 
-        const playVideo = () => {
-            if (!isVisible) {
-                return;
-            }
+        setShowReplay(false);
 
-            element.playbackRate = 2;
+        element.currentTime = 0;
+        element.playbackRate = 1.5;
 
-            if (element.paused) {
-                element
-                    .play()
-                    .catch(() => {});
-            }
-        };
+        element.play().catch(() => {});
+    };
 
-        const retryPlayback = () => {
-            if (!isVisible) {
-                return;
-            }
+    const handleVideoEnd = () => {
+        setShowReplay(true);
+    };
 
-            if (
-                retryTimeoutRef.current
-            ) {
-                clearTimeout(
-                    retryTimeoutRef.current
-                );
-            }
-
-            retryTimeoutRef.current =
-                setTimeout(() => {
-                    playVideo();
-                }, 500);
-        };
-
-        const handleCanPlay = () => {
-            playVideo();
-        };
-
-        const handleWaiting = () => {
-            retryPlayback();
-        };
-
-        const handleStalled = () => {
-            retryPlayback();
-        };
-
-        const handleEnded = () => {
-            if (!isVisible) {
-                return;
-            }
-
-            element.currentTime = 0;
-
-            playVideo();
-        };
-
-        const handleError = () => {
-            retryPlayback();
-        };
-
-        if (isVisible) {
-            playVideo();
-        } else {
-            element.pause();
-        }
-
-        element.addEventListener(
-            "canplay",
-            handleCanPlay
-        );
-
-        element.addEventListener(
-            "waiting",
-            handleWaiting
-        );
-
-        element.addEventListener(
-            "stalled",
-            handleStalled
-        );
-
-        element.addEventListener(
-            "ended",
-            handleEnded
-        );
-
-        element.addEventListener(
-            "error",
-            handleError
-        );
-
-        return () => {
-            element.removeEventListener(
-                "canplay",
-                handleCanPlay
-            );
-
-            element.removeEventListener(
-                "waiting",
-                handleWaiting
-            );
-
-            element.removeEventListener(
-                "stalled",
-                handleStalled
-            );
-
-            element.removeEventListener(
-                "ended",
-                handleEnded
-            );
-
-            element.removeEventListener(
-                "error",
-                handleError
-            );
-
-            if (
-                retryTimeoutRef.current
-            ) {
-                clearTimeout(
-                    retryTimeoutRef.current
-                );
-            }
-        };
-    }, [
-        hasVideo,
-        isVisible,
-    ]);
+    const handleReplay = () => {
+        playVideo();
+    };
 
     const mediaInitial =
         feature.format === "image_first"
@@ -297,7 +145,7 @@ const MessagesFeature = ({
             : "order-1";
 
     return (
-        <section ref={featureRef}>
+        <section>
             <div className="container">
                 <div
                     className={`messages-feature ${
@@ -350,17 +198,38 @@ const MessagesFeature = ({
                                         1,
                                     ],
                                 }}
+                                onAnimationComplete={() => {
+                                    if (hasVideo) {
+                                        playVideo();
+                                    }
+                                }}
                             >
                                 {hasVideo ? (
-                                    <video
-                                        ref={videoRef}
-                                        src={video}
-                                        autoPlay
-                                        muted
-                                        loop
-                                        playsInline
-                                        preload="metadata"
-                                    />
+                                    <div className="messages-feature-video">
+                                        <video
+                                            ref={videoRef}
+                                            src={video}
+                                            muted
+                                            playsInline
+                                            preload="metadata"
+                                            onEnded={
+                                                handleVideoEnd
+                                            }
+                                        />
+
+                                        {showReplay && (
+                                            <button
+                                                type="button"
+                                                className="messages-feature-replay"
+                                                onClick={
+                                                    handleReplay
+                                                }
+                                                aria-label="Replay video"
+                                            >
+                                                <i className="fa-light fa-rotate-right" />
+                                            </button>
+                                        )}
+                                    </div>
                                 ) : (
                                     feature.image && (
                                         <img
