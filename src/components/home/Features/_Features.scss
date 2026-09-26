@@ -1,5 +1,4 @@
 .features {
-    padding-top: 0px;
     .title-wrapper {
         h2 {
             font-size: 47px;
@@ -209,11 +208,11 @@
     }
 }
 
-@media screen and (min-width: 1600px) {
-    .features {
-        padding-top: 100px;
-    }
-}
+// @media screen and (min-width: 1600px) {
+//     .features {
+//         padding-top: 100px;
+//     }
+// }
 @media screen and (max-width: 991px) {
 
     .features {

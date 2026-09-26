@@ -43,11 +43,11 @@ const HeroSlider = ({
                 mousewheel={false}
                 keyboard
                 loop={slides.length > 5}
-                // autoplay={{
-                //     delay: 4000,
-                //     disableOnInteraction: false,
-                //     pauseOnMouseEnter: false,
-                // }}
+                autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: false,
+                }}
                 breakpoints={{
                     0: {
                         slidesPerView: 1,

@@ -14,6 +14,16 @@
     }
 }
 
+.phone-select__control {
+    height: 60px !important;
+    border-radius: 10px !important;
+}
+.phone-input .phone-country .phone-select__value-container, 
+.phone-input .phone-country .phone-select__input-container {
+    height: 60px !important;
+}
+
+
 .application-content {
     padding: 30px 0 60px;
 }

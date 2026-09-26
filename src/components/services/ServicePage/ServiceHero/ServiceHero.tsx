@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import "./_ServiceHero.scss";
 import Reveal from "@/components/animations/Reveal";
+import ServiceHeroMedia from "./ServiceHeroMedia";
 
 type ServiceHeroProps = {
     service: {
@@ -12,6 +13,7 @@ type ServiceHeroProps = {
             title: string;
             description: string | null;
             hero_image: string | null;
+            hero_image_media_type: "image" | "video";
         };
     };
 };
@@ -57,9 +59,7 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
             <div className="container">
                 <div className="service-hero-content text-center">
 
-                    <Reveal
-                        animation="zoom-in"
-                    >
+                    <Reveal animation="zoom-in">
                         <div
                             className="service-hero-name fsz-15"
                             style={{
@@ -113,17 +113,18 @@ const ServiceHero = async ({ service }: ServiceHeroProps) => {
                     </Reveal>
 
                     {service.inner_page.hero_image && (
-                        <Reveal
-                            animation="zoom-in-up"
-                            delay={0.5}
-                        >
-                            <div className="service-hero-image">
-                                <img
-                                    src={service.inner_page.hero_image}
-                                    alt={service.inner_page.title}
-                                />
-                            </div>
-                        </Reveal>
+                        <ServiceHeroMedia
+                            media={
+                                service.inner_page.hero_image
+                            }
+                            mediaType={
+                                service.inner_page
+                                    .hero_image_media_type
+                            }
+                            title={
+                                service.inner_page.title
+                            }
+                        />
                     )}
 
                 </div>
